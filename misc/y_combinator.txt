@@ -1,0 +1,177 @@
+We start, as code often does, with a simple mathematical problem and its 
+straightforward solution. In mathematics you may want the factorial operator 
+(!), defined like so: 
+
+	n! = n * (n - 1) * ... * 2 * 1. 
+	
+	e.g. 4! = 4 * 3 * 2 * 1 = 24.
+
+This number tells you that if you have a series of 4 distinct items, then 
+there are 24 different possible orderings of those 4 items. They are:
+
+	abcd	bacd	acbd	bcad	cabd	cbad
+	abdc	badc	acdb	bcda	cadb	cbda
+	adbc	bdac	adcb	bdca	cdab	cdba
+	dabc	dbac	dacb	dbca	dcab	dcba
+
+There is a convention that 0! is exactly 1, to fit several other mathematical 
+patterns, e.g. the so-called "gamma function". So there is exactly one empty 
+set, with its own ordering. In terms of growth speed, you can easily see that 
+it's somewhere between 2^n and n^n; you can actually bound it as proportional 
+to (n / e)^(n + 0.5) or so. :x
+
+We can solve this problem of "how do you calculate it?" with a recursive 
+solution, namely:
+
+	var factorial;
+	factorial = function (n) {
+		return (n == 0)? 1 : n * factorial(n - 1);
+	}
+
+In English: to compute the factorial of n: 
+
+	0! is 1, 
+	n! is n * (n - 1)!
+
+This is a recursive definition which works for any positive counting number. 
+But there's a catch: it uses the definition of a factorial inside its own 
+definition. Recursive functions do this pretty much by definition. But didn't 
+your teachers always tell you not to use a word within a definition?
+
+This isn't a grammar-geek's problem. When maths researchers designed a formal 
+mathematical system to study programs -- the lambda calculus -- they didn't 
+have any resources in their language to name these sorts of variables, much 
+less to use the name of a function in its own definition. 
+
+We proceed in true SICP style, by wishful thinking. We just imagine first what 
+it would look like to write our recursive algorithm without being able to 
+directly name the function that we're calling. What /can/ we name? We can name 
+the parameters into a function. Well, why not make the internal call to 
+factorial() a parameter to the function? 
+
+So we might try to develop something like this:
+
+	factorial = Y( 
+		function factorial_maker(recurse) {
+			return function (n) {
+				return (n == 0) ? 1 : n * recurse(n - 1);
+			};
+		}
+	);
+
+You see, we run some magical procedure Y on a function which expects a special 
+recursor function to be passed in. If that recursor function happens to be the 
+factorial function, then this procedure returns the factorial function. And Y 
+is a sort of magic wand which constructs the right input and output.
+
+Here is how we peek into Y: we first off try to write out the factorial 
+procedure with the internal function above in our minds. In other words, we 
+just try to write this out:
+
+	factorial = (function () {
+		function factorial_maker(recurse) {
+			return function (n) {
+				return (n == 0)? 1 : n * recurse(n - 1);
+			};
+		}
+		return factorial_maker(factorial_maker);
+	}());
+
+There, you see? The function receives itself as a parameter. Doesn't look so 
+impossible, does it? 
+
+Unfortunately, if you try to /run/ that code, it won't work, because that's
+the wrong input function. If recurse === factorial_maker, then the internal 
+call to "recurse(n - 1)" makes no sense, because factorial_maker is expecting 
+a function, not a number, as its input parameter.
+
+But we can cleverly evade this. Instead of recurse, you could write the phrase
+recurse(recurse), which, if recurse === factorial_maker, will be a function of 
+n. Then everything would work out in principle:
+
+	factorial = (function () {
+		function factorial_maker(recurse) {
+			return function (n) {
+				return (n == 0)? 1 : n * recurse(recurse)(n - 1);
+			};
+		}
+		return factorial_maker(factorial_maker);
+	}());
+
+What's surprising is that /this actually works/. You can paste this into a 
+Javascript console and calculate factorials with it. When we call 
+recurse(recurse), it generates the same factmaker(factmaker) function which 
+happens to be the factorial: and thus we have factorial as a valid input into 
+the function. It does not recurse infinitely, because factmaker(factmaker) 
+terminates nicely when n == 0, giving a function of n. 
+
+However, it's not fun to force everyone to write "recurse(recurse)(n)", 
+instead of just "recurse(n)". There's still a problem to be solved here.
+
+In order to do this, we must be careful indeed. You see, when recurse is a 
+function of n, then factorial_maker will expect a function of n as its 
+argument, rather than a function of functions. So we must wrap factorial_maker
+in another function F(f), which expects F itself to be passed inside.
+
+And then, we must wrap the f(f)(n) call in an intermediary function 
+recurse(n), which will be the actual "recurse" function handed in to 
+factmaker. We're doing the same steps, but we're doing them /outside/ of 
+factmaker, in a new function F that /wraps/ factmaker's fundamental action.  
+
+The end result looks like this:
+
+	factorial = (function () {
+		function factorial_maker(recurse) {
+			return function (n) {
+				return (n == 0)? 1 : n * recurse(n - 1);
+			};
+		}
+		function F(f) {
+			function recurse(n) {
+				return f(f)(n);
+			}
+			return factorial_maker(recurse);
+		}
+		return F(F);
+	}());
+
+As promised: we have recurse(n) defined as f(f)(n); it does the actual 
+recursion work, while F simply passes "recurse" into the factorial_maker and
+returns the result. When you call recurse, recurse calls F(F), which provides
+you with another function of n which is actually totally identical to the 
+last. So if you try to run this, you'll find that it /again/ does actually 
+work.
+
+We can clean this up somewhat, since the reference to /recurse/ is only actually used once, and the arguments need not be limited to just the one argument n if we use the /arguments/ special variable and the /apply/ property of our function. The /Y combinator/ is thus:
+
+	function Y(maker) {
+		function F(f) {
+			function recurse() {
+				return f(f).apply(arguments);
+			}
+			return maker(recurse);
+		}
+		return F(F);
+	}
+
+For extra lamba calculus points, we could even avoid naming F by repeating its 
+code twice, since F does not use its own name. This version avoids naming any 
+sort of variable whatsoever, except for single arguments. And each function is 
+exactly one statement long:
+
+	function Y(maker) {
+		return
+			function (f) {
+				return maker(function () {
+					return f(f).apply(arguments);
+				});
+			}(
+				function (f) {
+					return maker(function () {
+						return f(f).apply(arguments);
+					});
+				}
+			);
+	}
+
+This is the purest form I know of the construct known as the Y combinator. We have defined a recursive function without it making any sort of explicit reference to itself anywhere. 

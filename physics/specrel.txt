@@ -1,0 +1,156 @@
+Special Relativity
+
+The Yahoo! Answers physics forum receives lots of questions about the theory of relativity -- a theory in which everybody sees the same speed of light move at the same speed c, which is 300,000 kilometers per second (=186,000 miles per second). Probably the most common question is something to this effect:</p><blockquote>If I'm moving at 100,000 km/s and a beam of light passes me, don't I see it going at 200,000 km/s and not 300,000 km/s?</blockquote><p>This is what a lot of big names in the late 1800s thought: James Clerk Maxwell had just recently discovered that light was an electromagnetic wave, and his very-precise equations of electromagnetism predict that all light moves at this one speed, which you can find by measuring two lab-bench parameters -- the electric and magnetic constants. Clearly, thought these people in the late 1800s, if you're going at 100,000 km/s, you measure a different electric constant -- or else different electromagnetic equations altogether!
+
+In 1905, Einstein published three papers that changed everything. One successfully argued that Ludwig Boltzmann was right -- atoms really exist. (The German physicists and philosophers at the time were still skeptical -- thinking for example that maybe the math "just works out" so that there's always a 2:1 ratio of H to O in water.) Another successfully argued that Max Planck was right -- light isn't really a wave, but is made up of little particles ("quanta", or "photons" as they're now called). Those particles may act wavelike sometimes; they interfere and diffract and create pretty rainbows -- but they really are individual, indivisible lumps. He won the Nobel prize for that one. And the third observation was that Maxwell was right: all light moves with speed c, no matter who you are.
+
+Let me be very clear before I go on: It is common to think that relativity is a theory where "no one is right; it's all relative." This is incorrect. In relativity, *everyone* is right -- and in special relativity, everyone agrees on the speed of a light beam -- it's moving at 300,000 km/s. Everybody also agrees on "events," but they might disagree on the "where" or "when" of those events.
+
+To answer our question -- why don't I see the light going at 200,000 km/s -- you'll need a little imagination.
+
+== Trains and Clocks ==
+Let's suppose that I'm on a train. I take a little pen laser, and shine it straight up the height of the train, H, to a detector on the ceiling. These are the events that we all agree on. And I think that the light takes a certain time to cross that distance -- in this case, T = H/c.
+
+We all agree on the speed of light. This means that if we ever disagree on the *distance* that light travels, then we must also disagree on the *time* that it takes to travel that distance. In particular, let's suppose that you're standing on the ground, and my train is moving at some speed v past you. Then you see the light travel *diagonally*, and not straight. The exact distance that it goes must be given by the Pythagorean theorem:
+
+    (hypotenuse)<sup>2</sup> = (height)<sup>2</sup> + (horizontal distance)<sup>2</sup>
+
+    (c t)<sup>2</sup> = H<sup>2</sup> + (v t)<sup>2</sup>
+
+And if you still remember your high school algebra, you can divide everything by c<sup>2</sup> and move the t's to the left-hand side to find:
+
+    t &radic;<span style="text-decoration: overline">1 - (v/c)&sup2;</span> = H/c
+    
+    t = &gamma; H/c, where &gamma; = 1 / &radic;<span style="text-decoration: overline">1 - (v/c)&sup2;</span>
+
+This fundamental formula says that I disagree on the *time* that it takes, because I disagree on the *distance*. Where you think it took a time T, I think it took a time &gamma; T. And just to get a feel for &gamma; -- v/c is your speed as a fraction of the speed of light: so, if v is 100,000 km/s, then v/c is just 1/3. This would make 1 - (v/c)<sup>2</sup> into 8/9, and thus &gamma; = &radic;<span style="text-decoration: overline">9/8</span>. Since v is somewhere between 0 and 1, &gamma; is somewhere between 1 and infinity. The theory does not predict what happens if v is bigger than c: you would have to take the square root of a negative number, which doesn't make any physical sense. Or, in terms of events: if you outrun the speed of light, then there's no longer any way for my events to be the same as your events. In your system, there's some event where the light hits the top of the train; in my system, the train is moving too fast for this to ever happen.
+
+Okay, so you think that this light takes a time T, and I think it takes a longer time, &gamma; T -- because it went a longer distance. Here's the brilliant idea: why don't we just open a window, so that I can look at your clock? Then I will say, "oh, you only measured 5 seconds, when in fact it travelled for 6 seconds. Your clock is moving slowly!"
+
+I want you to absorb that fact into your deepest unconscious, because we've got extremely precise clocks these days and have been able to verify these facts in all sorts of experiments: If you move at a speed v relative to me, then I will see everything inside the train move in slow motion by this factor &gamma;. 
+
+I also think your clock (on the ground) is moving slowly. Remember, this is relativity: everybody follows these same laws, and everybody is right. This does not answer the question, but it suggests that there's something weirder going on.
+
+Simplicio: Hey! There's a contradiction there! I say "your clock is slow!" and you say "my clock is slow!" -- who's right?
+Salviati: You're both right. In each frame of reference, the clock in the other one is moving slow. 
+Simplicio: No, I mean, suppose I just grab my phone and call you up. You can't have us each thinking that the other is talking slow -- it wouldn't make sense. You spend 10s talking, I think it took 12s, then you, staring at my clock, conclude that you must have taken around 14.4s instead of 10s! But that doesn't make sense -- you *know* how long you spoke for!
+Salviati: A phone?
+Simplicio: Yes, my cell phone. Here. See? Everybody's got one these days.
+Salviati: Humor me -- how does it work?
+Simplicio: Well my voice gets converted into electricity, which then gets broadcasted to a cell phone tower.
+Salviati: And it gets broadcasted as some sort of light wave, correct?
+Simplicio:  ... I... ... ...
+Salviati: Which takes some certain time which we might disagree on...?
+Simplicio: ...You bastard.
+
+== Length contraction ==
+On my train, I now point my laser forward, so that it goes to the front of the train, hits a mirror, and rebounds to me. I think it traveled a distance 2L, where L is the length of my train; and I think it took a time T = 2L/c.
+
+On the ground, you see something different. The light first travels a distance c t1 = L + v t1, to get to the front of the train, and then it travels a distance c t2 = L - v t2 to return. If you calculate the time, you get that:
+
+    t1 = L/(c-v), t2 = L/(c+v)
+
+If you remember how to add fractions from elementary school mathematics, you might remember that (a/b) + (c/d) = (ad+bc)/(bd). Applying that here, and noticing that (c-v)*(c+v) = c<sup>2</sup> - v<sup>2</sup>, gives:
+
+    t = t1 + t2 = L [ (c+v) + (c-v) ] / [ c<sup>2</sup> - v<sup>2</sup> ]
+    t = &gamma;<sup>2</sup> * 2L/c
+
+But we know that the relationship between T and t is supposed to be that t = &gamma; T. Where is this other &gamma; coming from?
+
+Well, I was naively assuming that L was something objective -- that we both agree on it, like we both agreed on H. But this new calculation proves that if we indeed agreed on H, then we cannot possibly agree on L. Instead, you're measuring some different value -- call it A -- for the length of my train. Thus, we know that:
+
+    &gamma;<sup>2</sup> * 2A/c = t = &gamma; T = &gamma; 2L/c
+
+    &gamma; A = L
+
+Now, apply our old trick: suppose you look at my ruler or meter stick that I point in the direction of motion. You see this length as 1m / &gamma;, so you think that it's *smaller* than I do. We call this phenomenon, therefore, "length contraction": my train, which I've presumably designed to look "normal" in my reference frame, looks "stubby" in yours along the axis of motion. 
+
+You might think that this also has something to do with this difference in how we view velocities, but it turns out that this cancels out the above effect with time: more on that in a moment.
+
+== Simultaneity == 
+I haven't yet been clear about what I mean by "events," but an event occurs when two or more things meet at a given place at a given time. Since we agree on events, if two different events happen at the same place and the same time for me, everybody agrees on that: for everyone, these two different events happened both at the same place and at the same time. That shouldn't surprise you.
+
+On the other hand, if two events happen at the same place but at different times, then someone moving relative to me will see them in different places as well as different times. For example, if there's a blinking light on the front of my train, and we imagine it's very dark, I will see this light always at the same coordinates -- you will see it move across your coordinate system with my train.
+
+In relativity, something similar happens with time. Suppose you, outside of my train, manage to fire two laser pulses at the front and back of my train: they hit mirrors at what you would call the "same time", and then they bounce toward me, and I'm sitting in the center of the train.
+
+Well, this is a very similar problem to the one from before -- you think that the pulse from the front of the train travels for a time (0.5 A)/(c+v) and that the one from the back of the train travels for a time (0.5 A)/(c-v). Thus, I in the middle of the train see them at different times. If we subtract these fractions, we find that the time difference is exactly &gamma;<sup>2</sup>*(A/c)*(v/c). But the important thing is that there's a time delay between when I see these two pulses.
+
+I'm in the middle of the train, and I think these light beams move with speed c. So when I trace the light rays back, I find that the only way where I'd think they hit the front and back of the train "simultaneously" would be if the light pulses came to me at the same time. Otherwise, they hit the front and back mirrors at different times -- at least, in my frame of reference.
+
+So if I sync up my clocks in my reference frame, you see something curious: the clocks at the front of my train aren't just moving slow, but they're also showing a negative time offset from the clocks at the back of my train: the one at the front is "earlier" by a time L v / c<sup>2</sup>.
+
+This is the only factor that matters when I'm going at 100,000 km/s and a beam of light passes me. You would say that it passes the back of the train at time 0 and then the front of the train at time A/(c-v); I would say that it passes the back of the train at time 0 and the front of the train at time L/c, and the (c-v)/c factor is accounted for by the fact that my clocks at the front of the train are earlier by a time of Lv/c<sup>2</sup>. (I'm being very particular that these are my clocks, as viewed by you. I of course view them as being sync'ed up; and you of course see some factor of &gamma; if you try to use your own clocks.) 
+
+== The transform in detail ==
+We've basically got all we need to do this in detail, now, and see what the gory mathematical picture looks like. It actually looks refreshingly simple. See, in the old mechanics classes we transformed from (x,t) coordinates to (x', t') coordinates that share the same (0,0) point and move with velocity v. To do this, we would use the equation:
+
+    x' = x - vt
+    t' = t
+
+So, if I was moving 2 m/s relative to you, then whatever you say is at (x,t) = (5m, 2s) would instead be at (x',t') = (1m, 2s) to me.
+
+We want something similar in this particular case. So, let's first start with some event that two different observers, Alice and Bob, decide to treat as (0, 0). (It doesn't matter what it is, so long as they can agree on it.) Alice has a bunch of clocks at different points x on the ground, and she's synchronized them in her reference frame. Bob goes past her in his train, at speed v.
+
+Bob can do the time-part of the transform very easily. All of Alice's clocks are moving slow, to him, by a factor of &gamma;. Moreover, the ones at position x are a little early: he needs to wait a little extra until they say vx/c<sup>2</sup> before he thinks that they're simultaneous with (x',t') = (0,0). But Bob can put those two effects together very easily to say that, in relativity:
+
+    t' = &gamma; * (t - vx/c<sup>2</sup>)
+
+The x' effect is harder: Bob needs to use some sort of "x - vt" combination, but he also wants to make sure that length of a bar that Alice says has length L is, for him, a length L/&gamma;. So, let's have Alice just place a rod between x=0 and x=L, with synchronized clocks at the beginning and end of it. Bob decides to use his time t'=0 to measure the distance between the rods. This is fine at (x',t') = (0, 0) = (x,t), which is the point that they agree on, but something weird happens with Alice's other point, at (L, t). Bob must carefully wait until Alice's clock there says Lv/c<sup>2</sup>, and only then is t' there equal to 0.  
+
+Well, Bob first calculates x - vt, with t = Lv/c<sup>2</sup>, because that's the rough combination he needs. He finds that this is L(1 - v<sup>2</sup>/c<sup>2</sup>) = L / &gamma;<sup>2</sup>. "But I wanted L/&gamma;!" he exclaims. So he does the most obvious thing: he says, "clearly, we actually need the following equation:"
+
+    x' = &gamma; * ( x - vt )
+
+(And, of course, Bob determines that we also agree on perpendicular lengths, so that y' = y and z' = z.)
+
+That's it! The only thing we can do to make these even simpler is to write (v/c) as &beta; (again, the fraction of the speed of light that you're going), and to then look at ct and ct' instead of t and t'. Doing that makes these equations say:
+
+    x' = &gamma; * (x - &beta; ct)
+    ct' = &gamma; * (ct - &beta; x)
+
+In other words, the theory treats "x" and "ct" on the exact same level: this coordinate transformation (a "Lorentz transformation", sometimes called a "Lorentz boost") is similar to how a rotation by an angle &theta; about (0,0) works between x and y:
+
+    x' = x (cos &theta;) - y (sin &theta;)
+    y' = x (sin &theta;) + y (cos &theta;)
+
+There are lots of analogies to be found here. Probably the biggest one is this:
+
+   In rotations: (x')<sup>2</sup> + (y')<sup>2</sup> = r<sup>2</sup> = x<sup>2</sup> + y<sup>2</sup>
+   In Lorentz boosts: (x')<sup>2</sup> - (ct')<sup>2</sup> = x<sup>2</sup> - (ct)<sup>2</sup>
+
+This number is called an <em>invariant</em> of the transformation: it doesn't change when you apply the transformation. Anyone can figure out the "proper length" or "proper time" between two events that they think are separated by a distance L and a time T: just compute D<sup>2</sup> = L<sup>2</sup> - (cT)<sup>2</sup>. If D<sup>2</sup> is positive, then the events are separated by space, and the proper distance between them is just D -- there is some reference frame in which both events happen at the same time a distance D apart from each other. Otherwise, if D<sup>2</sup> is negative, then there is some reference frame in which both events happen at the same coordinates, separated by a time &radic;<span style="text-decoration:overline;">&minus;D&sup2;</span> / c. (If you don't include that negative sign, then you take the square root of a negative number, which is what mathematicians call an imaginary number. Some people don't have any trouble with this, so you might hear a physicist say "time is imaginary" -- this is *usually* what they mean!)
+
+== Finally solving the question ==
+
+Suppose Bob moves along (vt, t) in Alice's reference frame, and something else moves at a speed (ut, t) in Alice's frame, as well. What does Bob see? Well, just complete the Lorentz transformation, putting in "ut" wherever you see "x":
+
+    x' = &gamma; * ( ut - vt )
+    t' = &gamma; * ( t - uvt/c<sup>2</sup> )
+
+    x' = &gamma; (u-v) t
+    t' = &gamma; (1 - uv/c&sup2;) t
+
+    x' = t' * (u-v) / (1 - uv/c<sup>2</sup>)
+
+The two &gamma; terms drop out of the equations, and you are just left with the velocity formula: v' = (u - v)/(1 - uv/c<sup>2</sup>).
+
+If u gets close to c, then the top gets arbitrarily close to (c-v) while the bottom gets arbitrarily close to (1 - v/c). The ratio of these is exactly c. So if a light beam passes by Bob, we confirm that yes, Bob also sees it go at the speed of light -- mostly because his clocks are synchronized in <em>his</em> reference frame, and not Alice's. 
+
+== Spacetime bubbles ==
+
+If an event happens, then afterwards, light emits from that event outward in a spherical bubble, expanding at this speed c. This light tells people about that event: "such-and-so star went supernova at such-and-such time." As we've seen, if there's a way to transmit any sort of information faster than light, then we can force nature to tell us that relativity is wrong: just use this information pathway to connect a phone between two observers moving relative to each other; nature must tell us "Alice is right and Bob is wrong" or vice versa. (Relativity is based on the idea that everyone is right, remember; so if nature says that Bob is wrong, then relativity is wrong with it.)
+
+So all of the information about the event is confined within this little expanding bubble in spacetime. If another event happened "before" this one, then it's entirely contained within the other bubble -- they both go at speed c, so the internal one can't "outrun" the external one.
+
+You sometimes hear physicists say that if you could go faster than the speed of light, you would go "back in time." What they mean is, you could start to outrun these bubbles. Outrunning those bubbles looks, to an outside observer, a lot like you're travelling backward in time: because they will see these bubbles from the outside to the inside, but you passed through them from the inside to the outside.
+
+Of course, the bubbles don't *have* to be nested within each other -- that only happens when event B happens within event A's spacetime bubble -- when the light and information from event A was present at the place and time of event B. This is an "objectively time-like" separation: A happened first, then B happened; and some observer could have flown from A to B if they were so inclined and had the lifespan and technology.
+
+But if the light and information from event A wasn't yet there at event B, then the B-bubble starts out *outside* of the A-bubble. Then, as they relentlessly expand, they intersect. This is the exact opposite: there is nobody who could have flown from A to B, and no way to objectively say which came first. If someone is sitting in the intersection between the A-bubble and the B-bubble, so that they're within both bubbles, then they know about both. And if you choose the v's just right, you can find an observer within this intersection volume who thinks that both were simultaneous. 
+
+On the other hand, since there's no reference frame which "was there" for both A and B, there's no reference frame where they happen at the same place. Thus, they are "objectively space-like" separated. Stuff outside of the expanding spacetime bubble is objectively spacelike-separated from the event. Stuff inside the spacetime bubble is objectively time-like separated from the event. The events that occur on the exact boundary are a little ambiguous, because if you try to travel at the speed of light, &gamma; goes to infinity and every observer sees you "frozen in time", and changeless, like a photon. Lots of philosophers have commented that God is "outside of time" and "changeless" -- it probably never occurred to them that photons are pretty much the exact same way, though they do get absorbed and emitted by atoms as they travel.
+
+Lorentz transformations and rotations are both very important, because they map these expanding bubbles to other expanding bubbles. Lorentz transformations do this by taking earlier and earlier "snapshots" of the bubble as a function of position, until it looks just right -- another bubble expanding at speed c.
+
+You sometimes hear these bubbles referred to as "light cones." This is because I just invited you to imagine a four-dimensional picture, which human brains are good at *doing* but bad at *drawing*. It's much easier to draw these bubbles in an (x,t) system (where they just become two lines) or a false-3d picture of an (x,y,t) system (where they become a cone) rather than to create a sequence of false-3d pictures in which the bubbles expand.

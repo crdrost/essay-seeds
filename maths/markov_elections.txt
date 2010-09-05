@@ -1,0 +1,57 @@
+The Markov Election system:
+	People decide whether A > B, B > C, C > A.
+		Might just rank [A, B, C] or might allow the rest to work.
+	Bush-Gore election:
+		99 vote [B, G, N] -- assume republicans would rather vote Gore than Green.
+		98 vote [G, N, B] -- assume democrats would rather vote Nader than Bush.
+		 3 vote [N, G, B] -- naderites would have voted for Gore.
+		200 total.
+	Total votes in comparison land:
+		B > G : 99 for, 101 against
+		G > N : 197 for, 3 against
+		B > N : 99 for, 101 against
+	If each candidate's popularity "flows" along each of these votes, then we have the matrix:
+	
+		  1     [202,  99,  99] [B]   [B']
+		----- * [ 99, 298, 197] [G] = [G']
+		 400    [ 99,   3, 104] [N]   [N']
+	
+	The below maths seem to indicate that Bush, under this flow model, only captures ~1/3 of the populace.
+		reason: [0.5, 0.25, 0.25] maps 1, 2p, 2(1 - p) to 1, for all p.
+		more intuitive reason: 
+			if there are N candidates, 
+			and half the world loves you and half the world hates you, 
+			then on this system you only do average, getting 1/N of the vote.
+				The idea is based on the concept that the only entries in the top row have B uber alles.
+				So it's the same number for every entry in the top row.
+				The last idea that I had in the shower was that each place is filled with 1/[2*(N-1)].
+				:: realio trulio? I'm not sure I buy it. ::
+
+Javascript matrix multiplications.
+function smult(M, k){
+	var out = [];
+	for(var i = 0; i < M.length; i++) {
+		out[i] = [];
+		for(var j = 0; j < M[i].length; j++) {
+			out[i][j] = k * M[i][j];
+		}
+	}
+	return out;
+}
+function mmult(M, v){
+	var out = [];
+	for(var i = 0; i < M.length; i++) {
+		out[i] =  0;
+		for(var j = 0; j < M[i].length; j++) {
+			out[i] += M[i][j] * v[j];
+		}
+	}
+	return out;
+}
+var election = [
+	[202,  99,  99],
+	[ 99, 298, 197],
+	[ 99,   3, 104]
+];
+election = smult(election, 1/400);
+var cands = [1/3, 1/3, 1/3];

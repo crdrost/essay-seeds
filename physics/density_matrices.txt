@@ -1,0 +1,115 @@
+To get a better understanding of Quantum Mechanics, we begin developing the density matrix formalism. 
+
+In quantum mechanics, a system is described by a ket vector |ψ>, and every ket |k> has its associated bra, <k|. If a ket is a column matrix, then its bra is its complex-conjugate and transpose. The state is normalized, so that the inner vector product <ψ|ψ> = 1, we will see what that means in a moment. We have a linear algebra for describing systems.
+
+For example, if we have basis states |0> and |1>, we can then have |ψ> = a |0> + b |1>. Its bra vector is <ψ| = a* <0| + b* <1|, where * is the complex conjugation operation. The normalization condition then says a* a + b* b = 1, which we write:
+
+	|a|² + |b|² = 1.
+
+There is a Hamiltonian operator Ĥ and states evolve in time as:
+
+	i ħ (d/dt) |ψ> = Ĥ |ψ>
+	-i ħ (d/dt) <ψ| = <ψ|Ĥ
+
+To illustrate these Schrödinger equations, we derive conservation of <Â> on any arbitrary state |φ> as:
+
+	d<Â>/dt = d/dt (<φ|Â|φ>) = <dφ/dt|Â|φ> + <φ|dÂ/dt|φ> + <φ|Â|dφ/dt>
+	
+	iħ d<Â>/dt = -<φ|ĤÂ|φ> + <φ|∂Â/∂t|φ> + <φ|ÂĤ|φ>
+
+	iħ d<Â>/dt = iħ <∂Â/∂t> + <[Â, Ĥ]>
+
+Observables with no explicit time dependence are therefore conserved iff they commute with the Hamiltonian operator. 
+
+Heisenberg had a bright idea which is necessary for higher-level quantum investigations. He worked, if you'll remember, in a time before the Schrödinger equations, before wavefunctions, and he was doing a sort of "matrix mechanics": each observable was associated with a matrix. Heisenberg's bright idea was to let the |ψ> remain constant, while your observable Â varied in time. This is even stranger than the idea of wavefunctions: let us make the *meaning of momentum* change according to some equations. In its barest form: at the Big Bang, the universe was cast into some state |BB>. The state right now is still |BB>, but our operators for observing space, time, and the different fundamental forces are now wildly different, so that we see the state |BB> as the familiar world around us.
+
+If you choose this picture, then Â = Â(t) and we can describe the system with the Heisenberg equation:
+
+	iħ dÂ/dt = [Â, Ĥ]. 
+
+To each state |ψ>, we now associate a tensor: ρ = |ψ><ψ|. This is called the density matrix for the state. For example, our generic two-state system is:
+
+	ρ = |ψ><ψ| = (a |0> + b |1>)(a* <0| + b* <1|)
+	ρ = |a|² |0><0| + a b* |0><1| + a* b |1><0| + |b|² |1><1|
+
+We immediately notice that these terms |a|² and |b|² return back, so that:
+
+	Tr ρ = ρ_00 + ρ_11 = 1.
+
+This is no accident: the trace unites two different concepts in linear algebra: first, it is a sum of diagonal entries on a matrix; but second, it is also the sum of the eigenvalues of the tensor. Let us calculate the eigenvalues of ρ:
+
+	ρ |φ> = |ψ> <ψ|φ> = λ |φ>
+
+This can only be satisfied in two cases: orthogonal kets where λ = <ψ|φ> = 0, and parallel kets where |φ> = k |ψ>, λ = 1. We thus discover the general trace as:
+
+	Tr ρ = 1 + 0 + ... + 0 = 1.
+
+The density matrix of a state |ψ> is an hermitian matrix and represents an observable: in fact, as we've now seen, it is the observable "is this in state |ψ>?" 
+
+So, for example, we can ask to what extent a state |ψ> is in the state |φ> by forming the expectation value with the |φ><φ| observable:
+
+	<φ> = <ψ|φ><φ|ψ> = | <φ|ψ> |²
+
+However, this exact same number can be calculated, if we represent |ψ> by its density matrix, as:
+
+	<φ|ρ|φ> = <φ|ψ><ψ|φ> = | <φ|ψ> |² = <φ>.
+
+...so that when we start using ρ to represent wave functions, we can see to what extent they are in the |0> state very simply:
+
+	<0> = <0|ρ|0> = ρ_00. 
+
+As we have already seen, the diagonal entries tell us precisely to what extent ρ is in its basis states; this example confirms as much.
+
+We now open up the field to new hermitian density matrices, like this diagonal matrix:
+
+	ρ = |a|² |0><0| + |b|² |1><1|
+
+This represents a state which cannot be rendered by the traditional wave function approach: if it had an associated |ψ> = a |0> + b |1> vector, then we would have to have a* b = 0, which would mean |a||b| = 0, which would mean that ρ can only be either |0><0| or |1><1| for this to work as a quantum state.
+
+If we try to see whether ρ is in the state |φ> = c |0> + d |1>, we get:
+
+	<φ> = <φ|ρ|φ> = |a|²|c|² + |b|²|d|²
+
+As opposed to the case |ψ> = a |0> + b |1> , which would give:
+
+	<φ> = | <ψ|φ> |² = |a* c + b* d|²
+
+To get to some coherent numbers, let If a = b = sqrt(1/2), we would be using the density matrix:
+
+	ρ = ( |0><0| + |1><1| ) / 2
+	
+Its overlap would be:
+
+	<φ> = <φ|ρ|φ> = |c|² / 2 + |d|² / 2 = 1/2.
+
+In other words, this matrix describes something which is 50/50 in any state you can construct. It is just as likely to be in |0> + |1> as in |0> - |1>. It is 50% |0> and 50% |1> in a way that no superposition of |0> and |1> can construct.
+
+You might be skeptical that such a state exists. Don't be. It is exactly what would happen if you tried to create a classical mixture of |0> and |1> : if you flipped a coin and assigned the state as |0> or |1> based on that coin flip. Then you would also get this law:
+
+	P(ρ = φ) = P(ρ = 0) P(φ = 0) + P(ρ = 1) P(φ = 1)
+	<φ> = |a|²|c|² + |b|²|d|²
+
+We have thus found a nice way to embed classical probability into our quantum calculations: allow the off-diagonal elements of the density matrix to vanish, and suddenly you can talk about classical superpositions rather than quantum superpositions. A classical superposition of states ρ_1, ρ_2, ..., ρ_n is simply:
+
+	ρ = P_i ρ_i. 
+
+Where P_i is the probability of the state ρ_i. 
+
+~ ~ ~
+
+The state ρ is meant to be an evolving Schrödinger-esque state tensor. It is worth seeing explicitly how it evolves:
+
+	dρ/dt = |dψ/dt><ψ| + |ψ><dψ/dt| 
+	i ħ dρ/dt = Ĥρ - ρĤ = [Ĥ, ρ] = - [ρ, Ĥ]. 
+
+It is important to notice that, if ρ were a normal operator, then the Heisenberg equation would instead tell us:
+
+	i ħ dρ/dt = [ρ, Ĥ].
+
+There is a reason for this difference in sign: When the Heisenberg picture is invoked, the state of the universe becomes stationary and thus dρ/dt = 0. 
+
+Another interesting fact is that in this new sense, every observable with a finite spectrum of eigenvalues which doesn't sum to 0 defines an unique system state:
+
+	ρ_Â = Â / Tr Â. 
+
+...valid because it fulfills our two requirements: it must be hermitian and it must have trace 1. Some states in some contexts cannot be renormalized this way: there is no "momentum state" for a free particle.

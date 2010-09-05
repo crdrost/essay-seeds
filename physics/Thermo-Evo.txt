@@ -1,0 +1,20 @@
+# Thermodynamics and Evolution
+
+As a physicist, I've been asked a couple of times about a very particular class
+of arguments against evolution, which assert that the biological theory of 
+evolution is in some sense or another <em>thermodynamically impossible</em>. 
+Some of these arguments couch themselves in the terms of information theory, 
+while others appeal to the laws of thermodynamics directly: all of them state 
+that evolution is indefensible because, as it were, "something can't come from nothing." 
+
+- Design does not require an intelligent designer.
+- Claim: new information requires an intelligent agent to design.
+	- Rebuttal: computers.
+		- Objection: The software is designed by intelligent agents.
+			- Observation: This means that you just require a "halo" of 
+				intelligence to be passed on.
+			- Decisive counter-rebuttal: evolutionary algorithms work.
+				- Only require the output specifications; the rest is a black-
+					box abstraction.
+- Claim: evolution violates 2nd law of thermodynamics.
+	- Rebuttal: refrigerators. 

@@ -1,0 +1,22 @@
+On Backgammon
+
+I am going to tell you the story of backgammon -- not its origins, but the story played out by its players. I feel like it has such deep ramifications that it must be told: when you understand this story, you understand something fundamentally new about yourself. I'll try to keep myself away from being too specific.
+
+# The Rules #
+You and your opponent both have a bunch of tokens on the game board, which is a racetrack of 24 spaces, divided into quarters with 6 spaces per quarter. 
+
+You are racing in opposite directions along this track. Each turn, you roll the dice and you get those moves. For example, if you roll a 5 and a 2, you may move one piece 5 forward, and you may move another piece 2 forward. You may not move backwards, you must move if you can, you may move the same piece more than once, and if you roll doubles you actually get 4 moves, not just 2. Thus, there is a lot of luck involved: the /options/ immediately available are determined entirely randomly each turn. 
+
+The game ends when one player has moved all of their tokens past the finish line and off the board. There is one complication here, which is that you are not allowed to cross the finish line unless all of your tokens are in the final quarter of the race. But that's the simple idea: race everyone to the finish. If only your opponent wasn't trying to stop you!
+
+Here is how you both interact. If two or more of your tokens sit in a space, that space is occupied -- your enemy cannot enter; only you can. If only one of your token sits in a space, that token is vulnerable: your opponent can land in this space and thus send the token back to the beginning of the race, where it must spend some effort to successfully enter the first quarter of the race again.
+
+Thus, even the pieces closest to the finish line might be at risk, for they can be sent all the way back to the beginning if you aren't careful to keep them protected. 
+
+# The Story #
+
+Here is the story that I wish to tell. It happens over and over again in backgammon, with novice players who are playing against intermediates and experts. 
+
+The beginning of the game goes very well for the novice. With some very nice rolls, the novice moves forward a bunch of pieces from safe space to safe space. The novice takes an unambiguous lead when he lands on an exposed, single token of their opponent's design. "Wow," he says: "I have a lot of luck this game."
+
+The intermediate takes this in stride, creating even more vulnerability. The novice doesn't get most of them, and within a couple 

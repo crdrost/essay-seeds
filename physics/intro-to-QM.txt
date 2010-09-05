@@ -1,0 +1,80 @@
+NOTES: Advanced Quantum Mechanics
+
+== Lecture 1 ==
+We start with a review of classical mechanics which perhaps lacks a bit of depth. In classical mechanics, there is a *Hamiltonian* function H, which exists over all generalized coordinates {x_i} and their generalized momenta {p_i}: It tells you about the amount of energy in the system at that given "state". Notice that this does not need to be one particular particle; you might have 9-dimensional \vec x and \vec p vectors -- in which case you have three particles. 
+
+Given this function, the point (\vec x, \vec p) in state space evolves, over time, by the following set of equations:
+
+dx_i/dt = ∂H/∂p_i
+dp_i/dt = - ∂H/∂x_i
+
+There is thus a special symmetry between x_i and p_i, and we call them "conjugate variables." Unfortunately, these equations tell you very little about how to find H or uniquely determine the p_i that is conjugate to a given x_i. (Think for example if the generalized coordinates are (z, r, θ) -- the generalized momenta are m dz/dt, m dr/dt, and m r dθ/dt. How do you just look at the equations to get the extra "r" in the third one?)
+
+Since v_i = dx_i/dt is much easier to get at than p_i (just take the time derivative!), we might want to perform a /Legendre transform/ that does the heavy lifting for us. Take a point in state space and step aside with the momentum coordinate of your choice -- Δp -- while keeping everything else constant. (I will omit the subscript i's because we are just choosing *one* to sum over.) 
+
+Then:
+
+ΔH = (∂H/∂p) Δp = v Δp
+
+Our Legendre transform is to subtract this from p v, since:
+
+Δ( p v - H ) = v Δp + p Δv - ΔH
+
+Δ( p v - H ) = p Δv
+
+Thus, we may say:
+
+p = (∂/∂v) (p v - H)
+
+And of course, each derivative just propagates through. If we define the *Lagrangian* as L = -H + Σ_i p_i v_i, summing over the i's, we get that the momenta are always exactly:
+
+p_i = ∂L/∂v_i
+
+And so we can find the momentums, in principle, if we can find the Lagrangian function. We can also obwerve that on our above definition, ∂H/∂x_i = - ∂L/∂x_i, so that the second equation of motion above is simply:
+
+dp_i/dt = d/dt { ∂L/∂v_i } = ∂L/∂x_i
+
+This equation of motion can also be solved for the trajectory of the particles, and happens to also be a *least-action statement* : It turns out, given this, that for all the state-space trajectories that a particle *could* take, the one specified by the above equation has a minimum (really, a stationary) value of ∫ L dt  over the entire path.
+
+That's basically everything. Now if you just go back to Newton and Descartes, you have ∂L/∂x_i as a sort of "generalized force", with a suitable L being L = 0.5 m v_i^2 - U(x_i) in the case of Cartesian coordinates among identical noninteracting particles. Thus L represents a difference between kinetic and potential energy; and H + L = Σ_i p_i v_i shows that L represents a difference of kinetic and potential energy. 
+
+~ ~ ~
+
+We now summarize basic quantum mechanics. We start a little more basic than Schrödinger, with electrons. There are several experimental facts about electrons: 
+
+    (1) They come in discrete units.
+    (2) They can be made to diffract off of a double-slit pattern just like a wave.
+    (3) Their wave vectors are given by De Broglie: p = ħ k.
+    (4) Their frequencies are given by Einstein: E = ħ ω.
+    (5) The energy is E = p^2/2m + U.
+
+We can do something rather inventive, now, by assuming that there is a wave function F in (k,ω) space. It must obey equations (3), (4), and (5). While the exact potential energy of F is perhaps not immediately clear, we can pretty rapidly say that: 
+
+	ħ ω F = (ħ² k² / (2m)) F + U*F
+
+We now inverse Fourier transform this equation to position and time space:
+
+	i ħ ∂f/∂t = - (ħ²/(2m)) ∂²f/∂x² + u(x,t) f
+
+Where I have only made the assumption that u(x,t) can be factored out of the inverse-potential-energy operation. 
+
+If we assume that statement (2) means that we should be looking at equations of the form f(x,t) = e^{i (k x - ω t) } we can immediately see that:
+
+    ∂f/∂x = i k f = i (p / ħ) f 
+        (thus, p f = -i ħ ∂f/∂x)
+    ∂f/∂t = -i ω f = (-i E / ħ) f --> E f = i ħ ∂f/∂t
+        (thus, E f = i ħ ∂f/∂t)
+
+These facts combine to give us the Schrödinger equation: 
+    
+    E = p²/(2m) + U
+    
+    E f = {p²/(2m)} f + U f
+    
+    i ħ ∂f/∂t = - ħ²/(2m) ∂²f/∂x² + U f
+
+...which is the wave equation that makes most of these facts simply "come out of the woodwork." We thus adopt this equation as an *axiom* for the new theory, to replace and explain these other assorted facts. 
+
+~ ~ ~ 
+
+This equation, a Fourier transform of 

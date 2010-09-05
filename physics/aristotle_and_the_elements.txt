@@ -1,0 +1,32 @@
+Basic Physics
+
+
+== The Four Elements ==
+As with most names that contain the digraph "ph", physics, as a term, dates back to ancient Greece -- although the modern institution of Physics wasn't really a standard grouping until the mid-1900s. Though they were hardly unanimous on this subject, the Greeks put together a fundamental physics concerning four elements: air, earth, fire, and water. To these Aristotle added a fifth, called aether: in some sense or another, the substance of space. 
+
+The Greeks used a systematic sort of confusion in order to evade the obvious criticisms. For example, they understood that water was a good way to douse a fire, as well as covering a smallish wood-fire with dirt. And they knew that fire could be used to boil water. The apparent solution was that Fire and Water were opposites, never to be mixed. Aristotle thus divided the elements like so:
+
+Fire is mostly hot, and somewhat dry.
+Water is mostly cold, and somewhat wet.
+Air is mostly wet, and somewhat hot.
+Earth is mostly dry, and somewhat cold.
+
+And thus, we no longer talk of "air/earth, fire/water", but "wet/dry, hot/cold". The systematic confusion comes when we ask, "okay, but why does the dry wood burn so well, and the dirt not at all?" It seems to be the answer that anything dry, if given enough heat, will transition into the realm of fire; but we know that this doesn't seem to be true. So we only adopt the "wet/dry, hot/cold" interpretation in situations where it works, and we only adopt the "air/earth, fire/water" interpretation in situations where /that/ works: no matter how you heat it up, the dirt is just plain Earth, while the wood is a mixture of Earth and Fire, and burning the wood releases the Fire. More advanced criticism -- why can metals be softened and even liquified by making them hotter and hotter? -- would have to wait. 
+
+It might strike you as odd that /air/ is the wet quantity up there, and not water. Aristotle might have reconciled this in his own mind by thinking that Air was "fluid" and Earth was "rigid". But this is even more systematic confusion: because if Aristotle were to tell you, "Fire is mostly hot and somewhat rigid," you would have to look at him in disbelief and pity.
+
+We, of course, still have these elements and categories to this very day; they just aren't thought of as building-blocks of matter. But now that I've inspired you with storytime, we're going to list all of the different things that exist out there in the world.
+
+Matter
+Motion
+Consciousness, ethics, societies, etc.
+Heat
+Light, Color
+Fire
+Life
+Sound
+Smells, Tastes
+Electricity (e.g. Static shocks)
+Magnets
+Gravity
+

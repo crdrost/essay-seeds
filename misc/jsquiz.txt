@@ -1,0 +1,75 @@
+1. (function(){ return typeof arguments; })(); // "object"
+
+The `arguments` parameter to the function is always there, and is always an array-like object.
+
+2. var f = function g() { return 23; }; typeof g();
+
+The keyword "function" can define anonymous functions, as in `(function () { alert("boo"); })`. This is how it is being used above. However, you have the nice option to be able to give your anonymous function a name to call itself -- nobody else knows this name, but the anonymous function does. In this case, it is calling itself g. Since nobody else knows this name, `g` is still undefined in the local scope. So the `g()` call creates an error.
+
+3. (function (x) { delete x; return x; })(1);
+
+Named arguments are special, and cannot be deleted with this command. The `delete x;` command will fail silently, and you'll simply output 1.
+
+4. var y = 1, x = y = typeof x; x;
+
+We might rewrite this as: `var y, x; y = 1; x = y = typeof x; x;`
+
+The expression `a = b = c` sets both a and b to the value of c. To be specific, `a = b` evaluates to b and = is right-associative. This means that Javascript doesn't try to do the silly thing of `(x = y) = typeof x`, which would be `1 = typeof 1`, but rather does `x = (y = typeof x)`, which is `x = "undefined"`. 
+
+5.  (function f(f){ return typeof f(); })( function () { return 1; } );
+
+This code constructs an anonymous function which knows its own name, again. But, it creates a namespace conflict by setting one of its args to its own name. Who wins? The argument does. The function runs its argument, which gives `1`, and `typeof 1` is "number".
+
+6. var foo = { bar: function() { return this.baz; }, baz: 1 };
+(function(){ return typeof arguments[0](); })(foo.bar);
+
+You must not think of `this` as a closure variable, ever. Instead, `this` always points to the entity before the dots when the function is actually being called. In the case of `arguments[0]();`, you have a case where there isn't anything behind the dots -- there /are no dots/. In such a case, the root object is `window`, and `window.baz` is undefined.
+
+7. var foo = { bar: function(){ return this.baz; }, baz: 1}; typeof (f = foo.bar)();
+
+This is rather similar to 6 -- `this === window` becomes true when we assign it to f and then run f; and the window has no 'baz' property.
+
+8. var f = (function f(){ return "1"; }, function g(){ return 2; })(); typeof f;
+
+We've got two anonymous functions which call themselves f and g, separated by a comma. Commas have their fingers in many pies. Mostly, they are called upon to separate syntax, like `var x, y = 3, z;` or `[a, b, c]`, and so forth. But if they aren't asked to act as this special role, they become a left-associative operator which throws away the first part and keeps the second part. It has lower precedence than all other operators, by virtue of being lower than the assignment operator `=`. Thus:
+
+var x, y = (x = 3, 4, 5);
+var z = 3, 4, 5;
+
+The first line will assign 3 to x (assignment comes first), and 5 to y (comma throws away anything to its left, and leftmost commas happen first). The second line will generate an error, because commas are special in var statements. 
+
+Thus the above is really the same as `var f = 2;`. 
+
+9.  var x = 1; if (function f(){}) { x += typeof f; } x;
+
+The function is declared here as an anonymous function, and like most things in Javascript, it becomes /true/ when asked to stand for a boolean. Thus, the if statement happens. Now, they actually didn't let you give one of the more interesting responses: since f is not defined, shouldn't /any/ use of f trigger a ReferenceError? Well, typeof by itself does not, although it doesn't stop other reference errors like `typeof (qzh + lio);`.  
+
+so we get x += "undefined", which coerces x to "1" before doing its addition. x becomes "1undefined".
+
+10.  var x = [typeof x, typeof y][1]; typeof typeof x;
+
+Similar to before, `typeof y` doesn't generate a reference error, and thus the first assignment is `x = undefined;`, with typeof x being "undefined" and typeof typeof x being "string". 
+
+11. ( function (foo) { return typeof foo.bar; } ({ foo: { bar: 1 } }) );
+
+If you had just passed in {bar: 1} as an argument to this function, you would have gotten "number" from its execution. But because {foo: {bar: 1}} does not have a "bar" property, you get "undefined".
+
+12. (function f(){ function f(){ return 1; } return f(); function f(){ return 2; } })();
+
+We see several function statements -- and they're /true/ function statements; they reset f in local scope. As in question 5, this overrides the anonymous-function-that-calls-itself-f behavior. But now, what's at stake is called /hoisting/ -- in Javascript, there is a first pass through a codespace (e.g. function body) to determine all of the variables available to that codespace. 
+
+This is called 'hoisting', because it's as if the items identified were hoisted up to be the very first statements in the function. Hoisting includes var statements, but it doesn't include the values that are assigned with = on the var statements. Thus, this: 
+
+    var x = 1; x += y; var y = 3; x;
+
+...is secretly: var x, y; x = 1; x += y; y = 3; x; -- which assigns x with (1 + undefined), which is NaN. 
+
+The first pass also identifies any non-anonymous function statement and hoists it to the top, including the function body. Thus, this code block returns 2, as the second function statement overrides the first.
+
+13. function f(){ return f; } new f() instanceof f;
+
+The new keyword is a bit wonky. `new Foo ()` kind of acts like `var x = {}; Foo.call(x); return x;` -- it allows Foo to initialize x with the keyword `this`. (Also, there's magic involving prototypes and instanceof.) 
+
+However, if the Foo function returns an /object or function/, except for the null object, then instead the new keyword uses this return value. 
+
+That's what's happening here. new f() returns just f, which is a function -- it's not an object and it's not an instance of anything else. So this evaluates to false. 

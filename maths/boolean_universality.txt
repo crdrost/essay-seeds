@@ -1,0 +1,100 @@
+
+universality of {and, or, not}.
+
+map n bits to 1 bit.
+trick: bulk AND.
+	(A and B) and C tests if all three are true.
+derived:
+	bit mask: returns 1 on only one input, 0 otherwise.
+	(A and (not B)) and C is 1 if you have 101, 0 otherwise.
+trick: bulk OR.
+	(A or B) or C tests if any of the three is true.
+derived: 
+	arbitrary n-bit to 1-bit logic:
+		specify all of the strings that can lead to 1.
+		bulk OR the bit masks of all of them.
+		This will return 1 for exactly those strings desired.
+derived:
+	arbitrary n-bit to m-bit logic:
+		Each output bit is constructed by a separate, parallel computation.
+
+example: n = 2 XOR
+00 0
+01 1
+10 1
+11 0
+AB Z -- Z = ((not A) and B) or (A and (not B))
+
+example: n = 3
+000  0
+001  1
+010  1
+011  0
+100  0
+101  1
+110  0
+111  0
+ABC  Z
+
+Solution:
+
+Z = 
+	[(not A) and (not B) and C]
+	or
+	[(not A) and B and (not C)]
+	or
+	[A and (not B) and C]
+
+See, we use bitmasks to filter out all of the cases which are 1, and OR them together.
+
+XOR can subsitute for OR in the above construction: only 1 of the predicates is ever true.
+
+But this becomes less surprising when you discover that /you don't need OR/ at all.
+
+De Morgan's laws: you can actually reduce this to {and, not} or {or, not}.
+
+	A or B = not ((not A) and (not B))
+	A and B = not ((not A) or (not B)).
+
+But {xor, not} is not complete, because:
+
+	A xor (not B) = not (A xor B)
+	A xor B = B xor A, A xor (B xor C) = (A xor B) xor C.
+
+Thus any arbitrary predicate of xors and nots can have all of the not-gates pulled out of it, reduced to a single one.
+	Invariant: half of the inputs always map to 1, half to 0.
+
+Now, we can actually go even lower than {not, and} and {not, or}.
+
+Universality of {nand}.
+	nand gate:
+		    0 1
+        0 : 1 1
+        1 : 1 0
+
+	A nand A = not A.
+	not (A nand B) = A and B.
+
+since {and, not} is complete, and {nand} can be used to implement {and, not}, {nand} is complete too.
+
+Example constructions:
+
+	A or B = not ((not A) and (not B))
+	       = (not A) nand (not B)
+	       = (A nand A) nand (B nand B).
+	
+	A xor B = ((not A) and B) or (A and (not B))
+	        = ((not A) nand B) nand (A nand (not B))
+	        = ((A nand A) nand B) nand (A nand (B nand B))
+
+As you might have expected, we can do this also with NOR: 
+
+Universality of {nor}.
+	nor gate:
+		    0 1
+		0 : 1 0
+		1 : 0 0
+	
+	A nor A = not A.
+	not (A nor B) = A or B.
+

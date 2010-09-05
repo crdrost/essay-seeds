@@ -1,0 +1,79 @@
+An Introduction: Why couch?
+
+Let me tell you a story.
+
+In early 2010 I was doing a cleanup job for my company -- an ancient product had been out of use, and now the client wanted it cleaned up for permanent archival. I don't really desire to reveal the name of it, so let's call it Quirky, for the sake of fiction.
+
+Quirky had a SQL backend, and was designed as a sort of engineering bugtracker. There were lots of conversations: calculated risks, engineering accidents, property damage, ordered components, and a couple of other concrete categories were handled there. And so it was designed with a risks table, an accidents table, a damages table, an orders table, as well as some tables for users and logging and such.
+
+I had no hand in the processes by which Quirky came into being, and I don't know what order any of this happened in. All I know is that someone said, "hey, we want to attach receipts and documents and photos of damages and the minutes of meetings and so on, as separate files, to our Quirky conversations." 
+
+The problem is that you don't want to rewrite the file-attachment logic for the damages, and the risks, and the orders, and the meetings. You might need to rewrite the display logic, but you want to minimize the duplicated code. 
+
+But now, a problem: the business logic and fields for risks were very different from those for orders. And the logic and fields for accidents and damages were again completely different from the others. They didn't dare merge the tables together. But when you wanted to say "this is attached to object id #253", which object were you talking about -- the 253rd engineering accident, or the 253rd order?
+
+Here was the solution that this project had adopted: there is one table for all files. The file contains the above ID, a foreign key into another table. But *which* table is also stored alongside this record. In other words, there are two fields: "this file is attached to 'order' '253'." 
+
+It's not a bad idea, but you can perhaps see the dilemma. There is a mid-level grouping of the data as "attachables" which cannot be expressed in SQL directly. In SQL, you have to choose between two approaches. The one used above, to speak broadly, invents a sort of "global ID" for all attachables which it then "looks up", as it were. You could also choose an approach where you have several different fields in your `files` table: "links_to_orders", "links_to_meetings", and so on. You join over all of the tables at once in any query. There are hybrids, like actually storing a universal identifier in a table which has the link fields above, but I think those are the two central idioms.
+
+The underlying problem is that risks and orders are /different/ -- so different that they shouldn't be in the same table -- and yet so /similar/ that they should be. In other words, the problem is that you want to store data in one table, but with ten different data models. 
+
+This would have been a good project for couch. It was a bit of a nightmare with SQL.
+
+Chapter 1: The absolute basics.
+
+I'll assume that you know some flavor of SQL, and that you're at a company which has several clients. SQL databases require data to be organized at several levels: a client-level (database clusters), an application-level (databases), an aggregate-level (tables), and a data-level (columns). There are also little bits of magic, like constraints and indexes and SQL injection vulnerabilities, which are important for deployment but not strictly a problem in development. This is what you're familiar with.
+
+Here is what you need to know about couch:
+
+- Couch has no database clusters.
+- Couch has no tables.
+- Couch has no joins.
+- A couch database stores arbitrary JSON objects, called "documents".
+- Queries of documents are called "views", and should be built into the database.
+- Every view is indexed. Little else is.
+- Command injection is pretty much disallowed by the syntax.
+- In principle, every couch operation is an HTTP transaction.
+
+If you can keep those in mind, you can pick up couch.
+
+"Wait," I hear you say. "Back to that second one. No tables. What do you /mean/, no tables? How do I keep my users separate from my log entries, which should be separate from my conversation threads, which should be separate from my business data?"
+
+Well, if you really /need/ to (and you probably really do), then every document can have a property to do that: 
+
+	{
+		"type": "log entry", 
+		"datetime": "2010-05-06T01:23:45.678Z", 
+		"message": "New conversation thread by `drostie` on object #1."
+	}. 
+
+"But," you say, "how will I view my log entries without seeing my users mixed in there?"
+
+You build the `type` into the query. More specifically:
+
+	GET /myapp/_design/log/_views/all_entries HTTP/1.0
+
+This is what the query ultimately looks like: "get all log entries in myapp." It'll be just like <code>SELECT * FROM everything WHERE type = 'log entry'</code>, once we write it.
+
+Now you say, "Still, without my data model there will be no structure. Who will tell me when a user finds a way to set a "username" field on a log entry, or a "message" field on a user entry? How will I know when my queries are broken?"
+
+Relax. You can define your data validation within the database itself, so that you /know/ that updates have a certain structure.
+
+"I don't understand: isn't this just horribly inefficient and lazy?"
+
+Well, it's lazy, sure: that's why it's called *Couch* and the motto is "relax." But it's not horribly inefficient: since the database knows about the query, it can index it for later use. You only update one record at a time on the database, except on a totally new view -- which will be slow for exactly one query while it learns what to ignore. Laziness can sometimes be good.
+
+"Aha! I've got you there. What about my queries that are updating /all the time/ -- like <code>SELECT * FROM users WHERE id = 504</code> or even <code>SELECT * FROM official_notices WHERE status = 'publish' AND date_end > NOW()<code>?"
+
+Oh, you mean like:
+
+	GET /myapp/_design/users/_views/active?key=504 HTTP/1.0
+	GET /myapp/_design/notices/_views/published?endkey=[2010, 4, 6] HTTP/1.0
+
+...where the last array is generated by the language you're querying in?
+
+The index, you see, contains a *free variable* called a *key*. The free variable can be more than just a number; in the second case, it's an array of numbers. And this way, we can store the lookup table very efficiently and statically, and then query against it whenever we need data.
+
+I hope your attitude has changed from "Impossible!" to "That's so crazy that it just might work."
+
+Relax. Let's begin.

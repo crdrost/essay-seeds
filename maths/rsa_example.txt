@@ -1,0 +1,24 @@
+choose two primes: 
+	3389, 3271
+
+Their product is your clock size:
+clock size: 11085419
+
+compute the totient:
+	3388 * 3270 = 11078760
+
+Choose a prime, make sure it doesn't divide the totient.
+	523, 11078760 % 523 = 51.
+
+Compute the inverse exponent:
+	868507*523 + -41*11078760 = 1
+	d = 868507
+
+public key: (523, 11085419)
+private key: (868507, 11085419)
+
+encryption: message is 1234:
+pow(1234, 523, 11085419) = 2389092
+
+decryption:
+pow(2389092, 868507, 11085419) = 1234

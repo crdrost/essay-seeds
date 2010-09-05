@@ -1,0 +1,309 @@
+d.o jasper
+
+Possible future directions: namespacing?
+Add 'defaults' to an args type. =)
+v. 0.2 allowed valid_keys to be specified (I think?)
+v. 0.4 introduced a ban on any model-entity named "type". 
+
+Note on the "args" type: just because the /fields/ are optional does not mean that the /object holding them/ is optional.
+The container is only optional on an enum's [meta] tag.
+
+
+
+/*
+ * defines: d.o.jasperModel = function: (model, opts) --> validator
+ *     throws Error -- if model is not a valid jasper model.
+ *     inputs: 
+ *         jasperModel model : the model to validate against.
+ *         boolean opts.regex_as_string : whether to convert regexes to strings (default: leave them as JS objects).
+ *         string default_schema : the name of a default schema for the validator object.
+ *     outputs:
+ *         validator = { validate = function: (object, schema_name) --> output }
+ *             validates the object against the schema given by schema_name in model.
+ * output_schema = {
+ *     "output": { type: "enum", meta: {
+ *         value_field: "status",
+ *         meta_field: "meta",
+ *         options: {
+ *             "ok": {
+ *                 "sanitized": "freeform",
+ *                 "warnings": {type: "list", meta: {elements: "error"}}
+ *             },
+ *             "errors": {
+ *                 "list": {type: "list", meta: {elements: "error"}}
+ *             }
+ *         }
+ *     },
+ *     "error": { type: "object", meta: {fields: {
+ *          "schema": "freeform",
+ *          "value": "freeform",
+ *          "path": {type: "list", meta: {elements: "string"}},
+ *          "message": {type: "string", meta: {regex: "/^[^:]+(: .*)?/$"}},//[1]
+ *     }}}
+ * }
+ * notes: [1] :: some of the messages may have a semantically meaningful colon 
+ * in them. The idea is that the first part of the message contains a generic
+ * error, and the second part contains something useful, like: 
+ *     "Key not found: xyz"
+ * This would ideally be better captured by an enum type, but this works for now.
+ */
+
+
+
+jasper is a language for writing /data structures/. By authoring the /templates/ that data must adhere to in your data model, you make a rigid requirement on the proper-formedness of requests, and thus save yourself both the hassle and security leaks associated with /sanitization/ -- which is instead performed by a jasper library. It thus performs a similar role to, for example, XML Schema.
+
+All jasper schemas follow a syntax which itself can be written in jasper -- thus a jasper engine can automatically validate its own model inputs. This means that you could store in a database a time-evolving jasper model, for example -- and you could sanitize them each time.
+
+jasper is also designed to allow full recursion, and plays well with JSON. For example, here is a simple tree structure of Nodes that can have other Nodes as children:
+
+	{
+		"Node": {'type': "object", 'meta': {  'fields': {
+			"label": "string",
+			"color":    {'type': "string", 'meta': { 'regex': "/^#[0-9a-f]{6}$/i" }},
+			"children": {'type': "list", 'meta': { 'elements': "Node" }}
+		}}}
+	}
+
+Code is available for Javascript, with planned ports for PHP and Python. Extra readable materials are available here.
+
+-- the jasper basics --
+jasper describes data structures, and the easiest way to "jump into" jasper is with an example data structure. Let's invent some sort of application which needs such a thing.
+
+We're going to track /events/ that people can either subscribe to or host. Each event begins on some date and ends on some date; it has some sort of title and location. But more important than the data about some event is the /calendars/ which we serialize for our users: at any point, they can request a snapshot representing their exact agenda for the immediate future. The rest of the database may change, but the calendars should be saved as JSON to the database, as a reference.
+
+In jasper's Javascript port, this model looks like so:
+
+	var mymodel = {
+		date: {type: "string", meta: {regex: /^20\d{2}-[01]\d-[0123]\d$/}}, //in yyyy-mm-dd format
+		event: {type: "object", meta: { fields: {
+			start_date: "date",
+			end_date: "date",
+			title: {type: "string", meta: {min_length: 5, max_length: 100}},
+			location: "string"
+		}}},
+		events_list: { type: "list", meta: { elements: "event" } },
+		calendar: { type: "object", meta: { fields: {
+			serialized_on: "date",
+			username: "string",
+			title: "string",
+			hosting: "events_list",
+			attending: "events_list"
+		}}}
+	}
+
+Here is a valid events calendar, according to that specification:
+
+	var testcalendar = {
+		serialized_on: "2010-02-02",
+		username: "drostie",
+		title: "February agenda",
+		hosting: [ {
+			start_date: "2010-02-01",
+			end_date: "2010-02-08",
+			title: "Thesis project search",
+			location: "TU Delft"
+		}, {
+			start_date: "2010-02-18",
+			end_date: "2010-02-18",
+			title: "MAC pool night",
+			location: "Karrewiel, Delft"
+		} ],
+		attending: [ ]
+	}
+
+The first thing that you see is that this jasper model contains four /named concepts/ --  "date", "event", "events_list", and "calendar". Each one then has a particular form for its child: it looks like {type: ____, meta: ___}. We call these the /named schemas/, and they are in /explicit form/ -- that's what {type: ___, meta: ___} is all about.
+
+In explicit form, the "type" parameter can accept any /primitive type/ -- above, you can see "string", "object", and "list", which are some of the primitive types. The "meta" parameter can accept various /optional parameters/ which restrict the primitive type further. For example, "date" is a named schema: a string which follows a certain regular expression. There may one day be a /bona fide/ date primitive, but for now you have to name that concept within your own schema. On the other hand, an "event" is an object with a certain set of fields, an "events_list" is a list of events, and a "calendar" is an object with a serialization date, a username, a calendar title, and two sets of events: the ones that the user is hosting, and the ones that the user is attending.
+
+Just as there is an /explicit form/, there is also an /implicit form/ for all schemas. It is just a string with that schema's name, or the name of a primitive type. Thus, when we see 'username: "string"', this schema is in implicit form. It really means 'username: {type: "string", meta: {}}'. Implicit forms are allowed almost everywhere -- the exception is that the named schema declarations must always be explicit. But if you look above at the event's 
+"title" field, you can see that explicit forms are also allowed everywhere. It can often be more clear to name a concept, and it fits a "Don't Repeat Yourself" philosophy, but it isn't strictly required to name /every/ individual concept.
+
+Okay. 
+
+These concept-forms are called "schemas". A model contains a list of named schemas. Each schema has a /type/, which must be from a particular list, and a bunch of optional parameters which are specific to that type. You've now seen the "string", "object", and "list" primitive types. Here is the whole list of current schema types:
+
+	"freeform": no validation is done on the value.
+	"regex": a regular expression
+	"boolean": true or false
+	"string": a text field
+	"number": a floating-point number
+	"enum": an enumerated type -- one string in a set of many, possibly with some extra metadata.
+	"list": a list of items described by a common schema. They have an intrinsic order, and numeric indices.
+	"index": a list of items described by a common schema. They have no intrinsic order, and string indices. 
+	"object": a group of properties, all of which are required.
+	"args": a group of properties, none of which are required.
+	"multi": a type which can be fulfilled by multiple different schemas.
+
+
+Everything else in jasper is assembled from these primitives, just like calendars were assembled from strings, lists, and objects. Actually, it goes further than that: jasper /itself/ is assembled from these primitives, so that this schema type of {type: ____, meta: _____} is actually just an enum, one of those primitive types. There is a /model for jasper models/, you see, and the jasper language can itself be expressed in jasper.
+
+The other thing that you'll notice is that the named schema "date", once defined, can be used in most places that you could use a schema. For example, the "events" spec in our example looks like this:
+
+	event: {type: "object", meta: {
+		start_date: "date",
+		end_date: "date",
+		title: {type: "string", meta: {min_length: 5, max_length: 100}},
+		location: "string"
+	}
+
+Here you see that "date", "string" and {type: ____, meta: _____} can all be used to include a schema-like specification in an object. In other words, there are three fundamental sorts of specifications: primitive type references, named references, and schemas. We call a specification which can take any of these forms a "composite schema". Composite schemas give jasper its power, but they aren't allowed everywhere: (1) within the "type" of a schema, only primitive type references are allowed -- no schemas or named references; and (2) the named schemas in a model must also be proper {type: ___, meta: ___} schemas.
+
+With composite schemas, we can suddenly express a name-based /recursion/ -- the idea that data can link to other data of the same kind. To continue our example, we might decide that some events -- like conferences -- can contain smaller events as a "part of" the larger event. If these "is a part of" chains are relatively short, then we might want to access all of them from within the calendar. This can be done by modifying the "event" type to contain the optional parent event: 
+
+	event: {type: "object", meta: {
+		start_date: "date",
+		end_date: "date",
+		title: {type: "string", meta: {min_length: 5, max_length: 100}},
+		location: "string",
+		part_of: {type: "args", meta: { fields: {
+			parent_event: "event"
+		}}}
+	}
+
+Now every event must contain a "part_of" clause, which might hold {} or else holds {parent_event: ____}. This could alternatively be done with an enumeration type.
+
+Notice that the "event" type is introduced within the definition of an event itself. 
+
+	Reference a primitive type by name (with no options),
+	Reference a named schema by name,
+	Explicitly state an unnamed schema. 
+
+
+
+-- the jasper philosophy --
+The most important goal of jasper was to constrain the ways that one can think about data structures. Though jasper sanitizes and normalizes data, the very act of choosing a jasper structure should stop you from making errors that you might regret later. 
+
+This decision should never be taken lightly: paternalism and idiosyncrasy both restrict the user's freedom. Examples of idiosyncrasy gone wrong include Java and XML. To a lesser extent, I might add JSLint, for both often disallowing one-liners when they're perfectly reasonable; and perhaps I'd also add Lisp for its peculiar syntax.
+
+Here are some basic sacrifices that jasper demands of its instance messages:
+
+1) Messages don't contain null. They use expressive enumerations instead.
+2) Messages name their data.
+3) Messages allow later expansion.
+4) Lists must contain homogeneous objects. 
+
+We'll take these in an arbitrary order.
+
+(1) homogeneous lists
+Like JSON, jasper has two listing types: one with string keys, and one with integer keys; these are called indexes and lists respectively. The goal of both is to "look up" entries within them, and to loop over them. They don't have any predefined keys, and they might even not have any contents within them.
+
+When you declare one of these, you provide a data structure that all such elements must follow. It might be as simple as a string with email-address syntax, or as complicated as a multi type which will accept numbers, an args type representing complex numbers, or a certain particular string representing infinity. 
+
+There is no direct hierarchy among such a list; you cannot require that the /first/ element is the infinity string and the /second/ element is expressed as a bare number; if you're listing at all, then all of your listing entities must follow the same schema.
+
+It should generally be the case that lists are used when the order among elements (e.g. in looping) matters, while indexes are used when this order doesn't matter. Lists are often also used when the keys for the listing have no semantic value.
+
+Here's another example of something that's forbidden: placing an explicit length, or range of lengths, on a list type -- or, for that matter, generating a list whose first element must be a string and whose second element must be an object. The original motive here was simply to guarantee that anybody could change data of type "list" to type "index" and, at worst, only generate a warning -- there shouldn't be any /semantic/ problems by switching from number indices 0, 1, 2, ... to string indices "0", "1", "2", ... . But "length" doesn't make much sense for index types.
+
+You might have wanted to implement a complex number as:
+
+	{"complex": {type: "list", meta: { elements: "number", length: 2 }}}
+
+...or so. But this is fundamentally an abuse of what the "list" type is supposed to semantically describe -- the whole point of a list type is to /loop over it/ in programming, but you would never want to loop over elements of a complex number. Instead, you can describe the same core syntax expressed above with an "object" type:
+
+	{"complex": {type: "object", meta: { fields: { "0": "number", "1": "number" }}}}
+
+...which should validate [1.0, 1.0] in Javascript, as an object with properties "0" and "1". (It is intended that any other implementation should mimic this behavior in validation.)
+
+From here it's entirely valid to point out that "0" and "1" are going to be semantically confusing in your source code anyway, and might be replaced by, say, "real" and "imag": "var a = {real: 1.0, imag: 1.0};". But this last decision is left up to the end-user.
+
+In any case, the data model is now much more expressive. When you specify either "object" or "args", it is automatically extensible in code -- no existing code needs to be retrofitted when you want to add a property, except possibly the constructors for your complex numbers. For example, in complex analysis, you often need to invent "branch sheets" that different complex numbers live upon; they can usually be indexed by an integer. How would we add this to the above data models?
+
+In the first case, there's no way to add this property with its "must be an integer" constraint. If the property weren't a number -- like "is_complex_infinity": "boolean", or so, we would be stuck altogether. Meanwhile, the legitimate use of the "length" attribute -- which would be to provide limits when the loop is computationally expensive -- is better handled within the code doing the expensive loop anyway.
+
+(2) nulls nullified
+JSON has a specific "zero object" called null, which stands for the intentional absence of an object that "should be there". jasper /disallows/ the null type and puts severe restrictions on the undefined type.
+
+Since null is used to say "this key is deliberately left blank," it reflects a prior commitment in the data model: your service must explicitly allow that data to be optional, and must assign a meaning to its optionality. Both of these should be placed somewhere in the model. We should always be able to see the /reason/ why this field is being deliberately left blank.
+
+With only a little effort, this information can usually be reflected in the model. For example, if we pretended that "null" was a valid data type in jasper, we could express this model:
+
+	{ 
+		"Field Modification": {type: "object", meta: {fields: {
+			"field_id": {type: "number", meta: {is_integer: true, min: 0}},
+			"value": {type: "multi", meta: { allowed: ["null", "number"] }}
+		}}},
+		"SetFields Input": {type: "list", meta: { elements: "Field Modification" } }
+	}
+
+Which would validate the query:
+
+	[
+		{"field_id": 1, "value": 123.45}, 
+		{"field_id": 2, "value": null}
+	]
+
+Now, what does this mean? Clearly this is the input to a "SetFields" request, which must set a list of numerical fields to their values. But what does /null/ mean?
+
+If the value is /null/, this might be code for deleting the field, or else setting it to a default value, or else leaving the field alone, or else setting the database's internal value to the literal value NULL, rather than the number 0. Let's say, for argument, that the purpose of the above query is to /delete/ field #2. That's all well and good, but how do we make this more explicit? Clearly, our communication should instead say something like:
+
+	[ 
+		{"field_id": 1, "action": "set", "value": 123.45}
+		{"field_id": 2, "action": "delete"}
+	]
+
+This is better, but it isn't the most natural way to express this communication in jasper. You see, in order to make "value" optional, the type of "Field Modification" must be args -- which would make "field_id" optional, which it never is. In other words, the model doesn't "think clearly" about itself: in this context, some things are optional and some things aren't, conditioned upon the values of the other keys.
+
+The most natural communication in jasper would thus look like this:
+
+	[
+		{"field_id": 1, "request": {"action": "set", "meta": {"value": 123.45}}}, 
+		{"field_id": 2, "request": {"action": "delete", "meta":{}}}
+	]
+
+The model for this looks a little more complicated:
+
+	{ 
+		"Field Modification": {type: "object", meta: {fields: {
+			"field_id": {type: "number", meta: {is_integer: true, min: 0}},
+			"request": {type: "enum", meta: {
+				'value_field': "action",
+				'options': {
+					"set":    {"value": "number"},
+					"delete": {}
+				}
+				
+			}}
+		}}},
+		"SetFields Input": {type: "list", meta: { elements: "Field Modification" } }
+	}
+
+Our idiosyncrasy, as promised, has made the model longer and harder to write, as well as the inputs. The value of this choice is not seen until we examine the code that handles it. That code is now much clearer.
+
+First, what once said "if (mod.value === null)" will now say "switch (mod.request.action)", clearly marking out the available actions. Second, we've enabled future extensions: suppose that later, you /do/ want to add the actions "reset to default" and "do nothing" -- or perhaps even the actions "increment" and "decrement", or an action "transform" which accepts a mathematical function as its argument. It is now trivial to add those actions to the service's input model -- just extend the enumerations and switch statements with the logic needed to handle new actions.
+
+(3) Later extensions, and jasper itself
+
+When you want to provide two or more values together, you are generally specifying an "object" or "args" type. These types are build to support later adding of further metadata. These types are also forced within enumeration metadata, which should /always/ be extensible. It was even a bit of a hard choice to /not/ force lists and indexes to also contain objects, so that any list's data type could be extended. This would mean that every number or string would be wrapped in an object, to make them amenable to future extensions.
+
+The reason I held off, informally, was because the requests just looked too messy, with every odd number wrapped in an object. 
+
+It might be instructive here to look at meta-idiosyncrasies -- the idiosyncrasies of the jasper modeling language. Here is a Javascript jasper model written for a complex number:
+
+	var model = {
+		complex: {type: "object", meta: {
+			fields: {
+				real: "number", 
+				imag: "number" 
+			}
+		}}
+	};
+
+But, if you think about it, the "object" type only has "fields" to define. We could in principle alter jasper, to shorten this whole statement to:
+
+	var model = {complex: ["object", {real: "number", imag: "number"}]};
+
+This is perfectly valid, and you can write a schema in jasper for this method. However, it would constrain possible later development of jasper itself. 
+
+Since there is a jasper model for jasper models, and the jasper schema is actually an enumeration type, the second version forces me to declare, once and for all, the schema of the single argument to the "object" type. In this case, it must be an index of composite schemas -- nothing else. (Actually, I could maybe hack something up with multis, but it would be potentially very confusing.)
+
+So, an "enum" would look like this:
+
+	"success": ["enum", {
+		"yes": {"output": "freeform"},
+		"no": {"failure reason": "string}
+	}]
+
+Now, suppose I wanted to insert a new functionality -- perhaps to define my own "value" and "meta" keys, instead of just accepting "0" for value and "1" for meta in the enumeration. Could I do this? Yes, but it would break schemas. I would have to revert it to the jasper syntax that we've already seen, and then leave a big note: "this version is incompatible with versions before 0.x". Or I would define that a "state" is like an "enum" but with these extra properties. Neither would be fun.
+
+By forcing the object/args types on enumerations, I allow the rest of the code to be extensible in a minor way. 

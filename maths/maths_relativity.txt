@@ -1,0 +1,76 @@
+The basic maths of relativity come from a branch of mathematics which deals with <em>coordinate-neutrality</em>: concepts like "vectors," "tensors," "duals", "summation notations", "metrics", and so forth. If you want a rigorous understanding of relativity, you will have to acquire this language.
+
+We start with your traditional notion of vectors in an Euclidean space. You have some concept, like the electrical current density J, which has a particular direction (the direction the current is flowing), and a magnitude (the amount of flux). We define a <em>column matrix</em> which contains J_x, J_y, and J_z, which are the <i>components</i> of the vector with respect to the (x, y, z) <i>basis</i>. Strictly speaking, J is a vector <em>field</em>, which means that J is actually a collection of many vectors, each of them bound to a certain point in space. However, we intentionally leave this spatial binding <em>out</em> of our notion of "vectors" -- vectors might or might not be bound to a location in the coordinates.
+
+Now, you could be forgiven if you found this picture all a bit confusing: because there are lots of different parts. Which parts are <em>essential</em> and which are not? In linear algebra, the definition of a vector will probably be restricted only to the column matrix (and an associated row matrix): anything which can be described with a list of numbers is thus a "vector", including a shopping list for 3 oranges, 2 grapefruits, and 1 pear -- that's just the [3; 2; 1] vector. But a physicist feels that those components are just an artifact of the coordinate system. The "magnitude and direction" statement is more fundamental.
+
+Since vectors make angles with other vectors in this sense, we can begin by stating the <em>dot product</em> between two vectors, which must be defined via "magnitudes and directions" in this way:
+
+	<b>a</b> · <b>b</b> = a b cos θ<sub>ab</sub>
+
+...where a is the magnitude of <b>a</b>, the same for b, and  θ<sub>ab</sub> is the angle between them. This definition is coordinate-independent, and has some nice algebraic properties:
+
+	<b>a</b> · <b>b</b> = <b>b</b> · <b>a</b> 
+	<b>a</b> · k<b>b</b> = k <b>a</b> · <b>b</b>
+	<b>a</b> · (<b>b</b> + <b>c</b>) = <b>a</b> · <b>b</b> + <b>a</b> · <b>c</b>
+
+This last one is a bit harder to prove: a proof is given in appendix I.
+
+
+
+Appendix I
+A proof that the dot product definition <b>a</b> · <b>b</b> = a b cos θ<sub>ab</sub>, as well as a geometrical interpretation of vector addition, together imply distributivity, i.e. that:
+
+	<b>a</b> · (<b>b</b> + <b>c</b>) = <b>a</b> · <b>b</b> + <b>a</b> · <b>c</b>.
+
+Let's begin. Here are some trivial consequences of the definition:
+
+	<b>a</b> · <b>b</b> = <b>b</b> · <b>a</b> 
+	<b>a</b> · k<b>b</b> = k <b>a</b> · <b>b</b>
+
+These hold because the angle between "a and b" is the same as the angle between "b and a", and because multiplying a vector by a scalar means multiplying its magnitude by a scalar. So there's nothing sophisticated there.
+
+Lemma 1: 
+
+	<b>a</b> · (<b>b</b> + <b>c</b>) + <b>b</b> · <b>c</b> = b · (<b>a</b> + <b>c</b>) + <b>a</b> · <b>c</b>
+
+Proof: Let me define two sums: <b>s</b> = <b>b</b> + <b>c</b> and <b>S</b> = <b>a</b> + <b>b</b> + <b>c</b> = <b>a</b> + <b>s</b>. Then the law of cosines, from geometry, states that these sums obey the following relation to the angles between them:
+
+	S² = a² + s² + 2 a s cos θ<sub>as</sub>
+	s² = b² + c² + 2 a b cos θ<sub>ab</sub>
+
+We immediately recognize two dot products: both <b>a</b> · <b>s</b> = <b>a</b> · (<b>b</b> + <b>c</b>) and <b>b</b> · <b>c</b>. We eliminate s² from the equations to yield:
+
+	<b>a</b> · (<b>b</b> + <b>c</b>) + <b>b</b> · <b>c</b> = (S² - a² - b² - c²) / 2.
+
+The expression on the right is invariant when we choose a different permutation of (<b>a</b>, <b>b</b>, <b>c</b>), which means that the expression on the left must be similarly invariant. By permuting a and b, we therefore get:
+
+	<b>a</b> · (<b>b</b> + <b>c</b>) + <b>b</b> · <b>c</b> = <b>b</b> · (<b>a</b> + <b>c</b>) + <b>a</b> · <b>c</b> 
+
+...which completes the lemma.
+
+	Lemma 2: If <b>c</b> = k <b>a</b>, then <b>a</b> · (<b>b</b> + <b>c</b>) = <b>a</b> · <b>b</b> + <b>a</b> · <b>c</b>.
+
+In other words, we can "pull out" components which are parallel to <b>a</b> successfully.
+Via lemma 1:
+
+	<b>a</b> · (<b>b</b> + <b>c</b>) = <b>b</b> · (<b>a</b> + <b>c</b>) + <b>a</b> · <b>c</b> - <b>b</b> · <b>c</b>
+	
+	<b>a</b> · (<b>b</b> + <b>c</b>) = <b>b</b> · (<b>a</b> + k <b>a</b>) + <b>a</b> · <b>c</b> - <b>b</b> · (k <b>a</b>)
+	
+	<b>a</b> · (<b>b</b> + <b>c</b>) = (1 + k) <b>a</b> · <b>b</b> + <b>a</b> · <b>c</b> - k <b>a</b> · <b>b</b>
+	
+	<b>a</b> · (<b>b</b> + <b>c</b>) = <b>a</b> · <b>b</b> + <b>a</b> · <b>c</b>.
+
+Being able to distribute along parallel vectors gives an easy corollary:
+
+	There exists a k such that <b>a</b> · (<b>b</b> - k <b>a</b>) = 0. It is k = <b>a</b> · <b>b</b> / a² if a ≠ 0, else k can be any finite number. The vector k <b>a</b> is called the <em>projection</em> of <b>b</b> onto <b>a</b>. 
+
+Further corollary: If <b>b</b> = k <b>a</b>, and <b>a</b> · <b>c</b> = 0
+
+
+We like this bizarre product because of how it simplifies within the Cartesian coordinates: it turns out that in the normal case, this dot product simply becomes:
+
+	<b>a</b> · <b>b</b> = &Sigma;<sub>i</sub> a<sub>i</sub> b<sub>i</sub>.
+
+What do you do in a <em>skewed</em> co

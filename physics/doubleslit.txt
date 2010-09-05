@@ -1,0 +1,489 @@
+The Dual-Slit Experiment: how quantum mechanics looks from the inside out.
+By Chris Drost
+
+# Introduction: on misunderstandings #
+
+I've noticed a lot of misunderstanding on the subject of quantum mechanics in 
+the popular press, and most of it is down to Griffiths' Law of Quantum 
+Mechanics:
+
+	The purpose of this book is to teach you how to *do* quantum mechanics.
+	Apart from some essential background in Chapter 1, the deeper quasi-
+	philosophical questions are saved for the end. I do not believe one can
+	intelligently discuss what quantum mechanics *means* until one has a 
+	firm sense of what quantum mechanics *does*.
+	D.J. Griffiths, /Introduction to Quantum Mechanics/.
+
+Feynman had something similar scribbled on the chalkboard in his office: "What I
+cannot create, I do not understand." The purpose of this essay is to show you a 
+full derivation, including density matrices, decoherence, and "tracing out" 
+supersystems, of the dual-slit experiment. In doing so, we will be establishing 
+what the dual-slit experiment /means/ and addressing some common issues with its
+understanding. 
+
+I have tried to proceed from the beginning through the end without 
+
+For example, I had a long email exchange with a military contractor named Tom
+Campbell after he said the following in a Youtube-published lecture:
+
+	"So then [the physicists] said 'let's not look, but let's leave the 
+	equipment, maybe it's the equipment that's doing it,' so you leave the 
+	sensors where they are, but you just turn off the power to what's 
+	recording the data, so now the sensors are still in place but they're 
+	not recording anything. What do you think happens? It goes through both
+	slits, you get a wave pattern on the other side."
+	T. Campbell,  [1][http://www.youtube.com/watch?v=1sB4j6L6Rzw]
+
+This is totally wrong. If the sensors exist but don't record anything, 
+decoherence probably still happens, because entanglement still happens. In 
+other words, there *is* a "measurement problem," but this isn't it. I hope to
+give you a better appreciation of quantum mechanics by showing you what is 
+really happening in this famous puzzle. 
+
+You will probably need some calculus and some understanding of linear algebra,
+and certainly some understanding of complex numbers. I wish that I could make 
+those requirements a little less strict, because unfortunately, none of those
+topics is the subject of a typical high school mathematics education. But: just 
+try and see how far you get. I promise I'll start slow.
+
+# The Hilbert Space #
+
+In quantum mechanics, the physical state of a system is usually denoted by a 
+Greek letter Ψ. Ψ is an object which contains all the physics of the system, 
+and it lives in a nice little mathematical world called "Hilbert space." To 
+show that Ψ lives in this world, we write it in the Dirac notation with a "ket
+vector":
+
+	|Ψ>
+
+For every "ket" |a> there is a "bra" <a|. If you have had some basic vector
+algebra, then <a| represents the "complex conjugate transpose" of |a>, but this
+is not terribly important. The reason for the weird names is that this is 
+called the "bra-ket" notation, which sounds like "bracket" -- har har. Together
+they define an inner product space:
+
+	"a times b": <a|b> = ∫ dx a*(x) b(x).
+
+We won't use this formula explicitly, but it is important to have some idea of
+what a "dot product" looks like: you sum up the products of the entries in a* 
+and b. Also interesting but not very important for us, is that our state |Ψ> 
+changes over time according to the Schrödinger equation:
+
+	i ħ |∂Ψ/∂t> = Ĥ |Ψ>
+
+This is your first exposure to an "operator", in this case the "Hamiltonian 
+operator" Ĥ, which is associated with the total energy of the system. An 
+"operator" is anything which takes in a ket vector and produces another
+ket vector as its output. We require operators to be /linear/, which means 
+that they distribute over a sum:
+
+	Ô [ a |u> + b |v> ] = a Ô |u> + b Ô |v>.
+
+By the way, the above Schrödinger equation more or less just states the
+Planck-Einstein law that "E = h f." A full derivation would confuse other
+readers here, but you can find more information in any standard quantum
+mechanics book.
+
+Okay. We have already quietly covered a lot. Kets can be added or subtracted,
+like:
+
+	|Φ> = a |u> + b |v>
+	<Φ| = a* <u| + b* <v|
+
+And linear operators, which we write with a little "hat", distribute over these
+sums. One special linear operator, the Hamiltonian Ĥ, is associated with the 
+energy of the system, and it tells you how the system changes. If you are
+new to these notions, it might be a good time to rest and reread this paragraph
+until you're sure you understand these basic lessons.
+
+Okay, we have bras and kets. Our Hilbert space also has a "basis": a set of 
+"unit vectors" which you can use to express any other ket. For example, our
+"physical state" vector |Ψ> can be written with complex numbers {cᵢ} as:
+
+	|Ψ> = c₀ |0> + c₁ |1> + c₂ |2> + ...
+	|Ψ> = Σᵢ cᵢ |i>. 
+	<Ψ| = Σᵢ cᵢ* <i|
+
+Here, the symbol Σᵢ means "sum over all possible i."
+
+We make one restriction about the basis: it must be *orthogonal*:
+
+	<u|v> = 1 if u = v, or 0 if they aren't. 
+
+So for example <0|1> = 0, <0|0> = 1, <1|0> = 0, and <1|1> = 1. This means that
+if you have some function fᵤᵥ of two indices, then:
+
+	Σᵤ fᵤᵥ <u|v> = fᵥᵥ
+
+Why? Because you are summing terms of 0 whenever u is not exactly the same as 
+v, and when you sum over all u, you surely hit the case where it *is* v.
+
+We now make one more restriction on the elements in Hilbert space: for every
+real observable, we assign an operator Â. Then the *average value* of the
+observable in any physical state |Φ> is given by:
+
+	<A> = <Φ| Â |Φ>
+
+Remember, Â will take in a ket |Φ> and produce some other ket |Φ'>, so that 
+we fundamentally are saying <A> = <Φ|Φ'>. As a consequence, of this, all 
+physical states in quantum mechanics are *normalized*:
+
+	The average value of 1 is: <1> = <Φ| 1 |Φ> = <Φ|Φ>
+	Thus <Φ|Φ> = 1.
+
+This is enough for almost the complete structure of quantum mechanics. Your 
+kets move around in Hilbert space according to the Schrödinger equation, and 
+the average value of any observable quantity, for any state, is an inner
+product containing that observable's linear operator.
+
+An example before we go on. Suppose we have a two-level Hilbert space,
+{|0>, |1>}. This system is often called a "qubit", because like a classical
+bit, it can be either in the state 0 or in the state 1. Quantum mechanics
+allows something slightly more complicated, though:
+
+	|Ψ> = c₀ |0> + c₁ |1>.
+
+We design an observable which will tell us if the system is in state |1>. It 
+can be written as:
+
+	Â = |1><1|
+
+Why? Because if you are in a pure state 0, you would get 
+
+	<0|Â|0> = <0|1> <1|0> = 0
+	<1|Â|1> = <1|1> <1|1> = 1
+
+The average value of <A> in |Ψ> is:
+
+	<A> = <Ψ|Â|Ψ> =[ c₀* <0| + c₁* <1| ] |1><1| [ c₀ |0> + c₁ |1> ]
+	<A> = [ c₀* <0| + c₁* <1| ] c₁ |1>
+	<A> = c₁* c₁ = |c₁|²
+
+Conclusion: |c₁|² is a sort of "probability" to be in state 1, while |c₀|² 
+is a probability to be in state 0. Yes, quantum mechanics is essentially
+probabilistic, and can only describe averages. But it describes averages
+really well, and averages can be scientifically tested.
+
+# Inside the Matrix #
+
+We can use the basis vectors for our Hilbert space to change any operator Â 
+into a matrix Aᵤᵢ, by describing the *end result* of Â |i> as a linear 
+combination of the basis vectors:
+
+	Â |v> = Σᵢ Aᵢᵥ |i>.
+
+This means that the average value of A is:
+
+	<A> = <Ψ|Â|Ψ> = [ Σᵤ cᵤ* <u| ] Â [ Σᵥ cᵥ |v> ]. 
+	<A> = Σᵢᵤᵥ cᵤ* cᵥ Aᵢᵥ <u|i>
+	<A> = Σᵤᵥ cᵤ* cᵥ Aᵤᵥ
+
+We want this value to always be equal to its complex conjugate <A>*, so that 
+we know that we have a real number. This puts a restricton on Aᵤᵥ:
+
+	<A>* = Σᵤᵥ cᵤ cᵥ* Aᵤᵥ*
+	Swap uv → vu:
+	<A>* = Σᵥᵤ cᵥ cᵤ* Aᵥᵤ*
+	<A>* = Σᵤᵥ cᵤ* cᵥ Aᵥᵤ*
+
+For this <A> = <A>* to hold for an arbitrary state {cᵢ}, we must have:
+
+	Aᵤᵥ = Aᵥᵤ*
+
+We call this the "Hermitian property": any real observable has to have a matrix
+which is its own conjugate transpose. Not all operators must be Hermitian, but
+Hermitian operators represent observable numbers.
+
+We now return to <A> = Σᵤᵥ cᵤ* cᵥ Aᵤᵥ, because there is a nice way to write this:
+
+	cᵥ = <v|Ψ>
+	Σᵤ cᵤ* Aᵤᵥ = <Ψ|Â|v>
+
+Thus:
+	
+	<A> = Σᵥ <v|  |Ψ><Ψ| Â  |v>
+
+We define Σᵢ <i| Ô |i> = Tr Ô, pronounced "the trace of O." If you like, the
+trace can be written in the matrix form like so:
+
+	Tr Ô = Σᵢ <i| Σᵤ Oᵤᵢ |u>
+	Tr Ô = Σᵢ Oᵢᵢ.
+
+In other words, it is the sum of the diagonal entries on the matrix. It follows
+that, for Hermitian matrices, all of those diagonal entries are real numbers, 
+and the trace is therefore also a real number. 
+
+We define |Ψ><Ψ| = ρ, and we call it the "density matrix". More on this in a 
+moment.
+
+With these definitions, we come at an alternate description of quantum 
+mechanics:
+
+	i ħ ∂ρ/∂t = Ĥ ρ − ρ Ĥ = [Ĥ, ρ]
+	<A> = Tr ρ Â
+
+# Properties of trace #
+The first property of trace is that it is linear:
+
+	Tr (Ô + Â) = Σᵢ (Oᵢᵢ + Aᵢᵢ) = Σᵢ Oᵢᵢ + Σᵢ Aᵢᵢ 
+	Tr (Ô + Â) = Tr Ô + Tr Â
+
+We can also say in general that there is a commutative property. Since the 
+matrix multiplication works out as follows:
+
+	Â Ô |i> = Σᵤᵥ Aᵤᵥ Oᵥᵢ |u>
+
+The trace Σᵢ <i| Â Ô |i> works out as:
+
+	Tr Â Ô = Σᵢᵤᵥ <i|v> Aᵤᵥ Oᵥᵢ
+	Tr Â Ô = Σᵤᵥ Aᵤᵥ Oᵥᵤ 
+
+Interchanging u and v gives:
+	
+	Tr Â Ô = Σᵤᵥ Oᵤᵥ Aᵥᵤ = Tr Ô Â
+
+This is called a "commutative property," and does not depend on the operator 
+being Hermitian. Operators do not in general commute with each other, but if 
+two of them are in a trace, they can commute. This property is not totally 
+complete when we get to three operators, but it is /cyclic/: for example:
+
+	Tr ĜĤÎ = Tr ÎĜĤ = Tr ĤÎĜ
+
+We use this to prove the most important fact about trace. We said that there was
+an orthogonal basis for the Hilbert space, {|i>}, but there is no guarantee that
+there isn't another orthogonal basis {|φᵢ>}. For example, the alternate basis:
+
+	|+> = [ |0> + |1> ] / √2
+	|−> = [ |0> − |1> ] / √2
+
+...still has the property that <+|+> = <−|−> = 1, <−|+> = <+|−> = 0.
+
+One simple way to choose these orthogonal basis vectors {|φᵢ>} as your basis 
+{|i>} requires the following non-Hermitian coordinate-change matrix:
+
+	Ĉ = Σᵢ |i><φᵢ|
+	Ĉ⁻¹ = Σᵢ |φᵢ><i|
+	Ĉ Ĉ⁻¹ = Ĉ⁻¹ Ĉ = 1
+
+Any other operator Â would be represented in this basis as:
+
+	Â' = Ĉ Â Ĉ⁻¹
+
+Which can be read as "change back to the original basis, apply Â, and then go
+again to the altered basis.
+
+But, crucially, our cyclic rule says:
+
+	Tr Â' = Tr Ĉ Â Ĉ⁻¹ = Tr Â Ĉ⁻¹ Ĉ = Tr Â.
+
+Thus the trace is totally basis-independent.
+
+In particular, consider the eigenbasis of Â: 
+
+	Â|φᵢ> = Aᵢ|φᵢ>
+
+	Â' = (Σᵤ |u><φᵤ|) Â (Σᵥ |φᵥ><v|)
+	Â' = Σᵤᵥ |u><φᵤ| Aᵥ |φᵥ><v|
+	Â' = Σᵤᵥ Aᵥ |u><φᵤ|φᵥ><v|
+	Â' = Σᵤ Aᵤ |u><u|
+	
+	Tr Â' = Σᵢ Aᵢ.
+
+We see that our basis-independent trace is basis-independent precisely because
+it is the sum of the eigenvalues, which are of course also basis-independent.
+
+We can also derive, with our cyclic result and our linearity result, the 
+quantum result for conservation of A:
+
+	d<A>/dt = d/dt Tr ρ Â = Tr (∂ρ/∂t Â + ρ ∂Â/∂t)
+	i ħ d<A>/dt = Tr (Ĥ ρ Â − ρ Ĥ Â + i ħ ρ ∂Â/∂t)
+	i ħ d<A>/dt = Tr (Ĥ ρ Â) + Tr(-ρ Ĥ Â + i ħ ρ ∂Â/∂t)
+	i ħ d<A>/dt = Tr (ρ Â Ĥ) + Tr(-ρ Ĥ Â + i ħ ρ ∂Â/∂t)
+	i ħ d<A>/dt = < Â Ĥ − Ĥ Â + i ħ ∂Â/∂t >
+
+In the "Schrödinger picture," which we have been using, ρ is changing and 
+generally Â is constant, so that this reduces to just:
+
+	i ħ d<A>/dt = < [Â, Ĥ] >
+
+There is another, older "picture", the "Heisenberg picture", where the matrices 
+change while the states remain the same. In this picture, ∂ρ/∂t = 0 and:
+
+	i ħ ∂Â/∂t = [Â, Ĥ]
+
+...so as to give the exact same result as in the Schrödinger picture of quantum 
+mechanics. This Heisenberg picture is very counterintuitive: if you will allow 
+me to be a little dramatic, it states that the wavefunction of the universe 
+is actually exactly the same as it was in the big bang, and that all life and
+change and so forth occurs because the /definitions of space and momentum/ are
+somehow changing against this constant background. Whether you feel that this
+is *metaphysically true* or not, the mathematics says that you can't tell the 
+*physical difference*: and this can sometimes help with complicated physics 
+problems: because the system starts and ends in the ground state. 
+
+# Coupled systems #
+We have seen that we can rewrite quantum mechanics so as to not use |Ψ>, but
+rather ρ = |Ψ><Ψ|, as our physical state. Thus we have adequacy conditions on 
+ρ: ρ is a Hermitian matrix with trace 1; its diagonal entries are all positive
+real numbers. And these density matrices generate quantum mechanics via:
+
+	i ħ ∂ρ/∂t = Ĥ ρ − ρ Ĥ
+	<A> = Tr ρ Â
+
+It is important to understand that some ρ fulfil the adequacy conditions but
+are not seperable as |Ψ><Ψ|. For example, for a 2-level system {|0>, |1>}, the 
+quantum mechanics allows a general state of:
+
+	|Ψ> = cos(θ/2) |0> + sin(θ/2) e^{iφ} |1>
+	
+	|Ψ><Ψ| = ½ [  1 + cos θ     e^{-iφ} sin θ ]
+	           [ e^{iφ} sin θ     1 − cos θ   ]
+
+For example:
+	 |+><+| = ½ [ 1  1 ]  ,  |−><−| = ½ [ 1  -1 ]
+                [ 1  1 ]                [-1   1 ]
+
+Here is an adequate matrix which violates this general form:
+
+	ρ = [ ½ 0 ]
+		[ 0 ½ ]
+
+But, notice that this is nothing more than a linear combination of matrices 
+which *do* obey the general form:
+
+	ρ = ½ |0><0| + ½ |1><1| = ½ |+><+| + ½ |−><−|
+
+In general, Σᵢ qᵢ ρᵢ satisfies the adequacy conditions as long as the qᵢ are 
+nonnegative real numbers which sum to 1: in other words, they form a classical
+probability vector. 
+
+We now want to discuss a situation where we take the composition of two Hilbert 
+spaces A = {|i>} and B = {|a>}. We write the joint Hilbert space as {|ia>}. An operator Â which acts 
+only on system A will therefore have a matrix: 
+
+	Â |va> = Σᵢ Aᵢᵥ |ia>
+
+...with just two indexes and leaving the second component of the space unchanged. Meanwhile our state must complexify to the system:
+
+	|Ψ> = Σᵥₐ cᵥₐ |va>
+	<Ψ| = Σᵤₐ cᵤₐ* <ua|
+
+...with now two different systems to index over. Combining our expressions for Â |va> and |Ψ> gives us the expectation value:
+
+	<A> = <Ψ|Â|Ψ> = Σₐᵢᵤᵥ Aᵢᵥ cᵥₐ cᵤₐ* <ua|ia>
+	<A> = <Ψ|Â|Ψ> = Σₐᵤᵥ Aᵤᵥ cᵥₐ cᵤₐ*
+
+At this point, we turn to an example of the general idea. Suppose we have two two-level systems (two qubits) and we want to describe their combined state, in their combined Hilbert space. We just asked the question, "can we still describe single-qubit operators?" and our answer was "yes, sure." But now it's worth asking: can we describe only the state of the first qubit of |Ψ> without the second one? The answer is, "not with a wavefunction". Two separate qubits would have a state which looks like this:
+
+	(a |0> + b |1>)[A] (c |0> + d |1>)[B]
+	= ac |00> + ad |01> + bc |10> + bd |11>
+
+...and it thus has to obey this property:
+
+	c₀₀ c₁₁ = c₀₁ c₁₀.
+
+Here is an example of a state which does not obey this property and therefore cannot be separated into two single-qubit states:
+
+	|Ψ> = a |00> + b |11>
+
+In this case c₀₁ c₁₀ = 0, but c₀₀ c₁₁ = ab, which is not 0 except in the special trivial cases |Ψ> = |00> and |Ψ> = |11>.
+
+This state is called an 'entangled state': because if you measure the first qubit as 0, then the state is |00> and you must measure the second qubit as 0; but if you measure the first as 1, then the state is |11> and you must measure the second as 1. 
+
+However, you /can/ describe the state of the first qubit with a /density matrix/, where you cannot describe it with a wavefunction. Here is the expectation value formula that we obtained:
+
+	<A> = Σₐᵤᵥ Aᵤᵥ cᵥₐ cᵤₐ*
+
+We can see that the density sub-matrix needed is simply:
+
+	σᵥᵤ = Σₐ cᵥₐ cᵤₐ*
+
+And then this is:
+
+	<A> = Σᵤᵥ Aᵤᵥ σᵥᵤ = Tr σ A 
+
+More importantly, we see that the expression for σ is /itself/ a trace operation over the subsystem B:
+
+	σ = Σₐ <a| ρ |a>
+
+To get the subsystem's density matrix, you "trace out" all of the parts of the supersystem that you don't care about, and you can describe the subsystem succinctly by the above density matrix. 
+
+In our example, our nonseparable 2-qubit state was:
+
+	|Ψ> = a |00> + b |11>
+
+Its density matrix, while a little complicated, is:
+
+	ρ = aa* |00><00| + ab* |00><11| + ba* |11><00| + bb* |11><11|
+
+To trace this out, we remove any terms which don't survive the tracing-out operation <0| ρ |0> + <1| ρ |1> on the second qubit:
+
+	σ = aa* |0><0| + bb* |1><1|
+
+We've thus come full circle on coupled systems: our earlier problem with  density matrices has been revealed as a small aspect of quantum entanglement: you /can/ achieve those states when your qubits entangle with their environment. 
+
+Notice also that this system has no "coherence terms" |0><1| or |1><0|, which if you'll recall entered into our normal one-qubit density matrix as:
+
+	½ e^{±iφ} sin θ
+
+This fact -- that "entanglement destroys coherence" -- is the fundamental idea of the double-slit experiment.
+
+# The Double-Slit Experiment #
+
+We send particles, one at a time, through a slit, and then we let them travel to hit a detection screen. The result is that we observe a pattern, which I'll say is in the y-direction. With just one slit, this pattern is perhaps a bell curve or so. I will just treat the arbitrary case, as it's simpler to write. 
+
+In the case of bullets sent through a well-armored slit, you would expect the description to look like this: the distribution going through slit 0 is f₀(y), the distribution through slit 1 is f₁(y), and when you open both slits, the curve you get should be:
+
+	g(y) = ½ f₀(y) + ½ f₁(y)
+
+On the other hand, when a classical wave passes through such a slit, we know that there is some wave, which we symbolize as a phasor rotating in the complex plane. We see the one-slit patterns |z₀(y)|², and |z₁(y)|², and when it passes through both, we see ½ |z₀(y) + z₁(y)|². 
+
+We now treat the quantum case. Depending on which slit the particle goes through, we mark its state at that exact moment as |0> or |1>; of course, it could be in a superposition. The point is, it is a two-level Hilbert space: a qubit. As it travels from the slits to the screen it evolves over space in the y-direction. We can describe its evolution as a linear evolution of each of its components:
+
+	|0> → |z₀(η)>
+	|1> → |z₁(η)>
+
+This produces a new Hilbert space parametrized by the y-axis via the coordinate η. Our observable is going to observe this y-coordinate itself, i.e. "is the y-coordinate η equal to some specific y?":
+
+	ŷ = δ(η − y)
+	<α|ŷ|β> = ∫ dη α*(η) δ(η − y) β(η) = α*(y) β(y)
+
+Thus, in our original basis, we can define this whole process by an analogous operator Â, which works exactly as you would (hopefully) expect:
+
+	<u|Â|v> = Aᵤᵥ = zᵤ*(y) zᵥ(y)
+
+Our "observable" in the double-slit experiment is therefore the matrix:
+
+	Â = [ |z₀|²    z₀* z₁ ]
+	    [ z₀ z₁*    |z₁|² ]
+
+In the state |Ψ> = |0>, we have <A> = |z₀|², while in the state |Ψ> = |1>, we have <A> = |z₁|². 
+	
+But in the state |+> = √½ |0> + √½ |1>, we would observe:
+
+	<A> = ½[|z₀|² + z₀* z₁ + z₀ z₁* + |z₁|²] = ½ |z₀ + z₁|².
+
+The double slit experiment, of course, does not end there: this is just the basic first result: When you fire electrons at the two slits, they act like the wave does, not like the bullets do.
+
+Now you decide to change the experiment by measuring which slit the electron goes through, trying to make it tell you "the electron is, for sure, a wave." This is done by some well-designed measurement apparatus which would say "0" if the qubit was in state |0> and "1" if the qubit was |1>. The key here is that this apparatus amounts to a two-level system -- another qubit. We go from the state:
+
+	|Ψ> = √½ |0> +  √½ |1>
+
+To a new, two-qubit state:
+
+	|Ψ> = √½ |00> +  √½ |11>
+
+If we "trace out" the measurement apparatus and ask for the new state of the first qubit, we see that it is exactly: 
+
+	σ = [½ 0] = ½.
+		[0 ½]
+
+We thus have that:
+
+	<A> = Tr σ Â = ½ Tr Â = ½ |z₀|² + ½ |z₁|²
+
+...in other words, we see the exact result that we got for the bullets, rather than the result that we got for the waves.
+
+# The Quantum Eraser Experiment #
+
+I want to point out something absolutely crucial: in /none/ of the above discussion have we discussed what happens during a measurement. In the double-slit observable, if we use, say, photons: you have a photomultiplier tube at a point y, and you measure their probability to enter that photomultiplier tube with the above <A>. But something 
