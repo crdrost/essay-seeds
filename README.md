@@ -3,3 +3,6 @@ drostie.org, has been down for quite some time, and I have wanted to make sure t
 lost if my laptop dies -- which it has been slowly showing signs of doing for several months now.
 
 It should also help to have just one central point for all of these unfinished tangents.
+
+These essays, in their present form, are unfinished, and I have not decided whether I am willing to release them 
+to the public per my usual public-domain licensing. Probably, I will, soon.
