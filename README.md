@@ -6,3 +6,6 @@ It should also help to have just one central point for all of these unfinished t
 
 These essays, in their present form, are unfinished, and I have not decided whether I am willing to release them 
 to the public per my usual public-domain licensing. Probably, I will, soon.
+
+The .xoj files are Xournal files generated when I was scribbling around with my tablet pen. There exist some 
+experimental Windows binaries for Xournal, visible at [its website][http://xournal.sourceforge.net/].
