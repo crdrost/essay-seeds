@@ -1,0 +1,92 @@
+In a general multilinear regression, we're trying to form:
+
+	z(xᵢ) = a + Σᵢ bᵢ xᵢ.
+
+Which is a multilinear relationship between z and {xᵢ}. And, we have this data set:
+
+	{dataᵤ} = {(zᵤ, xᵢᵤ)}
+
+We say that there are N entries in total. 
+
+The sum-of-squared residuals is the error of our least-squares fitting. This error can be written explicitly as:
+
+	E = Σᵤ (zᵤ - z(xᵢᵤ))²
+	E = Σᵤ (zᵤ - a - Σᵢ bᵢ xᵢᵤ)²
+
+However, it's just as straightforward to use the expectation brackets:
+
+	<k> = Σᵤ kᵤ / N
+
+To write the above as:
+
+	e = E/N = <(z - a - Σᵢ bᵢ xᵢ)²>
+
+Where we now recognize z and xᵢ as objects to be subscripted with the "u" in the sum. Other texts make a big distinction between the data Z and the variables Xᵢ, but it's still some mental juggling that you've got to do either way.
+
+Now, we want to minimize this error, and to do that, we take partial derivatives and set them equal to 0:
+
+	∂e/∂a = < 2 * (z - a - Σᵢ bᵢ xᵢ) * -1 > = 0
+		a = <z> - Σᵢ bᵢ <xᵢ>
+
+	∂e/∂bᵥ = < 2 * (z - a - Σᵢ bᵢ xᵢ) * -xᵥ > = 0
+		<zxᵥ> = a <xᵥ> + Σᵢ bᵢ <xᵢxᵥ>
+
+If any of these parameters are known, you can eliminate their corresponding equations here. Otherwise, this second expression has a more elegant form if we use the generalized covariance brackets:
+
+	«a,b» = <ab> - <a><b>
+
+Notice that «a,a» is just the variance of a. To use this, we just need to substitute in our expression for a:
+
+	<zxᵥ> = (<z> - Σᵢ bᵢ <xᵢ>) <xᵥ> + Σᵢ bᵢ <xᵢxᵥ>
+	
+	<zxᵥ> - <z> <xᵥ> = Σᵢ bᵢ (<xᵢxᵥ> - <xᵢ><xᵥ>)
+	
+	«z,xᵥ» = Σᵤ bᵤ «xᵤ,xᵥ»
+
+Thus, our first constraint, a = <z> - Σᵢ bᵢ <xᵢ>, just forces that the mean point of the data, ({<xᵢ>}, <z>) to be on our linear fit, while the remaining struggle of finding "b" reduces down to solving an n-by-n system of covariance equations.
+
+Here are two special cases: first, find y(x) given x:
+
+	«x,y» = b «x,x», so b = cov(x,y)/var(x).
+	a = <y> - b <x>.
+
+Second, z(x,y), which can be solved with a 2x2 matrix inverse formula:
+
+	b = [«y,y»«z,x» - «x,y»«z,y» ] / [«x,x»«y,y» - «x,y»² ] 
+    c = [«x,x»«z,y» - «x,y»«z,x» ] / [«x,x»«y,y» - «x,y»² ]
+	a = <z> - b <x> - c <y>.
+
+Javascript:
+
+	Array.prototype.column = function (i) {
+		return this.map(function(x){ return x[i]; });
+	};
+	function sum(arr) {
+		var s = 0, i;
+		for (i = 0; i < arr.length; i += 1) {
+			s += arr[i]; 
+		}
+		return s;
+	}
+	function product(x, y) {
+		return x.map(function (c, i) { return c * y[i]; });
+	}
+	function mean(x, y) { 
+		return (y === undefined) ? sum(x) / x.length : mean(product(x, y));
+	}
+	function cov(a, b) { 
+		return mean(a, b) - mean(a) * mean(b);
+	}
+	function linear_regression(x, y) {
+		var b = cov(x,y) / cov(x,x),
+			a = mean(y) - b * mean(x);
+		return [a, b];
+	}
+	function bilinear_regression(x, y, z) {
+		var xx = cov(x, x), xy = cov(x, y),  yy = cov(y, y), 
+			xz = cov(x, z), yz = cov(y,z),
+			b = (yy*xz - xy*yz)/(xx*yy - xy*xy),
+			c = (xx*yz - xy*xz)/(xx*yy - xy*xy),
+			a = mean(z) - b * mean(x) - c * mean(y);
+		return [a, b, c];
+	}
