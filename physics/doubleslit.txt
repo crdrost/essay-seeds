@@ -358,22 +358,30 @@ nonnegative real numbers which sum to 1: in other words, they form a classical
 probability vector. 
 
 We now want to discuss a situation where we take the composition of two Hilbert 
-spaces A = {|i>} and B = {|a>}. We write the joint Hilbert space as {|ia>}. An operator Â which acts 
-only on system A will therefore have a matrix: 
+spaces A = {|i>} and B = {|a>}. We write the joint Hilbert space as {|ia>}. An 
+operator Â which acts only on system A will therefore have a matrix: 
 
 	Â |va> = Σᵢ Aᵢᵥ |ia>
 
-...with just two indexes and leaving the second component of the space unchanged. Meanwhile our state must complexify to the system:
+...with just two indexes and leaving the second component of the space 
+unchanged. Meanwhile our state must complexify to the system:
 
 	|Ψ> = Σᵥₐ cᵥₐ |va>
 	<Ψ| = Σᵤₐ cᵤₐ* <ua|
 
-...with now two different systems to index over. Combining our expressions for Â |va> and |Ψ> gives us the expectation value:
+...with now two different systems to index over. Combining our expressions for 
+Â |va> and |Ψ> gives us the expectation value:
 
 	<A> = <Ψ|Â|Ψ> = Σₐᵢᵤᵥ Aᵢᵥ cᵥₐ cᵤₐ* <ua|ia>
 	<A> = <Ψ|Â|Ψ> = Σₐᵤᵥ Aᵤᵥ cᵥₐ cᵤₐ*
 
-At this point, we turn to an example of the general idea. Suppose we have two two-level systems (two qubits) and we want to describe their combined state, in their combined Hilbert space. We just asked the question, "can we still describe single-qubit operators?" and our answer was "yes, sure." But now it's worth asking: can we describe only the state of the first qubit of |Ψ> without the second one? The answer is, "not with a wavefunction". Two separate qubits would have a state which looks like this:
+At this point, we turn to an example of the general idea. Suppose we have two 
+two-level systems (two qubits) and we want to describe their combined state, in 
+their combined Hilbert space. We just asked the question, "can we still 
+describe single-qubit operators?" and our answer was "yes, sure." But now it's 
+worth asking: can we describe only the state of the first qubit of |Ψ> without 
+the second one? The answer is, "not with a wavefunction". Two separate qubits 
+would have a state which looks like this:
 
 	(a |0> + b |1>)[A] (c |0> + d |1>)[B]
 	= ac |00> + ad |01> + bc |10> + bd |11>
@@ -382,15 +390,22 @@ At this point, we turn to an example of the general idea. Suppose we have two tw
 
 	c₀₀ c₁₁ = c₀₁ c₁₀.
 
-Here is an example of a state which does not obey this property and therefore cannot be separated into two single-qubit states:
+Here is an example of a state which does not obey this property and therefore 
+cannot be separated into two single-qubit states:
 
 	|Ψ> = a |00> + b |11>
 
-In this case c₀₁ c₁₀ = 0, but c₀₀ c₁₁ = ab, which is not 0 except in the special trivial cases |Ψ> = |00> and |Ψ> = |11>.
+In this case c₀₁ c₁₀ = 0, but c₀₀ c₁₁ = ab, which is not 0 except in the 
+special trivial cases |Ψ> = |00> and |Ψ> = |11>.
 
-This state is called an 'entangled state': because if you measure the first qubit as 0, then the state is |00> and you must measure the second qubit as 0; but if you measure the first as 1, then the state is |11> and you must measure the second as 1. 
+This state is called an 'entangled state': because if you measure the first 
+qubit as 0, then the state is |00> and you must measure the second qubit as 0; 
+but if you measure the first as 1, then the state is |11> and you must measure 
+the second as 1. 
 
-However, you /can/ describe the state of the first qubit with a /density matrix/, where you cannot describe it with a wavefunction. Here is the expectation value formula that we obtained:
+However, you /can/ describe the state of the first qubit with a /density 
+matrix/, where you cannot describe it with a wavefunction. Here is the 
+expectation value formula that we obtained:
 
 	<A> = Σₐᵤᵥ Aᵤᵥ cᵥₐ cᵤₐ*
 
@@ -402,11 +417,14 @@ And then this is:
 
 	<A> = Σᵤᵥ Aᵤᵥ σᵥᵤ = Tr σ A 
 
-More importantly, we see that the expression for σ is /itself/ a trace operation over the subsystem B:
+More importantly, we see that the expression for σ is /itself/ a trace 
+operation over the subsystem B:
 
 	σ = Σₐ <a| ρ |a>
 
-To get the subsystem's density matrix, you "trace out" all of the parts of the supersystem that you don't care about, and you can describe the subsystem succinctly by the above density matrix. 
+To get the subsystem's density matrix, you "trace out" all of the parts of the 
+supersystem that you don't care about, and you can describe the subsystem 
+succinctly by the above density matrix. 
 
 In our example, our nonseparable 2-qubit state was:
 
@@ -416,39 +434,61 @@ Its density matrix, while a little complicated, is:
 
 	ρ = aa* |00><00| + ab* |00><11| + ba* |11><00| + bb* |11><11|
 
-To trace this out, we remove any terms which don't survive the tracing-out operation <0| ρ |0> + <1| ρ |1> on the second qubit:
+To trace this out, we remove any terms which don't survive the tracing-out 
+operation <0| ρ |0> + <1| ρ |1> on the second qubit:
 
 	σ = aa* |0><0| + bb* |1><1|
 
-We've thus come full circle on coupled systems: our earlier problem with  density matrices has been revealed as a small aspect of quantum entanglement: you /can/ achieve those states when your qubits entangle with their environment. 
+We've thus come full circle on coupled systems: our earlier problem with 
+density matrices has been revealed as a small aspect of quantum entanglement: 
+you /can/ achieve those states when your qubits entangle with their 
+environment. 
 
-Notice also that this system has no "coherence terms" |0><1| or |1><0|, which if you'll recall entered into our normal one-qubit density matrix as:
+Notice also that this system has no "coherence terms" |0><1| or |1><0|, which 
+if you'll recall entered into our normal one-qubit density matrix as:
 
 	½ e^{±iφ} sin θ
 
-This fact -- that "entanglement destroys coherence" -- is the fundamental idea of the double-slit experiment.
+This fact -- that "entanglement destroys coherence" -- is the fundamental idea 
+of the double-slit experiment.
 
 # The Double-Slit Experiment #
 
-We send particles, one at a time, through a slit, and then we let them travel to hit a detection screen. The result is that we observe a pattern, which I'll say is in the y-direction. With just one slit, this pattern is perhaps a bell curve or so. I will just treat the arbitrary case, as it's simpler to write. 
+We send particles, one at a time, through a slit, and then we let them travel 
+to hit a detection screen. The result is that we observe a pattern, which I'll 
+say is in the y-direction. With just one slit, this pattern is perhaps a bell 
+curve or so. I will just treat the arbitrary case, as it's simpler to write. 
 
-In the case of bullets sent through a well-armored slit, you would expect the description to look like this: the distribution going through slit 0 is f₀(y), the distribution through slit 1 is f₁(y), and when you open both slits, the curve you get should be:
+In the case of bullets sent through a well-armored slit, you would expect the
+description to look like this: the distribution going through slit 0 is f₀(y), 
+the distribution through slit 1 is f₁(y), and when you open both slits, the 
+curve you get should be:
 
 	g(y) = ½ f₀(y) + ½ f₁(y)
 
-On the other hand, when a classical wave passes through such a slit, we know that there is some wave, which we symbolize as a phasor rotating in the complex plane. We see the one-slit patterns |z₀(y)|², and |z₁(y)|², and when it passes through both, we see ½ |z₀(y) + z₁(y)|². 
+On the other hand, when a classical wave passes through such a slit, we know 
+that there is some wave, which we symbolize as a phasor rotating in the complex 
+plane. We see the one-slit patterns |z₀(y)|², and |z₁(y)|², and when it passes 
+through both, we see ½ |z₀(y) + z₁(y)|². 
 
-We now treat the quantum case. Depending on which slit the particle goes through, we mark its state at that exact moment as |0> or |1>; of course, it could be in a superposition. The point is, it is a two-level Hilbert space: a qubit. As it travels from the slits to the screen it evolves over space in the y-direction. We can describe its evolution as a linear evolution of each of its components:
+We now treat the quantum case. Depending on which slit the particle goes 
+through, we mark its state at that exact moment as |0> or |1>; of course, it 
+could be in a superposition. The point is, it is a two-level Hilbert space: a 
+qubit. As it travels from the slits to the screen it evolves over space in the 
+y-direction. We can describe its evolution as a linear evolution of each of its 
+components:
 
 	|0> → |z₀(η)>
 	|1> → |z₁(η)>
 
-This produces a new Hilbert space parametrized by the y-axis via the coordinate η. Our observable is going to observe this y-coordinate itself, i.e. "is the y-coordinate η equal to some specific y?":
+This produces a new Hilbert space parametrized by the y-axis via the coordinate 
+η. Our observable is going to observe this y-coordinate itself, i.e. "is the y-coordinate η equal to some specific y?":
 
 	ŷ = δ(η − y)
 	<α|ŷ|β> = ∫ dη α*(η) δ(η − y) β(η) = α*(y) β(y)
 
-Thus, in our original basis, we can define this whole process by an analogous operator Â, which works exactly as you would (hopefully) expect:
+Thus, in our original basis, we can define this whole process by an analogous 
+operator Â, which works exactly as you would (hopefully) expect:
 
 	<u|Â|v> = Aᵤᵥ = zᵤ*(y) zᵥ(y)
 
@@ -457,15 +497,23 @@ Our "observable" in the double-slit experiment is therefore the matrix:
 	Â = [ |z₀|²    z₀* z₁ ]
 	    [ z₀ z₁*    |z₁|² ]
 
-In the state |Ψ> = |0>, we have <A> = |z₀|², while in the state |Ψ> = |1>, we have <A> = |z₁|². 
+In the state |Ψ> = |0>, we have <A> = |z₀|², while in the state |Ψ> = |1>, we 
+have <A> = |z₁|². 
 	
 But in the state |+> = √½ |0> + √½ |1>, we would observe:
 
 	<A> = ½[|z₀|² + z₀* z₁ + z₀ z₁* + |z₁|²] = ½ |z₀ + z₁|².
 
-The double slit experiment, of course, does not end there: this is just the basic first result: When you fire electrons at the two slits, they act like the wave does, not like the bullets do.
+The double slit experiment, of course, does not end there: this is just the 
+basic first result: When you fire electrons at the two slits, they act like the 
+wave does, not like the bullets do.
 
-Now you decide to change the experiment by measuring which slit the electron goes through, trying to make it tell you "the electron is, for sure, a wave." This is done by some well-designed measurement apparatus which would say "0" if the qubit was in state |0> and "1" if the qubit was |1>. The key here is that this apparatus amounts to a two-level system -- another qubit. We go from the state:
+Now you decide to change the experiment by measuring which slit the electron 
+goes through, trying to make it tell you "the electron is, for sure, a wave." 
+This is done by some well-designed measurement apparatus which would say "0" if 
+the qubit was in state |0> and "1" if the qubit was |1>. The key here is that 
+this apparatus amounts to a two-level system -- another qubit. We go from the 
+state:
 
 	|Ψ> = √½ |0> +  √½ |1>
 
@@ -473,9 +521,13 @@ To a new, two-qubit state:
 
 	|Ψ> = √½ |00> +  √½ |11>
 
-Here the first qubit is the original qubit, and the second is our measurement apparatus, which tells us either "it went through slit 0" or "it went through slit 1." We have designed it well, so that whenever the system goes through a slit, the device gives us the correct result. 
+Here the first qubit is the original qubit, and the second is our measurement 
+apparatus, which tells us either "it went through slit 0" or "it went through 
+slit 1." We have designed it well, so that whenever the system goes through a 
+slit, the device gives us the correct result. 
 
-If we "trace out" the measurement apparatus and ask for the new state of the first qubit, we see that it is exactly: 
+If we "trace out" the measurement apparatus and ask for the new state of the 
+first qubit, we see that it is exactly: 
 
 	σ = [½ 0] = ½.
 		[0 ½]
@@ -484,49 +536,113 @@ We thus have that:
 
 	<A> = Tr σ Â = ½ Tr Â = ½ |z₀|² + ½ |z₁|²
 
-...in other words, we see the exact result that we got for the bullets, rather than the result that we got for the waves. Both distributions add together in the bullet sense f + g, rather than the wave sense |f + g|². 
+...in other words, we see the exact result that we got for the bullets, rather 
+than the result that we got for the waves. Both distributions add together in 
+the bullet sense f + g, rather than the wave sense |f + g|². 
 
 # Measurement and Interpretations #
 
-I want to point out something absolutely crucial: in /none/ of the above discussion have we discussed what happens during a measurement. In the double-slit observable, if we use, say, photons: you have a photomultiplier tube at a point y, and you measure their probability to enter that photomultiplier tube with the above <A>. But something peculiar still happens: if you start measuring with two tubes, and your photon intensity is low, you see measurements in either one or the other tube, not both.
+I want to point out something absolutely crucial: in /none/ of the above 
+discussion have we discussed what happens during a measurement. In the double-
+slit observable, if we use, say, photons: you have a photomultiplier tube at a 
+point y, and you measure their probability to enter that photomultiplier tube 
+with the above <A>. But something peculiar still happens: if you start 
+measuring with two tubes, and your photon intensity is low, you see 
+measurements in either one or the other tube, not both.
 
-This is very important for you to understand, because it prevents Quantum Mechanics from being a pure wave theory of phenomena, and it has something to do with everything. For example, televisions. Perhaps I can keep my television in two places: either my living room or my bedroom. We can describe TV-in-Bedroom as the state |B> and TV-in-Living-Room as the state |L>. Quantum mechanics allows us to form the superposition state:
+This is very important for you to understand, because it prevents Quantum 
+Mechanics from being a pure wave theory of phenomena, and it has something to 
+do with everything. For example, televisions. Perhaps I can keep my television 
+in two places: either my living room or my bedroom. We can describe TV-in-
+Bedroom as the state |B> and TV-in-Living-Room as the state |L>. Quantum 
+mechanics allows us to form the superposition state:
 
 	|Ψ> = √½ |L> +  √½ |B>
 
-Quantum mechanics also, as we have seen, describes what happens as air molecules and light in both rooms bounce against the superimposed television: it decays into a classical probabilistic superposition:
+Quantum mechanics also, as we have seen, describes what happens as air 
+molecules and light in both rooms bounce against the superimposed television: 
+it decays into a classical probabilistic superposition:
 
 	ρ = ½ L + ½ B
 	
 	(where L = |L><L| and B = |B><B|).
 
-But: this is not what we see! We do not see my television as half in my bedroom and half in my living room -- not unless it has somehow been cut in half or so. It's either in one or the other. Schrödinger famously described a similar case with a cat: quantum mechanics allows a certain superposition state of "live cat" and "dead cat" in a closed box, but of course we always see a cat as alive or dead when we open it.
+But: this is not what we see! We do not see my television as half in my bedroom 
+and half in my living room -- not unless it has somehow been cut in half or so. 
+It's either in one or the other. Schrödinger famously described a similar case 
+with a cat: quantum mechanics allows a certain superposition state of "live 
+cat" and "dead cat" in a closed box, but of course we always see a cat as alive 
+or dead when we open it.
 
-The unitary, simple, clean wave theory is sufficient to describe the dual-slit experiment result above. It's not about "wave-particle duality" or "the measurment problem," or anything of the sort. Those do form a significant problem, sure: but they are not the problem with the double-slit experiment.
+The unitary, simple, clean wave theory is sufficient to describe the dual-slit 
+experiment result above. It's not about "wave-particle duality" or "the 
+measurment problem," or anything of the sort. Those do form a significant 
+problem, sure: but they are not the problem with the double-slit experiment.
 
-The problem of measurement, and the particle side of wave-particle duality, can be added to our above description as a sort of axiom:
+The problem of measurement, and the particle side of wave-particle duality, can 
+be added to our above description as a sort of axiom:
 
-	When we measure an observable, we observe an eigenstate of that observable's operator. Moreover, repeated measurements are /consistent/: if we measure X, then shortly after, if we measure again, we will again see X.
+	When we measure an observable, we observe an eigenstate of that 
+	observable's operator. Moreover, repeated measurements are /consistent/: if 
+	we measure X, then shortly after, if we measure again, we will again see X.
 
-The problem is that we have a very high-level understanding of measurement -- we know when we have performed one -- but this does not work well with our low-level understanding of quantum mechanics. To solve this problem, there are many "quantum mechanics interpretations," which try to create a /metaphysical model/ of quantum mechanics, so as to explain the fact that we only see superpositions in repeated experiments, and not in any individual one. 
+The problem is that we have a very high-level understanding of measurement -- 
+we know when we have performed one -- but this does not work well with our low-
+level understanding of quantum mechanics. To solve this problem, there are many 
+"quantum mechanics interpretations," which try to create a /metaphysical model/ 
+of quantum mechanics, so as to explain the fact that we only see superpositions 
+in repeated experiments, and not in any individual one. 
 
-The most popular "interpretation" is the Copenhagen interpretation, sometimes called "wavefunction collapse." It says that the act of looking for my television will itself force the wavefunction of my television to undergo a discontinuity, "collapsing" to either the L or the B state. In other words, wavefunctions are real, but the act of observation somehow discontinuously changes the wavefunction to a new eigenstate. I would say that this is the most straightforward method out, given the known facts: you insist on the reality of the wavefunction, you insist that it's changing over time, and you insist that the repeated-consistency criterion implies the collapse to the eigenstate.
+The most popular "interpretation" is the Copenhagen interpretation, sometimes 
+called "wavefunction collapse." It says that the act of looking for my 
+television will itself force the wavefunction of my television to undergo a 
+discontinuity, "collapsing" to either the L or the B state. In other words, 
+wavefunctions are real, but the act of observation somehow discontinuously 
+changes the wavefunction to a new eigenstate. I would say that this is the most 
+straightforward method out, given the known facts: you insist on the reality of 
+the wavefunction, you insist that it's changing over time, and you insist that 
+the repeated-consistency criterion implies the collapse to the eigenstate.
 
-But we have not here described what an observation means at the lowest level; we still don't know when the cat's life or death is "observed" or whether it can observe itself. Along these lines, we might worry about the paradox of nested observation: an experimenter measures a qubit and either shouts "0!" or "1!" -- we now put this whole experiment, including the experimenter, in a box and describe it as two two-level systems -- the qubit and the experimenter. Who collapses the qubit -- the experimenter inside the box, or the experimenter outside the box?
+But we have not here described what an observation means at the lowest level; 
+we still don't know when the cat's life or death is "observed" or whether it 
+can observe itself. Along these lines, we might worry about the paradox of 
+nested observation: an experimenter measures a qubit and either shouts "0!" or 
+"1!" -- we now put this whole experiment, including the experimenter, in a box 
+and describe it as two two-level systems -- the qubit and the experimenter. Who 
+collapses the qubit -- the experimenter inside the box, or the experimenter 
+outside the box?
 
-Another popular one is the many-worlds interpretation, which states that the wavefunction does not describe something real to our universe, but describes a distribution of the cat, television, or other qubit across many parallel universes which all "came from" our present. Our conscious experience somehow selects one of these futures to follow -- we don't always know quite how -- and we observe the television in the living room or the bedroom as befits the universe that we actually find ourselves in. 
+Another popular one is the many-worlds interpretation, which states that the 
+wavefunction does not describe something real to our universe, but describes a 
+distribution of the cat, television, or other qubit across many parallel 
+universes which all "came from" our present. Our conscious experience somehow 
+selects one of these futures to follow -- we don't always know quite how -- and 
+we observe the television in the living room or the bedroom as befits the 
+universe that we actually find ourselves in. 
 
-You can, in fact, do quantum mechanics purely deterministically -- indeed, the wave-part of the theory is totally deterministic, so you simply need a deterministic account of collapse. This is furnished by several different methods, whether they might be a "guiding equation" or a sort of "surface appearance" which obeys quantum mechanical statistics by some deterministic equation. 
+You can, in fact, do quantum mechanics purely deterministically -- indeed, the 
+wave-part of the theory is totally deterministic, so you simply need a 
+deterministic account of collapse. This is furnished by several different 
+methods, whether they might be a "guiding equation" or a sort of "surface 
+appearance" which obeys quantum mechanical statistics by some deterministic 
+equation. 
 
-Why do we care? What real experiment is at stake when we add measurement into our discussion? What /quantum/ effect can measurement have?
+Why do we care? What real experiment is at stake when we add measurement into 
+our discussion? What /quantum/ effect can measurement have?
 
 # The Quantum Eraser Experiment #
 
-We take the dual-slit experiment, with its two entangled qubits: the interference pattern has disappeared due to the measurement, and it is as if we are watching bullets, rather than waves, travelling through our two slits.
+We take the dual-slit experiment, with its two entangled qubits: the 
+interference pattern has disappeared due to the measurement, and it is as if we 
+are watching bullets, rather than waves, travelling through our two slits.
 
-What if I could measure another qubit in another box, far away from the original experiment, to make the system behave like waves again? The other system would have to be entangled with this present system, sure: but we could do it. Here's how.
+What if I could measure another qubit in another box, far away from the 
+original experiment, to make the system behave like waves again? The other 
+system would have to be entangled with this present system, sure: but we could 
+do it. Here's how.
 
-In our dual-slit experiment, we could say that there was a "before measurement" state, where we will say that the measurement apparatus simply said "slit 0":
+In our dual-slit experiment, we could say that there was a "before measurement" 
+state, where we will say that the measurement apparatus simply said "slit 0":
 
 	√½ |00> + √½ |10>
 
@@ -541,26 +657,51 @@ The operation being applied here can be described as a "CNOT" operation:
 	|10> → |11>
 	|11> → |10>
 
-It flips the second bit, if and only if the first bit is 1. We will apply that operation in our new system. The only difference is that we start our measurement apparatus not in the neutral state |0> but in an entangled state with a third qubit:
+It flips the second bit, if and only if the first bit is 1. We will apply that 
+operation in our new system. The only difference is that we start our 
+measurement apparatus not in the neutral state |0> but in an entangled state 
+with a third qubit:
 
 	|Ψ> = ( √½ |0> + √½ |1> ) (√½ |00> + √½ |11>)
 	|Ψ> = ½ |000> + ½ |011> + ½ |100> + ½ |111>
 
-Here is how we might realize this system: we create two photons with entangled polarizations: polarizations can be either up-down or left-right, which makes them a perfect two-level system. We send one of those photons through a double-slit. The first qubit is which slit it went through, the second qubit is the slit-photon's polarization, and the third qubit is the other-photon's polarization.
+Here is how we might realize this system: we create two photons with entangled 
+polarizations: polarizations can be either up-down or left-right, which makes 
+them a perfect two-level system. We send one of those photons through a double-
+slit. The first qubit is which slit it went through, the second qubit is the 
+slit-photon's polarization, and the third qubit is the other-photon's 
+polarization.
 
-If you trace out the second and third qubits, you do indeed now get the density matrix |+><+|, as we got above. The pattern beyond the slit will now be a wave pattern.
+If you trace out the second and third qubits, you do indeed now get the density 
+matrix |+><+|, as we got above. The pattern beyond the slit will now be a wave 
+pattern.
 
-We now apply the CNOT gate, which in this case rotates the polarization of any photon which goes through slit 1 by 90 degrees, so that up-down becomes left-right and vice versa. Applying our rule of "flip the second qubit if and only if the first qubit is 1," we get:
+We now apply the CNOT gate, which in this case rotates the polarization of any 
+photon which goes through slit 1 by 90 degrees, so that up-down becomes left-
+right and vice versa. Applying our rule of "flip the second qubit if and only 
+if the first qubit is 1," we get:
 
 	|Ψ> = ½ |000> + ½ |011> + ½ |110> + ½ |101>
 
-We trace out the second and third qubits of this density matrix. You don't actually have to write out the 16 terms and trace it out: the four states each have different values for the second qubits, and thus the trace only "grabs" each term's density-matrix-component with itself. If you do out the maths, you get:
+We trace out the second and third qubits of this density matrix. You don't 
+actually have to write out the 16 terms and trace it out: the four states each 
+have different values for the second qubits, and thus the trace only "grabs" 
+each term's density-matrix-component with itself. If you do out the maths, you 
+get:
 
 	σ = ½ |0><0| + ½ |1><1|
 
-...and thus the wave pattern has disappeared. I want to emphasize: we do /not/ observe the polarization anywhere in this experiment yet. The polarization is merely entangled with the slit that the photon went through. All we did is to rotate the polarization of one slit, and the interference pattern disappeared. We /could/ have measured this pattern with an up-down or left-right polarization filter placed between the two slits and the observation screen, but it's not strictly necessary.
+...and thus the wave pattern has disappeared. I want to emphasize: we do /not/ 
+observe the polarization anywhere in this experiment yet. The polarization is 
+merely entangled with the slit that the photon went through. All we did is to 
+rotate the polarization of one slit, and the interference pattern disappeared. 
+We /could/ have measured this pattern with an up-down or left-right 
+polarization filter placed between the two slits and the observation screen, 
+but it's not strictly necessary.
 
-Here is the weird fact, though. We can rewrite the above state with the third qubit, but instead of labeling it as |0> and |1>. we can use the |+> and |-> basis:
+Here is the weird fact, though. We can rewrite the above state with the third 
+qubit, but instead of labeling it as |0> and |1>. we can use the |+> and |-> 
+basis:
 
 	|0> = √½ |+> + √½ |−>
 	|1> = √½ |+> − √½ |−>
@@ -572,18 +713,43 @@ Collect together the |+> and the |−> terms to see that:
 	|Ψ> =  ½ √½ [ |00> + |01> + |10> + |11> ] |+> 
 		+  ½ √½ [ |00> − |01> − |10> + |11> ] |−>
 
-But, the terms in square brackets are just 2 |++> and 2 |−−> respectively, and thus:
+But, the terms in square brackets are just 2 |++> and 2 |−−> respectively, and 
+thus:
 
 	|Ψ> = √½ |+++> + √½ |−−−>
 
-If you like, we can see this retroactively: the states |+++> and |−−−> both contain every binary number from |000> to |111>, except that the state |−−−> contains a − sign in front of every state with an odd number of 1's in it. The state that we just wrote down for |Ψ> : 
+If you like, we can see this retroactively: the states |+++> and |−−−> both 
+contain every binary number from |000> to |111>, except that the state |−−−> 
+contains a − sign in front of every state with an odd number of 1's in it. The 
+state that we just wrote down for |Ψ> : 
 
 	½ |000> + ½ |011> + ½ |110> + ½ |101>
 
-...contains only the four terms with an even number of 1's, all with + signs: it is thus |+++> + |−−−>.
+...contains only the four terms with an even number of 1's, all with + signs: 
+it is thus |+++> + |−−−>.
 
-Here is where this gets weird. We measure the third qubit as either |+> or |−>, by placing a polarizer rotated at 45 degrees between the up-down and left-right states. If you prefer, you can instead rotate the entangled photon so that, say, |+> becomes |0> and |−> becomes |1>, and then measure up-down or left-right in the "computational basis" of |0> and |1>. It doesn't really matter which you choose: the photon will either pass through, or it won't pass through. In that moment, you will collapse the whole state to either |+++> or |−−−>.
+Here is where this gets weird. We measure the third qubit as either |+> or |−>, 
+by placing a polarizer rotated at 45 degrees between the up-down and left-right 
+states. If you prefer, you can instead rotate the entangled photon so that, 
+say, |+> becomes |0> and |−> becomes |1>, and then measure up-down or left-
+right in the "computational basis" of |0> and |1>. It doesn't really matter 
+which you choose: the photon will either pass through, or it won't pass 
+through. In that moment, you will collapse the whole state to either |+++> or |
+−−−>.
 
-At this point, the first qubit is either in the state |+> or |−>, and therefore the slits show an interference pattern either way.
+At this point, the first qubit is either in the state |+> or |−>, and therefore 
+the slits show an interference pattern either way.
 
-Here's the absolutely crazy part, where measurement does something totally unexpected: we have managed to create apparatuses which delay this choice of "do I measure qubit 3?" until /after/ qubit 1 has registered on the screen. Now, we can't wait forever, because the above decoherence effect happens with all sorts of noise. In particular, we don't have apparatuses which will let us wait for 30 seconds or so before observing qubit 3, so we can't "peek" at qubit 1 before trying to influence qubit 3. But we have managed to use one-nanosecond detectors to do the detections, with an eight-nanosecond delay between observation of the interference pattern and observation of qubit 3. Our notions of time and causality are /not/ respected by quantum mechanics, which gives you the consistent results that you expect from the mathematics: when you measure qubit 3, you get an interference pattern; when you don't measure qubit 3, it disappears.
+Here's the absolutely crazy part, where measurement does something totally 
+unexpected: we have managed to create apparatuses which delay this choice of 
+"do I measure qubit 3?" until /after/ qubit 1 has registered on the screen. 
+Now, we can't wait forever, because the above decoherence effect happens with 
+all sorts of noise. In particular, we don't have apparatuses which will let us 
+wait for 30 seconds or so before observing qubit 3, so we can't "peek" at qubit 
+1 before trying to influence qubit 3. But we have managed to use one-nanosecond 
+detectors to do the detections, with an eight-nanosecond delay between 
+observation of the interference pattern and observation of qubit 3. Our notions 
+of time and causality are /not/ respected by quantum mechanics, which gives you 
+the consistent results that you expect from the mathematics: when you measure 
+qubit 3, you get an interference pattern; when you don't measure qubit 3, it 
+disappears.
