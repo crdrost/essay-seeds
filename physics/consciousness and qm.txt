@@ -1,0 +1,18 @@
+Conscious phenomena that remind me of QM:
+
+- Free Will
+	- We all feel, in all of our decisions, "I didn't have to do X, I could have done Y." If we don't make up our minds and choose among our alternatives, then that itself becomes a choice to be consumed with indecision.
+	- Reminds me of measurement.
+		- The "measurement problem" really asks how a particle is 'guided by' its wavefunction, which is spread across many states, and yet we only observe discrete states with no mixing.
+		- QM allows a state for my television of 50% bedroom, 50% living room, but we never see this sort of state; the television comes to be either 100% in the living room or 100% in the bedroom.
+- Intentionality
+	- How do we think "about" a cat if that cat doesn't exist? And how can "aboutness" be both objective (I am thinking about a cat) and subjective (this book is about cats)?
+	- Reminds me of entanglement.
+		- Another fuzzy connection between system A and system B where the state of B correlates with the state of A.
+		- In principle, if your physical senses are pretty good, your perceptions should anyway be quantum-entangled with a mess of photons coming off of the perceived object, and thus, via entanglement, one comes to understand the other's existence.
+- Unification
+	- Why/how do our perceptions all come together as one conscious whole? Why is it that when I look at a chair I am aware that there are other things in the "corner of my eyes" which I am not paying attention to? Why is it that I don't see my blind spot?
+	- Reminds me of Cooper Pairs.
+		- Quantum mechanics allows for electrons with opposite momentum to come together, in certain metals called "superconductors", by an electron-phonon interaction. (Basically, if they don't come together, they deform the atomic lattice with much more energy than they repel themselves together.)
+		- This "Cooper pair" of electrons can be treated with quantum mechanics as well, which states that it will form a Bose-Einstein condensate at lower temperatures, which we observe (as superconductivity). 
+		- Lots of mental effort has been spent (wasted?) on the fact that these electrons are moving in opposite directions and so on, and so how do they move charge? et cetera. But they do act as if they have combined into a new joint entity. 

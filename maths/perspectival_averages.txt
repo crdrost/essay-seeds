@@ -1,0 +1,87 @@
+Everyone is familiar with the normal method of averaging a sequence of N numbers { zᵢ } together:
+
+	<z> = (1/N) Σᵢ zᵢ
+
+And we of course use it all the time in conditions of uncertainty -- we have five values and we don't know which is the right one, so we average them out in the above way to get a representative measurement. With 10-100 samples we can even begin to see how "spready" they are around this arithmetic mean. But, you might be interested to see some of the other interesting averages out there, and how this generalizes.
+
+The central idea that I want to introduce here is the notion of a "space average" -- an average which is taken when the data is looked at from a different perspective. For this, I require a certain sort of function -- which I'll call a perspective, and define more narrowly here as functions which are continuous on the positive real line (0, ∞) and which are either strictly increasing, or strictly decreasing, on that interval. 
+
+Perspectives, because they are strictly (in/de)-creasing, have inverses, and they begin to define a space for averages in the following sense. Let p(x) be a perspective, then the sequence of { zᵢ } has a p-space average given by:
+
+	< z; p > = p⁻¹( < p(z) > ) = p⁻¹( (1/N) Σᵢ p(zᵢ) )
+
+In other words, we apply p to every input in the set, we average them out within our new perspective space, and then we apply the inverse operaton to return to our original perspective. You can now see why I need p to be continuous: if it jumps discontinuously, then p⁻¹ will be undefined on part of its domain, and the average would be able to access that point of its domain by averaging out two points near this boundary.
+
+All such perspectival averages obey some conditions which makes them "adequate" to be called averages -- for example, the average of a sequence of numbers is somewhere between the maximum and minimum of those numbers. A consequence is that if the sequence only contains one number, like {3, 3, 3}, then the average, in all perspectives, is just that number (in this case 3). These constructions also allow you, if you prefer, to form a general weighted average with a sequence of weighting factors { wᵢ }:
+
+	< z; p, w > =  p⁻¹( Σᵢ wᵢ p(zᵢ) / Σᵢ wᵢ )
+
+What's interesting about these functions is that they sometimes define the same space. For example, take any affine transform of a perspective:
+
+	A[p](x) = a p(x) + b  
+
+Then the A[p]-space average is the same as the p-space average, because the arithmetic mean is linear:
+	
+	A[p]⁻¹(x) = p⁻¹( (x - b) / a )
+
+	< z; A[p] > = p⁻¹( [<a p(zᵢ) + b> - b] / a  )
+	< z; A[p] > = p⁻¹( < p(zᵢ) > )
+	< z; A[p] > = < z; p >
+
+It follows that all of the affine perspectives p(x) = a x + b are the same as the arithmetic mean. While affine transforms to the output of p don't do anything, it might occasionally be useful to see what happens when we change the scale of the input data: if we have a positive real number k, and define p*(x) = p(kx), how does the p*-space average compare to the p-space average?
+
+Here are some interesting averages that I have seen in my physics career.
+
+# The log-space average (the geometric mean)
+
+All of the different logarithm functions are affine transforms of each other:
+
+	log_b(k x) = [ln(k) + ln(x)] / ln(b)
+
+And thus, no matter what logarithm you choose, you get the same scale-invariant log-space average:
+
+	< z, ln > = exp( (1/N) Σᵢ ln(zᵢ) )
+
+Which, by normal exponential rules, can become:
+
+	< z, ln > = Πᵢ zᵢ^(1/N)
+
+This we recognize as the geometric mean. The geometric mean is "geometric" for this reason: assume you have three numbers, like 2, 9, and 12. Form a 2x9x12 block and then "smoosh" that volume into a cube, and you will find that it is a 6x6x6 cube, thus the geometric mean of 2, 9, and 12 is 6.
+
+Surprisingly, the exponential space average is, by comparison, scale-variant and almost entirely unheard of; it does not admit of any similar manipulations.	
+
+I have only seen one direct application where the geometric mean seemed to be a clearly better way to average than the arithmetic mean, and it has to do with the "Two Envelopes Paradox." In this paradox, someone has two envelopes and you are told that one of them has twice as much money as the other. You pick one randomly and hold it, and then I offer you the opportunity to switch to the other. You reason that, if this one has a value v, then the other one has a 50% chance of containing 2 v and a 50% chance of containing v/2, and thus, from switching, you expect to earn 1.25 v, which is greater than your present amount v: so you switch But if I offer you again the opportunity to switch, the same reasoning presents itself, and presumably you are now on average estimating the arbitrary first envelope as containing 1.5625 v and choosing to switch, when we know that it should only contain v. If you instead used the generalized geometric mean, you would be able -- at least in this particular case -- to "expect" from [50%: v/2, 50%: 2v] that switching will only be worth v, and thus to be indifferent. But this doesn't work for cases like "one of these envelopes contains $10 more than the other", which the arithmetic mean handles nicely in the same way.
+
+# The reciprocal-space average.
+
+Reciprocal space has a special meaning in physics which I don't quite want to get to; but this perspective is created by the function h(x) = 1/x, which is its own inverse. This induces an average which looks like:
+
+	< z, h > = N / Σᵢ (1 / zᵢ)
+
+This average is pretty visibly scale-invariant. 
+
+For example, the average of 1, 2, and 4 gives:
+
+	3 / (1 + 1/2 + 1/4) = 12/7.
+
+This average happens in electronic circuits. Suppose you have a set of N resistors in parallel, and you put a voltage V across them: a current Iᵢ is induced in the resistor with resistance rᵢ by Ohm's law, V = I R:
+
+Since they are in parallel, these currents add up directly. The "effective resistance" of these parallel resistances taken together is therefore:
+
+	R = V / I = V / (Σᵢ Iᵢ) = V / (Σᵢ V / rᵢ)
+	R = 1 / (Σᵢ 1/rᵢ).
+
+Thus the effective resistance is the reciprocal-space average resistance, divided by N.
+
+# The square-space average
+
+The square function, sq(x) = x², induces yet another scale-invariant average, which resembles nothing so much as the generalized Pythagorean theorem:
+
+	< z; sq > = sqrt( (1/N) Σᵢ zᵢ² )
+
+This appers in particular in probability and statistics. The population standard deviation σ, for example, is the square-space average of residuals, { zᵢ - <z> }. It turns out that it can also be expressed as:
+
+	σ² = <z; sq>² - <z>²
+
+Thus it is the square-space difference of the square-space mean of z and the arithmetic mean of z.
+
