@@ -16,3 +16,21 @@ Conscious phenomena that remind me of QM:
 		- Quantum mechanics allows for electrons with opposite momentum to come together, in certain metals called "superconductors", by an electron-phonon interaction. (Basically, if they don't come together, they deform the atomic lattice with much more energy than they repel themselves together.)
 		- This "Cooper pair" of electrons can be treated with quantum mechanics as well, which states that it will form a Bose-Einstein condensate at lower temperatures, which we observe (as superconductivity). 
 		- Lots of mental effort has been spent (wasted?) on the fact that these electrons are moving in opposite directions and so on, and so how do they move charge? et cetera. But they do act as if they have combined into a new joint entity. 
+
+Here is another subtle problem which has been raised within the many-worlds interpretation but applies everywhere. You have TV in living room |L>, L = |L><L|. You have TV in bedroom |B>, B = |B><B|. (Substitute live or dead cats as you wish for Schrodinger's cat paradoxes.) Presumably these are orthogonal: <L|B> = 0. 
+
+The problem is, *why favor the L, B basis?!* There is an equivalent basis which is:
+
+    |P> = √½ |L> + |B>, |M> = √½ |L> − √½ |B>
+
+Why should we observe L and not P? Why does nature prefer L to P?
+
+    In the density matrix formalism, we don't necessarily get |L> but 
+    rather L. Superpositions will, after decoherence, look like:
+
+    ρ = ½ L + ½ B = ½ P + ½ M.
+
+    At the very least, this looks very suggestive, as it would mean that
+    Nature doesn't prefer either basis but gives us 50/50 on all of them.
+    But you still have the collapse problem: I do not see P, I see L, all 
+    of the time. Why should I see L and not P?
