@@ -90,3 +90,19 @@ Javascript:
 			a = mean(z) - b * mean(x) - c * mean(y);
 		return [a, b, c];
 	}
+	// we use Cramer's rule to calculate the inversion with 3x3 determinants.
+	function trilinear_regression(x, y, z, f) {
+		function det(m11, m12, m13, m21, m22, m23, m31, m32, m33) {
+			return m11 * m22 * m33 + m12 * m23 * m31 + m13 * m21 * m32
+				- (m11 * m23 * m32 + m12 * m21 * m33 + m13 * m22 * m31); 
+		}
+		var xx = cov(x, x), xy = cov(x, y), xz = cov(x, z),
+			yy = cov(y, y), yz = cov(y, z), zz = cov(z, z),
+			fx = cov(f, x), fy = cov(f, y), fz = cov(f, z),
+			norm = det(xx, xy, xz, xy, yy, yz, xz, yz, zz),
+			a = det(fx, xy, xz, fy, yy, yz, fz, yz, zz) / norm,
+			b = det(xx, fx, xz, xy, fy, yz, xz, fz, zz) / norm,
+			c = det(xx, xy, fx, xy, yy, fy, xz, yz, fz) / norm,
+			k = mean(z) - a * mean(x) - b * mean(y) - c * mean(z);
+		return [k, a, b, c];
+	}

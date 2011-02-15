@@ -17,6 +17,30 @@ Conscious phenomena that remind me of QM:
 		- This "Cooper pair" of electrons can be treated with quantum mechanics as well, which states that it will form a Bose-Einstein condensate at lower temperatures, which we observe (as superconductivity). 
 		- Lots of mental effort has been spent (wasted?) on the fact that these electrons are moving in opposite directions and so on, and so how do they move charge? et cetera. But they do act as if they have combined into a new joint entity. 
 
+-- Cloning --
+If you were to undergo some sort of horrible accident in the distant future, we might have this idea: "Oh, we will create a backup copy of you, so that you can live on in a new body without all of this injured tissue."
+
+But imagine that this works the way that it says on the box: we create a duplicate you, doesn't matter how, which appears to talk, think, perceive, and work like you. Imagine the horror of meeting your clone face to face, with the realization that the doctors are now going to kill you, and *this other person* is going to resume the affairs of your everyday life. You might indeed *agree* with this person on many issues, and he or she might know all of your *secrets*, but there's still the paradox that despite a physical identity, they aren't you.
+
+Quantum mechanics says that there is no general transformation which maps 
+
+    |0, Ψ> → |Ψ, Ψ>
+
+We might be able to construct one particular |Ψ, Ψ>, especially if we take the original process that took |0> → |Ψ> and repeat it, but we cannot duplicate an arbitrary unknown quantum state. The problem deals with linearity: all quantum mechanical operations are expected to be linear in superpositions, but the above is not. If Ψ = a + b, then we could say:
+    
+    |0, a>  → |a, a>
+    |0, b>  → |b, b>
+    |0, a + b>  → |a + b, a + b> = |a, a> + |b, b> + |a, b> + |b, a>.
+
+Thus the transform of |0, a + b> is not the transform of |0, a> + |0, b>.
+
+If we wanted to generate |Ψ, Ψ> in general, without knowing what |Ψ> is, what we would have to do is to repeat the experimental setup which gave us |0> → |Ψ> in the first place. If we do not do this, then the best that quantum mechanics will allow us to do is something like:
+    
+    |0, Ψ> → |Ψ, 0>. 
+    
+There is something irresistably human about the no-cloning theorem: it says that if I just treat you as a black-box quantum state, I cannot copy your consciousness without sending someone through the same path of life-experiences as you. I may be able to transfer it, but I could not have this moment of "seeing yourself and wondering who is more properly you." I might be able to find a "shortcut" to this process, but only if I could reliably measure your quantum state so that I knew what superposition I was trying to create. But measurement tends to be destructive in quantum mechanics and probably wouldn't work well unless I had a couple thousand copies of you to compare.
+
+-- The basis problem --
 Here is another subtle problem which has been raised within the many-worlds interpretation but applies everywhere. You have TV in living room |L>, L = |L><L|. You have TV in bedroom |B>, B = |B><B|. (Substitute live or dead cats as you wish for Schrodinger's cat paradoxes.) Presumably these are orthogonal: <L|B> = 0. 
 
 The problem is, *why favor the L, B basis?!* There is an equivalent basis which is:
@@ -34,3 +58,12 @@ Why should we observe L and not P? Why does nature prefer L to P?
     Nature doesn't prefer either basis but gives us 50/50 on all of them.
     But you still have the collapse problem: I do not see P, I see L, all 
     of the time. Why should I see L and not P?
+
+Observations 2011-01-29:
+Time is distinct and might have the capacity to collapse wavefunctions.
+
+Since every moment is a definite timestep, perhaps every motion is an "observation." Perhaps things collapse on their own, constantly, as long as there is an energy gap to do it.
+
+Since time connects to energy, perhaps everything automatically finds itself in the energy eigenbasis, thus solving the question of "why is |0>, |1> and not |+>, |-> the eigenbasis?" The basis is whatever your energy eigenbasis is. When you want quantum effects, you make it so that you aren't doing this fundamental energy-gap thing, usually by keeping your Hamiltonian generation away from the system.
+
+In other words, the uniqueness of basis and the uniqueness of time strike me as parallels of each other.

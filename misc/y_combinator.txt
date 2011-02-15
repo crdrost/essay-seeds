@@ -1,55 +1,37 @@
-We start, as code often does, with a simple mathematical problem and its 
-straightforward solution. In mathematics you may want the factorial operator 
-(!), defined like so: 
+We start, as code often does, with a simple mathematical problem and its straightforward solution. Our mathematical problem is the idea of defining, in a very nice mathematical structure, recursion. It's worth using an example.
+
+In mathematics you may want the factorial operator (!), defined like so: 
 
 	n! = n * (n - 1) * ... * 2 * 1. 
-	
-	e.g. 4! = 4 * 3 * 2 * 1 = 24.
+	for example, 4! = 4 * 3 * 2 * 1 = 24.
 
-This number tells you that if you have a series of 4 distinct items, then 
-there are 24 different possible orderings of those 4 items. They are:
+This number is very important in a branch of mathematics called combinatorics: it tells you that if you have a series of 4 distinct items, then there are 24 different possible permutations of those 4 items. They are:
 
-	abcd	bacd	acbd	bcad	cabd	cbad
-	abdc	badc	acdb	bcda	cadb	cbda
-	adbc	bdac	adcb	bdca	cdab	cdba
-	dabc	dbac	dacb	dbca	dcab	dcba
+	abcd	abdc	acbd	acdb	adbc	adcb
+	bacd	badc	bcad	bcda	bdac	bdca
+	cabd	cadb	cbad	cbda	cdab	cdba
+	dabc	dacb	dbac	dbca	dcab	dcba
 
-There is a convention that 0! is exactly 1, to fit several other mathematical 
-patterns, e.g. the so-called "gamma function". So there is exactly one empty 
-set, with its own ordering. In terms of growth speed, you can easily see that 
-it's somewhere between 2^n and n^n; you can actually bound it as proportional 
-to (n / e)^(n + 0.5) or so. :x
+It's worth going through the proof that these two are the same, because it's simple. Imagine that we wanted to permute 'abcde' instead of 'abcd'. We can use the above set: just make five copies, and in the n'th copy insert 'e' into all of the elements, in the n'th place. Thus the first copy will start with 'eabcd', the second copy will start with 'aebcd', and so on. This proves a *recursive relation*, namely that:
 
-We can solve this problem of "how do you calculate it?" with a recursive 
-solution, namely:
+	n! = n * (n - 1)!
 
-	var factorial;
-	factorial = function (n) {
-		return (n == 0)? 1 : n * factorial(n - 1);
-	}
+If you also have a starting point, like 0! = 1, then this is in fact enough to calculate factorials:
 
-In English: to compute the factorial of n: 
+	function factorial(n) {
+		return n === 0 ? 1 : n * factorial(n - 1);
+	} 
 
-	0! is 1, 
-	n! is n * (n - 1)!
+This is a recursive definition which works for any positive counting number. Recursion is of course used ubiquitously throughout program design, but it's useful to see it here.
 
-This is a recursive definition which works for any positive counting number. 
-But there's a catch: it uses the definition of a factorial inside its own 
-definition. Recursive functions do this pretty much by definition. But didn't 
-your teachers always tell you not to use a word within a definition?
+Now, there's a catch: I said that we wanted an elegant mathematical description of recursion, but the above description has something which is not elegant: it uses the name 'factorial' to define what 'factorial' means. One of the earlier mathematical systems for studying programs -- the "lambda calculus" -- had real trouble naming anything other than a function argument, much less using a function within itself. Those ideas didn't exist. 
 
-This isn't a grammar-geek's problem. When maths researchers designed a formal 
-mathematical system to study programs -- the lambda calculus -- they didn't 
-have any resources in their language to name these sorts of variables, much 
-less to use the name of a function in its own definition. 
+So this isn't just a grammar-geek's problem. If you have recursion, you can do loops and so on, but how do you do recursion without some sort of cyclical naming scheme?
 
-We proceed in true SICP style, by wishful thinking. We just imagine first what 
+We can begin, at least, by wishful thinking. We can just imagine first what 
 it would look like to write our recursive algorithm without being able to 
 directly name the function that we're calling. What /can/ we name? We can name 
-the parameters into a function. Well, why not make the internal call to 
-factorial() a parameter to the function? 
-
-So we might try to develop something like this:
+the parameters into a function. So we might try to develop something like this:
 
 	factorial = Y( 
 		function factorial_maker(recurse) {
@@ -59,14 +41,20 @@ So we might try to develop something like this:
 		}
 	);
 
-You see, we run some magical procedure Y on a function which expects a special 
-recursor function to be passed in. If that recursor function happens to be the 
-factorial function, then this procedure returns the factorial function. And Y 
-is a sort of magic wand which constructs the right input and output.
+I'm naming these functions, but of course those names don't mean much in the context of the actual program. The point is that we have two objects: there is a "factorial_maker" which, if you give it a factorial function, it makes you a factorial function. And then there is some sort of external function which we call the /Y combinator/ -- this magical procedure Y will somehow construct the right input into factorial_maker() to get the factorial function as output. 
 
-Here is how we peek into Y: we first off try to write out the factorial 
-procedure with the internal function above in our minds. In other words, we 
-just try to write this out:
+We're going to try to "peek inside" Y, by trying to massage the code we already have into the above structure. What we already have might look like this:
+
+	factorial = (function () {
+		function factorial_maker(recurse) {
+			return function (n) {
+				return (n == 0)? 1 : n * recurse(n - 1);
+			};
+		}
+		// do something with factorial_maker, return it.
+	}());
+
+You see, there is an anonymous function standing for the Y combinator, and rather than naming its parameter I am just placing factorial_maker at the top of the codespace. What can we do with it? Well, it needs a function, and we've only got one function around -- namely factorial_maker -- so we try that:
 
 	factorial = (function () {
 		function factorial_maker(recurse) {
@@ -82,12 +70,13 @@ impossible, does it?
 
 Unfortunately, if you try to /run/ that code, it won't work, because that's
 the wrong input function. If recurse === factorial_maker, then the internal 
-call to "recurse(n - 1)" makes no sense, because factorial_maker is expecting 
-a function, not a number, as its input parameter.
+call to "recurse(n - 1)" becomes "factorial_maker(5)" or so, and this makes no 
+sense: factorial_maker is expecting a function, not a number, as its input 
+parameter.
 
-But we can cleverly evade this. Instead of recurse, you could write the phrase
-recurse(recurse), which, if recurse === factorial_maker, will be a function of 
-n. Then everything would work out in principle:
+But we can cleverly avoid this. Instead of writing "recurse", you could write 
+the phrase recurse(recurse), which, if recurse === factorial_maker, will be a 
+function of n. Then everything would work out in principle:
 
 	factorial = (function () {
 		function factorial_maker(recurse) {
@@ -147,7 +136,7 @@ We can clean this up somewhat, since the reference to /recurse/ is only actually
 	function Y(maker) {
 		function F(f) {
 			function recurse() {
-				return f(f).apply(arguments);
+				return f(f).apply(this, arguments);
 			}
 			return maker(recurse);
 		}
@@ -163,15 +152,17 @@ exactly one statement long:
 		return
 			function (f) {
 				return maker(function () {
-					return f(f).apply(arguments);
+					return f(f).apply(this, arguments);
 				});
 			}(
 				function (f) {
 					return maker(function () {
-						return f(f).apply(arguments);
+						return f(f).apply(this, arguments);
 					});
 				}
 			);
 	}
 
 This is the purest form I know of the construct known as the Y combinator. We have defined a recursive function without it making any sort of explicit reference to itself anywhere. 
+
+Here is the most important part of this lesson -- one that I hope you keep with you throughout your coding career. *There is such a thing as code which is too smart.* You must understand this. 

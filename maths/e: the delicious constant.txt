@@ -1,0 +1,101 @@
+When I was younger, it was not so surprising that there was a function:
+
+	ln(n) = ∫₁ⁿ dx / x
+
+but it was terribly surprising that such a function would connect so intimately with exponents and with a special constant, e = 2.718281828. There were also expressions where you would keep seeing e for no good reason. This essay-seed is meant to investigate some of these high-school-calculus ideas that my high-school-calculus class didn't delve into.
+
+Sort of the zeroth thing to notice is how ln(u) is made from a sort of scale-invariant or unit-invariant ratio. That is, if x were measured in meters and dx were likewise, dx / x would be a pure number, and you'd just be summing pure numbers, from 1 to u. Now, in physics, that's actually somewhat important -- you can't normally take an arbitrary function of a quantity with units associated to it, since in the Taylor series you start to get terms like (meters + square meters + cubic meters), which quickly become nonsensical. Logarithms violate this rule rather casually. 
+
+The first thing to prove is the quintessential exponent property, that:
+
+	ln(a b) = ln(a) + ln(b).
+
+This is probably the easiest way to see violations of the rule. If a is in seconds and b is in cycles/second (Hertz), then ln(a b) is a function of a pure number and makes sense, but ln(a) wouldn't make sense, and nor would ln(b). So a physicist would have to be careful with the units here. 
+
+This proof is best done by just writing out the first two terms and letting the expression for the third come out naturally:
+
+    ∫₁ⁱⁿ dx / x = ∫₁ⁱ dx / x +  ∫ᵢⁱⁿ dx / x 
+	ln(i n) = ln(i) + ∫ᵢⁱⁿ dx / x
+
+All that we have to prove is that this last integral is ln(n). To do that, we substitute iu = x, i du = dx. The scale invariance means that the integrand dx/x = du/u. But the boundaries of integration change:
+
+	ln(i n) = ln(i) + ∫₁ⁿ du / u = ln(i) + ln(n).
+
+It's also worth proving that:
+
+	ln(1/n) = - ln(n)
+
+in a similar way, with u = 1/x, so that ux = 1, or that:
+
+	x du + u dx = 0, or du/u = -dx/x:
+
+	ln(1/n) = ∫₁¹'ⁿ dx / x = -∫₁ⁿ du / u = -ln(n).
+
+So the basic properties of exponents are there. Also, we have from the definition the differential properties that:
+
+	d/dx ln(u) = 1/u du/dx, d/dx ln(x) = 1/x.
+
+Enter exp(x), a function which we define as equal to its own derivative -- if such functions might exist. Well, such functions do exist -- f(x) = 0 is one of them -- but there is also a nontrivial function, and we can prove that it exists by constructing it with a power series:
+
+	exp(x) = ∑ᵢ xⁱ / i! = 1 + x + x²/2 + x³/6 + ...
+
+It is not too hard to prove that this series is convergent. For example, the "ratio test" of u(n)/u(n - 1) gives x/n, which goes to 0 as n goes to infinity. Broadly speaking, all proofs of the convergence secretly look like this, though:
+	
+	Choose an n > x and observe that:  
+		nⁱ < i! (for sufficiently large i)
+	
+	Thus xⁱ/i! < xⁱ/nⁱ for sufficiently large i.
+
+	But ∑ᵢ xⁱ/nⁱ = n/(n - x) is a finite, convergent sum. 
+	
+	If  ∑ᵢ xⁱ/i! is term-for-term closer to 0 than ∑ᵢ xⁱ/nⁱ,
+	except for a finite number of terms at the beginning, then the 
+	whole sum must be closer to 0 and thus must converge too. 
+
+To prove the first fact, consider i = 2n² as sufficiently large:
+
+	(n²)! (n² + 1)(n² + 2)...(n² + n²) = (2n²)! = i!
+	(n²)! (n²)^(n²) < i!
+	(n²)! (n²)^(i/2) < i!
+	(n²)! nⁱ < i!
+
+For larger i than this particular one, notice that nⁱ < i nⁱ⁻¹ < i (i-1)!, and you have the remaining i's proved by induction.
+
+And, just to state it outright, we also have that:
+
+	d/dx exp(x) = ∑ᵢ i xⁱ⁻¹ / i! = ∑ᵢ xⁱ⁻¹ / (i-1)! = exp(x).
+
+So, such a function does indeed exist. We now prove that it is exponential in character.
+
+For this, we simply look at:
+
+	H = ln(exp(x)). 
+
+Its derivative is:
+
+	dH/dx = 1/exp(x) d/dx exp(x) = exp(x)/exp(x) = 1.
+
+This applies as long as exp(x) is not 0. Proving that exp(x) is never zero is a little trickier. Here is a simple plausibility argument: if exp(x) is ever zero at any point, then since exp'(x) = exp(x), all of its derivatives are continuous and defined and zero at that point, which suggests that there is a neighborhood around x in which the function is 0 throughout. But this suggests that there are neighborhoods around those neighborhoods, and so on, until 0 fills up the entire real axis. But we know that exp(0) = 1, thus this cannot possibly be true. 
+
+It would also be easy if we have that exp(-x) = 1/exp(x), as it is trivial to see that exp(x) >= 1 + x, and thus that exp(x) goes from 1 to infinity for positive x. It follows that exp(x) goes from 1 to 0 for negative x. 
+
+In any case, dH/dx = 1 implies that H = x + C. But its value at x=0 is ln(1) = 0, since the definite integral from 1 to 1 of anything is zero. Thus C is 0, and:
+
+	ln(exp(x)) = x
+
+We can also apply exp() to both sides to get that:
+
+	exp(ln(exp(x))) = exp(x), or that
+
+	exp(ln(u)) = u, for all u that can be described as u = exp(x).
+
+This is actually a somewhat important restriction because ln(x) is not properly defined for any other u -- that is, u <= 0. It is possible to say that the integrand 1/x is odd and thus the integral should be even, ln(x) = ln(-x), but you still have this technical problem that you cross a span which integrates  to infinity in the form of ln(0). 
+
+With that all said, we can begin to use the fact that:
+
+	ln(1/exp(x)) = -x
+
+To say that: 
+	exp(-x) = exp(ln(1/exp(x))) = 1/exp(x)
+	[... if 1/exp(x) can be described as exp(u) ...].
+
