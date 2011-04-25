@@ -14,17 +14,15 @@ Mechanics:
     firm sense of what quantum mechanics *does*.
     D.J. Griffiths, /Introduction to Quantum Mechanics/.
 
-Feynman had something similar scribbled on the chalkboard in his office: "What I
-cannot create, I do not understand." The purpose of this essay is to show you a 
-full derivation, including density matrices, decoherence, and "tracing out" 
+Feynman had something similar scribbled on the chalkboard in his office: "What 
+I cannot create, I do not understand." The purpose of this essay is to show you 
+a full derivation, including density matrices, decoherence, and "tracing out" 
 supersystems, of the dual-slit experiment. In doing so, we will be establishing 
-what the dual-slit experiment /means/ and addressing some common issues with its
-understanding. 
+what the dual-slit experiment /means/ and addressing some common issues with 
+its understanding. 
 
-I have tried to proceed from the beginning through the end without 
-
-For example, I had a long email exchange with a military contractor named Tom
-Campbell after he said the following in a Youtube-published lecture:
+This was motivated by a long email exchange with a military contractor named
+Tom Campbell after he said the following wrong thing in a YouTube video:
 
     "So then [the physicists] said 'let's not look, but let's leave the 
     equipment, maybe it's the equipment that's doing it,' so you leave the 
@@ -34,17 +32,17 @@ Campbell after he said the following in a Youtube-published lecture:
     slits, you get a wave pattern on the other side."
     T. Campbell,  [1][http://www.youtube.com/watch?v=1sB4j6L6Rzw]
 
-This is totally wrong. If the sensors exist but don't record anything, 
-decoherence probably still happens, because entanglement still happens. In 
-other words, there *is* a "measurement problem," but this isn't it. I hope to
-give you a better appreciation of quantum mechanics by showing you what is 
-really happening in this famous puzzle. 
+This is totally wrong. You don't get a wave pattern on the other side, because 
+the measurement apparatus still gets entangled with the qubit you're interested 
+in. Anything else would violate the rules of quantum mechanics and the 
+experiments that have been done. I hope to give you a better appreciation of 
+quantum mechanics by showing you what's really happening in this famous puzzle. 
 
 You will probably need some calculus and some understanding of linear algebra,
 and certainly some understanding of complex numbers. I wish that I could make 
 those requirements a little less strict, because unfortunately, none of those
-topics is the subject of a typical high school mathematics education. But: just 
-try and see how far you get. I promise I'll start slow.
+topics is the subject of a typical high school mathematics education. But: this
+is the language of modern quantum mechanics, complex linear algebra.
 
 # The Hilbert Space #
 
@@ -56,20 +54,33 @@ vector":
 
     |Ψ>
 
-For every "ket" |a> there is a "bra" <a|. If you have had some basic vector
-algebra, then <a| represents the "complex conjugate transpose" of |a>, but this
-is not terribly important. The reason for the weird names is that this is 
-called the "bra-ket" notation, which sounds like "bracket" -- har har. Together
-they define an inner product space:
+Kets are vectors living in a vector space, and therefore they can be added and 
+subtracted, and multiplied by complex numbers:
+    
+    |Φ> = a |u> + b |v>
+    
+For every "ket" |a> there is a "bra" <a|, which lives in the "dual space" of 
+our Hilbert space. A bra is a complex-conjugated transpose of its ket. Thus:
+    
+    <Φ| = a* <u| + b* <v|
 
-    "a times b": <a|b> = ∫ dx a*(x) b(x).
+...where * is the complex conjugation operation. The reason for the weird names 
+"bra" and "key" is that this is called the "bra-ket" notation, which sounds 
+like "bracket." They can combine together in an *inner product* <u|v>, which is
+just some complex number. This inner product works like any multiplication that
+you've ever heard of, distributing across sums in both directions:
+    
+    (a <u| + b <v|)|w> = a <u|w> + b <v|w>
+    <u|(a |v> + b |w>) = a <u|v> + b <u|w>. 
 
-We won't use this formula explicitly, but it is important to have some idea of
-what a "dot product" looks like: you sum up the products of the entries in a* 
-and b. Also interesting but not very important for us, is that our state |Ψ> 
+...however these formulas are not very useful just yet, because we don't have a 
+basis for our vector space. Hang on; it's coming!
+
+Also interesting but not very important for us, is that our state |Ψ> 
 changes over time according to the Schrödinger equation:
 
     i ħ |∂Ψ/∂t> = Ĥ |Ψ>
+    -i ħ <∂Ψ/∂t| = <Ψ| Ĥ 
 
 This is your first exposure to an "operator", in this case the "Hamiltonian 
 operator" Ĥ, which is associated with the total energy of the system. An 
@@ -84,177 +95,235 @@ Planck-Einstein law that "E = h f." A full derivation would confuse other
 readers here, but you can find more information in any standard quantum
 mechanics book.
 
-Okay. We have already quietly covered a lot. Kets can be added or subtracted,
-like:
+Okay. We have already quietly covered a lot. Kets are vectors, and can be added
+or subtracted or multiplied. And linear operators, which we write with a little 
+"hat", distribute over these sums. One special linear operator, the Hamiltonian 
+Ĥ, is associated with the energy of the system, and it tells you how the system 
+changes. If you are new to these notions, it might be a good time to rest and 
+reread this paragraph until you're sure you understand these basic lessons.
 
-    |Φ> = a |u> + b |v>
-    <Φ| = a* <u| + b* <v|
-
-And linear operators, which we write with a little "hat", distribute over these
-sums. One special linear operator, the Hamiltonian Ĥ, is associated with the 
-energy of the system, and it tells you how the system changes. If you are
-new to these notions, it might be a good time to rest and reread this paragraph
-until you're sure you understand these basic lessons.
+# Basis
 
 Okay, we have bras and kets. Our Hilbert space also has a "basis": a set of 
-"unit vectors" which you can use to express any other ket. For example, our
-"physical state" vector |Ψ> can be written with complex numbers {cᵢ} as:
+"unit vectors" which you can use to express any other ket. It is easiest to
+just label these vectors as |0>, |1>, |2>, and so on. The basis is not unique, 
+and there may be other interesting perspectives on the Hilbert space, but it 
+will always follow that general form. With our basis, for example, our
+"physical state" vector |Ψ> can be written with complex numbers {ψᵢ} as:
 
-    |Ψ> = c₀ |0> + c₁ |1> + c₂ |2> + ...
-    |Ψ> = Σᵢ cᵢ |i>. 
-    <Ψ| = Σᵢ cᵢ* <i|
+    |Ψ> = ψ₀ |0> + ψ₁ |1> + ψ₂ |2> + ...
+    |Ψ> = Σᵢ ψᵢ |i>. 
+    
+In the dual space, all of these coefficients get conjugated:
+
+    <Ψ| = Σᵢ ψᵢ* <i|
 
 Here, the symbol Σᵢ means "sum over all possible i."
 
-We make one restriction about the basis: it must be *orthogonal*:
+We make one restriction about the basis: it must be *orthonormal*:
 
     <u|v> = 1 if u = v, or 0 if they aren't. 
 
-So for example <0|1> = 0, <0|0> = 1, <1|0> = 0, and <1|1> = 1. This means that
+So for example <0|0> = 1, <0|1> = <1|0> = 0, and <1|1> = 1. This means that
 if you have some function fᵤᵥ of two indices, then:
 
     Σᵤ fᵤᵥ <u|v> = fᵥᵥ
 
 Why? Because you are summing terms of 0 whenever u is not exactly the same as 
-v, and when you sum over all u, you surely hit the case where it *is* v.
+v, and when you sum over all u, you surely hit the case where it *is* v. This
+expression of <u|v> is sometimes called the "Kronecker delta" δᵤᵥ, but this 
+will be unnecessarily clumsy for the rest of this discussion.
 
-We now make one more restriction on the elements in Hilbert space: for every
-real observable, we assign an operator Â. Then the *average value* of the
-observable in any physical state |Φ> is given by:
+We now make one more restriction on the elements we're interested in in Hilbert
+space: for every real observable, we assign an operator Â. Then the *average 
+value* <A> of the observable A in any physical state |Φ> is given by:
 
     <A> = <Φ| Â |Φ>
 
-Remember, Â will take in a ket |Φ> and produce some other ket |Φ'>, so that 
-we fundamentally are saying <A> = <Φ|Φ'>. As a consequence, of this, all 
-physical states in quantum mechanics are *normalized*:
+Notice that these angle brackets on the left hand side mean something a little 
+bit different: the average value an experiment will give you. Also, recall 
+from the last section that that Â will take in a ket |Φ> and produce some other 
+ket |Φ'>. So the right hand side is an inner product <Φ|Φ'> of a vector with
+an operated-upon-by-Â version of itself. 
 
-    The average value of 1 is: <1> = <Φ| 1 |Φ> = <Φ|Φ>
-    Thus <Φ|Φ> = 1.
+For example, the average energy of any physical state |Φ> is <Φ| Ĥ |Φ>. You can
+thus confirm that as the actual physical state Ψ evolves according to the 
+Schrödinger equation, its average energy changes like:
+    
+    d<H>/dt = <∂Ψ/∂t| Ĥ |Ψ> + <Ψ| ∂Ĥ/∂t |Ψ> + <Ψ| Ĥ |∂Ψ/∂t>
+    d<H>/dt = <∂Ĥ/∂t>.
+    
+If the Hamiltonian operator has no explicit time dependence, energy is 
+conserved. 
+
+As a consequence of this notion of average values in physical states, all
+physical states in quantum mechanics are *normalized*; the average value of 1 
+is and always should be:
+    
+    <1> = <Φ| 1 |Φ> = <Φ|Φ> = 1.
+   
+Thus <Φ|Φ> = 1. If you like, physical states are the unit vectors in the 
+Hilbert space. There are other vectors in the Hilbert space, of course, but 
+the ones we care about are the physical states, which are the unit vectors.
+It is worth verifying for yourself that our earlier Schrödinger equation 
+also guarantees that d/dt <Ψ|Ψ> = 0, thus guaranteeing that when we start with 
+our system in a physical state, we always stay in a physical state. 
 
 This is enough for almost the complete structure of quantum mechanics. Your 
-kets move around in Hilbert space according to the Schrödinger equation, and 
-the average value of any observable quantity, for any state, is an inner
-product containing that observable's linear operator.
+actual state |Ψ> is a unit vector in Hilbert space moving around according to
+the Schrödinger equation. Operators exist for any observable quantity, and the 
+average value of any observable quantity, for any state, is an inner product 
+containing that observable's operator:
+    
+    i ħ |∂Ψ/∂t> = Ĥ |Ψ>
+    <A> = <Ψ| Â |Ψ>
 
 An example before we go on. Suppose we have a two-level Hilbert space,
 {|0>, |1>}. This system is often called a "qubit", because like a classical
 bit, it can be either in the state 0 or in the state 1. Quantum mechanics
 allows something slightly more complicated, though:
 
-    |Ψ> = c₀ |0> + c₁ |1>.
+    |Ψ> = ψ₀ |0> + ψ₁ |1>.
 
 We design an observable which will tell us if the system is in state |1>. It 
 can be written as:
 
     Â = |1><1|
+    
+This is an "outer product", but it works just like you might expect: 
 
-Why? Because if you are in a pure state 0, you would get 
+    Â |Ψ> = |1> <1|Ψ>
+    
+We could say that it "projects" |Ψ> along |1>. Why does this tell us if the 
+state is in |1>? Because if you are in a pure state |0> or a pure state |1>, 
+you would get:
 
-    <0|Â|0> = <0|1> <1|0> = 0
-    <1|Â|1> = <1|1> <1|1> = 1
+    <0|Â|0> = <0|1> <1|0> = 0 * 0 = 0
+    <1|Â|1> = <1|1> <1|1> = 1 * 1 = 1.
 
-The average value of <A> in |Ψ> is:
+In our general state |Ψ> the average value of A is:
 
-    <A> = <Ψ|Â|Ψ> =[ c₀* <0| + c₁* <1| ] |1><1| [ c₀ |0> + c₁ |1> ]
-    <A> = [ c₀* <0| + c₁* <1| ] c₁ |1>
-    <A> = c₁* c₁ = |c₁|²
+    <A> = <Ψ|Â|Ψ> =[ ψ₀* <0| + ψ₁* <1| ] |1><1| [ ψ₀ |0> + ψ₁ |1> ]
+    <A> = [ ψ₀* <0| + ψ₁* <1| ] ψ₁ |1>
+    <A> = ψ₁* ψ₁ = |ψ₁|²
 
-Conclusion: |c₁|² is a sort of "probability" to be in state 1, while |c₀|² 
+Conclusion: |ψ₁|² is a sort of "probability" to be in state 1, while |ψ₀|² 
 is a probability to be in state 0. Yes, quantum mechanics is essentially
 probabilistic, and can only describe averages. But it describes averages
-really well, and averages can be scientifically tested.
+really well, and averages can be scientifically tested. So we should not be
+too afraid.
 
-# Inside the Matrix #
+# Enter the Matrix #
 
 We can use the basis vectors for our Hilbert space to change any operator Â 
-into a matrix Aᵤᵢ, by describing the *end result* of Â |i> as a linear 
+into a matrix Aᵤᵥ, by describing the *end result* of Â |v> as a linear 
 combination of the basis vectors:
 
-    Â |v> = Σᵢ Aᵢᵥ |i>.
+    Â |v> = Σᵢ |i> Aᵢᵥ .
+    
+If it helps your memory, Aᵤᵥ = <u| Â |v>, and equivalently, Â = Σᵤᵥ Aᵤᵥ |u><v|.
+The diagonal elements Aᵤᵤ are just the average values of A in the basis states.
 
-This means that the average value of A is:
+This means that the average value of A in |Ψ> is:
 
-    <A> = <Ψ|Â|Ψ> = [ Σᵤ cᵤ* <u| ] Â [ Σᵥ cᵥ |v> ]. 
-    <A> = Σᵢᵤᵥ cᵤ* cᵥ Aᵢᵥ <u|i>
-    <A> = Σᵤᵥ cᵤ* cᵥ Aᵤᵥ
+    <A> = <Ψ|Â|Ψ> = [ Σᵤ ψᵤ* <u| ] Â [ Σᵥ ψᵥ |v> ]. 
+    <A> = Σᵢᵤᵥ ψᵤ* ψᵥ Aᵢᵥ <u|i>
+    <A> = Σᵤᵥ ψᵤ* ψᵥ Aᵤᵥ
 
 We want this value to always be equal to its complex conjugate <A>*, so that 
 we know that we have a real number. This puts a restricton on Aᵤᵥ:
 
-    <A>* = Σᵤᵥ cᵤ cᵥ* Aᵤᵥ*
+    <A>* = Σᵤᵥ ψᵤ ψᵥ* Aᵤᵥ*
     Swap uv → vu:
-    <A>* = Σᵥᵤ cᵥ cᵤ* Aᵥᵤ*
-    <A>* = Σᵤᵥ cᵤ* cᵥ Aᵥᵤ*
+    <A>* = Σᵥᵤ ψᵥ ψᵤ* Aᵥᵤ*
+    <A>* = Σᵤᵥ ψᵤ* ψᵥ Aᵥᵤ*
 
-For this <A> = <A>* to hold for an arbitrary state {cᵢ}, we must have:
+For this <A> = <A>* to hold for an arbitrary state {ψᵢ}, we must have:
 
     Aᵤᵥ = Aᵥᵤ*
 
 We call this the "Hermitian property": any real observable has to have a matrix
 which is its own conjugate transpose. Not all operators must be Hermitian, but
-Hermitian operators represent observable numbers.
+Hermitian operators represent real, observable numbers. We don't have many 
+complex observables in quantum mechanics, so it is fair to say that everything 
+we care about will be Hermitian.
 
-We now return to <A> = Σᵤᵥ cᵤ* cᵥ Aᵤᵥ, because there is a nice way to write this:
-
-    cᵥ = <v|Ψ>
-    Σᵤ cᵤ* Aᵤᵥ = <Ψ|Â|v>
-
-Thus:
+The Hamiltonian, which we encountered before, is a Hermitian operator. I was 
+using this fact implicitly when I wrote down the "bra" form of the Schrödinger 
+equation. To give a full proof that this is the correct dual-space form, I 
+observe that <a|b> = <b|a>* for all vectors a and b. Thus for any Hermitian 
+operator Â and ket |Φ>, we have:
     
-    <A> = Σᵥ <v|  |Ψ><Ψ| Â  |v>
+    |Φ'> = Â |Φ> = (Σᵤᵥ Aᵤᵥ |u><v|) |Φ> = Σᵤᵥ Aᵤᵥ <v|Φ> |u> 
+    <Φ'| = Σᵤᵥ Aᵤᵥ* <v|Φ>* <u|
+    <Φ'| = Σᵤᵥ Aᵥᵤ <Φ|v> <u| 
+    <Φ'| = <Φ| Σᵥᵤ  Aᵥᵤ |v><u| = <Φ| Â
 
-We define Σᵢ <i| Ô |i> = Tr Ô, pronounced "the trace of O." If you like, the
-trace can be written in the matrix form like so:
+The bra form of the Schrödinger equation is just a special case of this. 
 
-    Tr Ô = Σᵢ <i| Σᵤ Oᵤᵢ |u>
-    Tr Ô = Σᵢ Oᵢᵢ.
+We now return to this equation <A> = Σᵤᵥ ψᵤ* ψᵥ Aᵤᵥ. There is a very nice way 
+to write this. We define the "density matrix" ρ as:
+    
+    ρ = |Ψ><Ψ|
+    ρᵤᵥ = ψᵤ ψᵥ* 
 
-In other words, it is the sum of the diagonal entries on the matrix. It follows
-that, for Hermitian matrices, all of those diagonal entries are real numbers, 
-and the trace is therefore also a real number. 
+Then we can simply say:
+    
+    <A> = Σᵤᵥ ρᵥᵤ Aᵤᵥ
 
-We define |Ψ><Ψ| = ρ, and we call it the "density matrix". More on this in a 
-moment.
+This is the trace of the matrix ρ Â. We define the trace of any operator Ô as:
+    
+    Tr Ô = Σᵢ <i| Ô |i> = Σᵢ Oᵢᵢ
+    
+It is the sum of diagonal entries on the matrix. Since (ρ Â)ᵢᵥ = Σᵤ ρᵢᵤ Aᵤᵥ, I
+can write:
+    
+    <A> = Tr ρ Â = Tr Â ρ
 
 With these definitions, we come at an alternate description of quantum 
-mechanics:
+mechanics in terms of a "commutator bracket", [Â, Ô] = Â Ô − Ô Â:
 
     i ħ ∂ρ/∂t = Ĥ ρ − ρ Ĥ = [Ĥ, ρ]
     <A> = Tr ρ Â
 
+Thus we could consider the density matrix as our starting point for all 
+quantum mechanical investigation, rather than the wavefunction. The density 
+matrix evolves according to this commutator equation and traces give our
+expectation values. We do not lose anything because any physical state |Φ> can
+be turned into a corresponding density matrix |Φ> <Φ|.  
+
+It turns out that there are states which are easy to describe with a density
+matrix which are very hard to describe with a wavefunction. One such state,
+
+    ½ |0><0| + ½ |1><1|,
+    
+...sits at the very heart of the double slit eperiment. Thus, I will teach you
+a little more about traces and density matrices before we move on to this 
+experiment.
+
 # Properties of trace #
 The first property of trace is that it is linear:
 
-    Tr (Ô + Â) = Σᵢ (Oᵢᵢ + Aᵢᵢ) = Σᵢ Oᵢᵢ + Σᵢ Aᵢᵢ 
-    Tr (Ô + Â) = Tr Ô + Tr Â
+    Tr (a Ô + b Â) = Σᵢ (a Oᵢᵢ + b Aᵢᵢ) = a Σᵢ Oᵢᵢ + b Σᵢ Aᵢᵢ 
+    Tr (a Ô + b Â) = a Tr Ô + b Tr Â
 
-We can also say in general that there is a commutative property. Since the 
-matrix multiplication works out as follows:
+We can also say in general that there is an imperfect commutation property:
 
-    Â Ô |i> = Σᵤᵥ Aᵤᵥ Oᵥᵢ |u>
+    Tr Â Ô = Σᵤᵥ Aᵤᵥ Oᵥᵤ = Tr Ô Â
 
-The trace Σᵢ <i| Â Ô |i> works out as:
+It does not require operators to be Hermitian to commute them in this way;
+they simply need to be members in a trace. This property is "imperfect" because 
+operators do not in general commute with one another, so that it is actually 
+only a *cyclic property*:
 
-    Tr Â Ô = Σᵢᵤᵥ <i|v> Aᵤᵥ Oᵥᵢ
-    Tr Â Ô = Σᵤᵥ Aᵤᵥ Oᵥᵤ 
-
-Interchanging u and v gives:
-    
-    Tr Â Ô = Σᵤᵥ Oᵤᵥ Aᵥᵤ = Tr Ô Â
-
-This is called a "commutative property," and does not depend on the operator 
-being Hermitian. Operators do not in general commute with each other, but if 
-two of them are in a trace, they can commute. This property is not totally 
-complete when we get to three operators, but it is /cyclic/: for example:
-
-    Tr ĜĤÎ = Tr ÎĜĤ = Tr ĤÎĜ
+    Tr Ĝ Ĥ Î = Tr Î Ĝ Ĥ = Tr Ĥ Î Ĝ.
 
 We use this to prove the most important fact about trace. We said that there was
 an orthogonal basis for the Hilbert space, {|i>}, but there is no guarantee that
 there isn't another orthogonal basis {|φᵢ>}. For example, the alternate basis:
 
-    |+> = [ |0> + |1> ] / √2
-    |−> = [ |0> − |1> ] / √2
+    |+> = √½ |0> + √½ |1>
+    |−> = √½ |0> − √½ |1>
 
 ...still has the property that <+|+> = <−|−> = 1, <−|+> = <+|−> = 0.
 
@@ -269,28 +338,42 @@ Any other operator Â would be represented in this basis as:
 
     Â' = Ĉ Â Ĉ⁻¹
 
-Which can be read as "change back to the original basis, apply Â, and then go
-again to the altered basis.
+This can be read as "Turn |i> into |φᵢ>, apply Â, and then turn |φᵢ> back into
+|i>." So let us say that we want to use the {|+>, |−>} basis by the names 
+{|0>, |1>}: Then what we once called Â = |1><1| is now in this basis:
+    
+    Â' = (|0><+| + |1><−|) |1><1| (|+><0| + |−><1|)
+    Â' = (√½ |0> − √½ |1>)(√½ |0> − √½ |1>)
+    Â' = ½ ( |0><0| + |1><1| − |0><1| − |1><0| ).
 
-But, crucially, our cyclic rule says:
+Basis changes can get very confusing if you do not pay attention! For the rest 
+of this essay, when I want the {|+>, |−>} basis, I will just use those names 
+rather than using |0> and |1> to mean two different things. 
+
+The crucial point which I want to make here is that our cyclic rule of trace 
+says that:
 
     Tr Â' = Tr Ĉ Â Ĉ⁻¹ = Tr Â Ĉ⁻¹ Ĉ = Tr Â.
 
-Thus the trace is totally basis-independent.
+Thus the trace is totally basis-independent. Use whatever basis you want, and 
+the trace of an operator will always be the same.
 
-In particular, consider the eigenbasis of Â: 
+In particular, consider the eigenbasis of Â -- a set of nice vectors |φᵢ> such
+that:
 
     Â|φᵢ> = Aᵢ|φᵢ>
 
-    Â' = (Σᵤ |u><φᵤ|) Â (Σᵥ |φᵥ><v|)
-    Â' = Σᵤᵥ |u><φᵤ| Aᵥ |φᵥ><v|
-    Â' = Σᵤᵥ Aᵥ |u><φᵤ|φᵥ><v|
-    Â' = Σᵤ Aᵤ |u><u|
+In this basis, there are a complete set of "directions" which Â does not 
+"rotate" in any way, so that in such a direction you are not dealing with a 
+matrix Aᵤᵥ |u><v|, but a scalar, Aᵢ. These Aᵢ are called the "eigenvalues", and
+are basis-independent because they are phrased above in terms of vectors.
+
+But the trace in this eigenbasis, and thus in all bases, is 
     
     Tr Â' = Σᵢ Aᵢ.
 
 We see that our basis-independent trace is basis-independent precisely because
-it is the sum of the eigenvalues, which are of course also basis-independent.
+it is the sum of the eigenvalues, which are also basis-independent.
 
 We can also derive, with our cyclic result and our linearity result, the 
 quantum result for conservation of A:
@@ -550,6 +633,12 @@ with the above <A>. But something peculiar still happens: if you start
 measuring with two tubes, and your photon intensity is low, you see 
 measurements in either one or the other tube, not both.
 
+We have so far missed a bunch of the *quantum* aspect of quantum mechanics, 
+and only dealt with the *wave* aspect of quantum mechanics. The wave aspect is 
+still very interesting; it is the origin of Heisenberg uncertainty, for 
+example. But something else happens too: light, electrons, and vibrations all
+come to us as *discrete values* rather than continuous distributions.
+
 This is very important for you to understand, because it prevents Quantum 
 Mechanics from being a pure wave theory of phenomena, and it has something to 
 do with everything. For example, televisions. Perhaps I can keep my television 
@@ -578,11 +667,13 @@ The unitary, simple, clean wave theory is sufficient to describe the dual-slit
 experiment result above. It's not about "wave-particle duality" or "the 
 measurment problem," or anything of the sort. Those do form a significant 
 problem, sure: but they are not the problem with the double-slit experiment.
+Instead we've seen that we can understand at least *some* aspects of 
+measurement simply by understanding entanglement. 
 
-The problem of measurement, and the particle side of wave-particle duality, can 
-be added to our above description as a sort of axiom:
+Instead the problem of measurement, and the particle side of wave-particle 
+duality, can be added to our above description as a sort of extra axiom:
 
-    When we measure an observable, we observe an eigenstate of that 
+    When you measure an observable, you observe an eigenstate of that 
     observable's operator. Moreover, repeated measurements are /consistent/: if 
     we measure X, then shortly after, if we measure again, we will again see X.
 
@@ -612,20 +703,29 @@ and describe it as two two-level systems -- the qubit and the experimenter. Who
 collapses the qubit -- the experimenter inside the box, or the experimenter 
 outside the box?
 
-Another popular one is the many-worlds interpretation, which states that the 
+Another popular idea is the many-worlds interpretation, which states that the 
 wavefunction does not describe something real to our universe, but describes a 
 distribution of the cat, television, or other qubit across many parallel 
-universes which all "came from" our present. Our conscious experience somehow 
-selects one of these futures to follow -- we don't always know quite how -- and 
-we observe the television in the living room or the bedroom as befits the 
-universe that we actually find ourselves in. 
+universes which all "came from" our present. So, about half of the universes 
+which proceeded forth had my television in the living room, half of them had
+my television in the bedroom, and I find it in my living room because I went 
+into one of the former half of the universes, not the latter half of them. 
 
-You can, in fact, do quantum mechanics purely deterministically -- indeed, the 
-wave-part of the theory is totally deterministic, so you simply need a 
-deterministic account of collapse. This is furnished by several different 
-methods, whether they might be a "guiding equation" or a sort of "surface 
-appearance" which obeys quantum mechanical statistics by some deterministic 
-equation. 
+That one is actually kind of difficult to swallow as well. Imagine a world with
+only you and me, and new universes are always being split off. How do we 
+guarantee that we both travel along the same universal splits? There are two 
+options: I can either not be 100% sure that you are you, or I can not be 100% 
+sure that I am me. Because either we can follow different paths through history
+-- and thus we can get separated, and you are not you -- or else we, like all 
+of this other stuff around us, also take every possible path through history --
+in which case I am really only a tiny fraction of what I once was.
+
+To solve these, you can, in fact, do quantum mechanics purely deterministically
+-- indeed, the wave-part of the theory is already totally deterministic, so you
+simply need a deterministic account of "collapse". This is furnished by several
+different methods, whether they might be a "guiding equation" or a sort of 
+"surface appearance" which obeys quantum mechanical statistics by some 
+deterministic equation. 
 
 Why do we care? What real experiment is at stake when we add measurement into 
 our discussion? What /quantum/ effect can measurement have?
@@ -636,7 +736,7 @@ We take the dual-slit experiment, with its two entangled qubits: the
 interference pattern has disappeared due to the measurement, and it is as if we 
 are watching bullets, rather than waves, travelling through our two slits.
 
-What if I could measure another qubit in another box, far away from the 
+But what if I could measure another qubit in another box, far away from the 
 original experiment, to make the system behave like waves again? The other 
 system would have to be entangled with this present system, sure: but we could 
 do it. Here's how.
@@ -644,9 +744,9 @@ do it. Here's how.
 In our dual-slit experiment, we could say that there was a "before measurement" 
 state, where we will say that the measurement apparatus simply said "slit 0":
 
-    √½ |00> + √½ |10>
+   |+0> = √½ |00> + √½ |10>
 
-And it "turned into" the state:
+And this then turned into the state:
 
     √½ |00> + √½ |11>
 
@@ -662,15 +762,19 @@ operation in our new system. The only difference is that we start our
 measurement apparatus not in the neutral state |0> but in an entangled state 
 with a third qubit:
 
-    |Ψ> = ( √½ |0> + √½ |1> ) (√½ |00> + √½ |11>)
+    |Ψ> = (√½ |0> + √½ |1>) (√½ |00> + √½ |11>)
     |Ψ> = ½ |000> + ½ |011> + ½ |100> + ½ |111>
 
 Here is how we might realize this system: we create two photons with entangled 
 polarizations: polarizations can be either up-down or left-right, which makes 
-them a perfect two-level system. We send one of those photons through a double-
-slit. The first qubit is which slit it went through, the second qubit is the 
-slit-photon's polarization, and the third qubit is the other-photon's 
-polarization.
+them a perfect two-level system. These photon polarizations are our two 
+entangled qubits. 
+
+One photon goes through a double-slit experiment. We now have a third qubit:
+which slit it went through. So I will number these as follows: the first qubit 
+is which slit the first photon went through, the second qubit is the first 
+photon's polarization (|0> for up-down, |1> for left-right), and the third 
+qubit is the second photon's polarization.
 
 If you trace out the second and third qubits, you do indeed now get the density 
 matrix |+><+|, as we got above. The pattern beyond the slit will now be a wave 
@@ -685,7 +789,7 @@ if the first qubit is 1," we get:
 
 We trace out the second and third qubits of this density matrix. You don't 
 actually have to write out the 16 terms and trace it out: the four states each 
-have different values for the second qubits, and thus the trace only "grabs" 
+have different values for the second qubits, and thus the trace only gathers 
 each term's density-matrix-component with itself. If you do out the maths, you 
 get:
 
@@ -699,46 +803,34 @@ We /could/ have measured this pattern with an up-down or left-right
 polarization filter placed between the two slits and the observation screen, 
 but it's not strictly necessary.
 
-Here is the weird fact, though. We can rewrite the above state with the third 
-qubit, but instead of labeling it as |0> and |1>. we can use the |+> and |-> 
-basis:
-
-    |0> = √½ |+> + √½ |−>
-    |1> = √½ |+> − √½ |−>
+Here is the weird fact, though. This state:
     
-    |Ψ> = ½ √½ [|00+> + |00−> + |01+> − |01−> + |11+> + |11−> + |10+> − |10−>]
+    |Ψ> = ½ |000> + ½ |011> + ½ |110> + ½ |101>
 
-Collect together the |+> and the |−> terms to see that:
+Can be rewritten in the {|+>, |−>} basis as:
+    
+    |Ψ> = √½ |+++> + √½ |−−−>.
 
-    |Ψ> =  ½ √½ [ |00> + |01> + |10> + |11> ] |+> 
-        +  ½ √½ [ |00> − |01> − |10> + |11> ] |−>
+The easy way to see this is that |+++> contains all 8 basis states with a 
+prefactor of + ½ √½, while |−−−> has a similar prefactor, but with a − sign in 
+front of any state with an odd number of ones. |Ψ> contains just the four 
+states with an even number of ones. When you add them, the evens add up while
+the odds cancel. Of course, if you wish, you may do it directly.
 
-But, the terms in square brackets are just 2 |++> and 2 |−−> respectively, and 
-thus:
+Now let us measure this third qubit as either |+> or |−>, by placing a 
+polarizer rotated at 45 degrees between the up-down and left-right states. If 
+you prefer, you can instead rotate the entangled photon so that, say, |+> 
+becomes |0> and |−> becomes |1>, and then measure up-down or left-right in the 
+"computational basis" of |0> and |1>. It doesn't really matter which you 
+choose: the photon will either pass through, or it won't pass through. In that 
+moment, you will collapse the whole state to either |+++> or |−−−>.
 
-    |Ψ> = √½ |+++> + √½ |−−−>
-
-If you like, we can see this retroactively: the states |+++> and |−−−> both 
-contain every binary number from |000> to |111>, except that the state |−−−> 
-contains a − sign in front of every state with an odd number of 1's in it. The 
-state that we just wrote down for |Ψ> : 
-
-    ½ |000> + ½ |011> + ½ |110> + ½ |101>
-
-...contains only the four terms with an even number of 1's, all with + signs: 
-it is thus |+++> + |−−−>.
-
-Here is where this gets weird. We measure the third qubit as either |+> or |−>, 
-by placing a polarizer rotated at 45 degrees between the up-down and left-right 
-states. If you prefer, you can instead rotate the entangled photon so that, 
-say, |+> becomes |0> and |−> becomes |1>, and then measure up-down or left-
-right in the "computational basis" of |0> and |1>. It doesn't really matter 
-which you choose: the photon will either pass through, or it won't pass 
-through. In that moment, you will collapse the whole state to either |+++> or |
-−−−>.
-
-At this point, the first qubit is either in the state |+> or |−>, and therefore 
-the slits show an interference pattern either way.
+So, I have this third qubit in a box, very far away from the first two qubits,
+and I measure it with an observable of, say, |+><+|. I must get an eigenvector
+of this observable, so I must get either |+> or |−>. But if I get |+>, then 
+the entanglement forces the system to be in state |+++>, and I see an 
+interference pattern. And if I get |−>, then the entanglement forces the 
+system to be in state |−−−>, and I also see an interference pattern.
 
 Here's the absolutely crazy part, where measurement does something totally 
 unexpected: we have managed to create apparatuses which delay this choice of 
@@ -748,8 +840,86 @@ all sorts of noise. In particular, we don't have apparatuses which will let us
 wait for 30 seconds or so before observing qubit 3, so we can't "peek" at qubit 
 1 before trying to influence qubit 3. But we have managed to use one-nanosecond 
 detectors to do the detections, with an eight-nanosecond delay between 
-observation of the interference pattern and observation of qubit 3. Our notions 
-of time and causality are /not/ respected by quantum mechanics, which gives you 
-the consistent results that you expect from the mathematics: when you measure 
-qubit 3, you get an interference pattern; when you don't measure qubit 3, it 
-disappears.
+observation of the interference pattern and observation of qubit 3. 
+
+Our notions of time and causality are /not/ respected by quantum mechanics, 
+which gives you the consistent results that you expect from the mathematics: 
+when you measure qubit 3, you get an interference pattern; when you don't 
+measure qubit 3, it disappears.
+
+Here's the other weird part: there doesn't seem to be any way to express this
+with the wave theory at present. *Some* of this "measurement problem" is 
+presently reducible to the wave mechanics of QM, yes: but not *all*. Because 
+it doesn't matter what you do to qubit 3 in the state:
+    
+    √½ |+++> + √½ |−−−>.
+
+The wave mechanics, with a 1-qubit operator, might modify this to an arbitrary 
+state which looks like:
+
+    √½ |++a> + √½ |−−b>
+    
+Yet it doesn't matter how a and b overlap: that second − and +, from the first 
+photon, are still there and are still orthogonal, so that the trace terms 
+<+a|−b> and <−b|+a> are still identically 0. Measurement is *doing something*.
+
+# Cheating at a game
+
+We can also use these ideas to cheat at a simple game, which we can call the 
+Greenberger-Horne-Zeilinger game, or just GHZ for short. The idea is simple:
+the GHZ game is made of, say, 18 "rounds." A team of three people is going
+to go into three isolated rooms and give the response 0 or 1 at every round.
+
+In 9 of these rounds, chosen at random, all three are told "make the sum odd," 
+and the team wins if they do indeed make the sum of their numbers odd.
+
+In the other 9 of these rounds, two of them are told "make the sum even," while 
+the third is still told "make the sum odd". They now win if they are able to
+make the sum of their numbers even -- even though one of them is "working 
+against" the other two. Call that person the "rogue agent." The 9 rounds are 
+chosen so that the rogue agent is equally often the first, second, and third.
+
+The team wins the game if they win all 18 rounds. This game is provably pretty
+difficult for a simple reason: when you hear the command "make the sum odd", 
+you have no idea if you are a rogue agent or not. If you are a rogue agent, you
+would like to help your buddies out by answering 0, so that they could both 
+answer the same (either 1 or 0) and the sum would be even. But if you are not a
+rogue agent, then you would like it if you (and everyone else) answered 1. 
+
+You can work out those probabilities and prove that there are no deterministic
+solutions; thus for classical players, you must play probabilistically, and 
+because winning the game means winning all the rounds, this game therefore 
+becomes  difficult as the number of rounds gets very large.
+
+Quantum players, however, can cheat and can therefore always win. Consider just
+the very first round. The players prepare their responses in the superposition:
+    
+    ½ |001> + ½ |010> + ½ |100> + ½ |111>.
+    
+...which if you like is just the state √½ |+++> − √½ |−−−>, similar to what we
+saw above. If they all get the "odd" question then they all measure their 
+qubits separately and they give a response which does indeed have an odd number
+of 1's.
+
+Now we ask any two of them -- without loss of generality, let us say the second
+two -- to instead find an even solution. This is accomplished by both of them
+perfoming a single qubit phase shift:
+    
+    |+> → |+>
+    |−> → i|−>.
+
+This converts the state:
+    
+    √½ |+++> − √½ |−−−> → √½ |+++> + √½ |−−−>
+    
+...which *is* the state we saw above, namely:
+    
+    ½ |000> + ½ |011> + ½ |110> + ½ |101>.
+    
+...with only even numbers of 1's. 
+
+For the GHZ paper, the key idea was *locality*: quantum players of this game 
+could be separated very large distances, so that they could not communicate 
+before they had to render their decision. Still, as long as they take a set of
+|+++> − |−−−> states inside with them, they can always win this game. Quantum
+mechanics lets them "cheat" the limits imposed by the classical mechanics.
