@@ -1,0 +1,343 @@
+The most important equation in thermodynamics can be summarized in one neat 
+little form, the first law of thermodynamics. It says that reversible processes
+obey the equation:
+
+    δE = T δS − P δV + Σᵢ μᵢ δNᵢ
+
+It says that the internal energy of a set of particles in a box changes only
+if the volume of the box changes, the entropy of the particles changes, or
+the number of particles of a given type Nᵢ changes. These changes relate to 
+the internal energy by certain thermodynamic quantities: For entropy, it is
+temperature; for volume, it is pressure, for particle number, it is the 
+chemical potential of that particle. Systems which are allowed to trade 
+volume, particles, or energy will equalize their pressure, chemical potential,
+or temperature, respectively. This fact is contained in the above equation by
+the so-called second law of thermodynamics:
+
+    A system at constant energy, volume, and number of particles -- an 
+    isolated system -- comes to a maximum of entropy.
+
+The first law is a statement about reversible changes; the second law is a 
+statement about irreversible ones: you can see this by trying to naively apply
+the second law to the first one, where you get that, if volume, number of 
+particles, and energy are constant, then δS = 0. But they both work together
+in the sense that at a maximum of entropy, δS is indeed zero, thus the first
+law does indeed 'get it right' in the end. Still, the second law helps for 
+looking at nonequilibrium processes. 
+
+This implies the above statements about equal pressure in a very simple way. 
+Imagine two boxes which can exchange volume with each other in a box with fixed 
+volume:
+
+    +------+---------------+
+    |      |               |
+    |  V₁  |      V₂       |
+    |  S₁  |      S₂       |
+    |      |               |
+    +------+---------------+
+    S = S₁ + S₂
+    V₁ + V₂ = constant
+
+The wall in the center is allowed to "slide" from one to the other. 
+    
+At constant energy and number of particles in those two boxes, the first law 
+simply states:
+
+    T δS − P δV = 0
+
+    (∂S/∂V)_{E, Nᵢ} = P/T.
+
+Thus if we keep E and Nᵢ constant, ∂S/∂V = P/T. If we now allow a little volume
+δV to flow from V₁ to V₂, the result changes the total system entropy S by:
+
+    δS = − δV (∂S₁/∂V₁) + δV (∂S₂/∂V₂) = δV [P₂/T₂ − P₁/T₁]
+
+At the equilibrium, this will be at a maximum entropy state, and thus δS = 0:
+
+    P₂/T₂ = P₁/T₁ at equilibrium.
+
+If the sliding wall between them isn't insulating, then a similar thing happens
+when they are allowed to exchange an energy δQ: 
+
+    δS = − δQ (∂S₁/∂E₁) + δQ (∂S₂/∂E₂) = δQ [1/T₂ − 1/T₁]
+    
+    1/T₂ = 1/T₁ at equilibrium.
+
+Thus it comes to an equilibrium where temperatures and pressures between the
+two boxes equalize. More importantly, it implies this powerful statement:
+    
+    δS = δQ [1/T₂ − 1/T₁]
+    δS > 0, δQ > 0:
+    1/T₂ − 1/T₁ > 0
+    T₁ > T₂.
+
+Remember that δQ is an energy flowing from system 1 to 2, and this requirement
+that δQ > 0 we're making implies T₁ > T₂. If δQ is negative, then heat flows 
+from 2 to 1, and this flips the inequality: T₁ < T₂. Thus we come to the more
+common form in which the Second Law of Thermodynamics is stated:
+
+    In an isolated system, heat always flows from hot to cold, and never 
+    flows from cold to hot.
+    
+Notice the crucial idea of an "isolated system": This law **does not** 
+prohibit something like a refrigerator from functioning, but it requires that
+a refrigerator must consume some sort of electrical or mechanical energy in 
+order to function -- it cannot function with no input. In fact, I will derive
+a maximum efficiency on refrigerators which this bound implies.
+
+The first law in its form is also helpful to understand the Legendre transforms
+of the internal energy variable. The easiest example is when we want to look at
+a system with constant pressure, rather than constant volume. This works like 
+so: in a constant pressure situation, V₂ is so much larger than V₁ that any 
+change in the volume of V₁ does not change the pressure of V₂ much at all. You
+may, if you like, imagine that V₂ is the atmosphere of the Earth while V₁ is 
+something which is rapidly expanding -- a balloon or so -- within that 
+atmosphere. Since the atmosphere sets a common pressure, we would like to 
+use a different "thermodynamic potential" which tells us how much energy we can
+get, given that this thing will change in volume to keep a constant pressure.
+
+This is not so hard as it looks. You just introduce the Enthalpy:
+
+    H = E + P V
+
+...and then take its differential with the product rule from calculus:
+
+    δH = δE + P δV + V δP
+
+...and then use the thermodynamic identity for δE, canceling the terms ± P δV:
+
+    δH = T δS + V δP + Σᵢ μᵢ δNᵢ
+
+Thus the enthalpy remains unchanged as long as entropy, pressure, and particle
+numbers are unchanged. At constant pressure, the enthalpy is the right 
+"thermodynamic potential" for calculating energy differences. For an ideal gas:
+
+    P V = n R T
+    E = α n R T
+
+The specific heat at constant volume is just:
+
+    C_v = (1/n) (∂E/∂T) = α R
+
+But the specific heat at constant pressure is more like:
+
+    H = E + P V = (α + 1) n R T
+    C_p = (1/n) (∂H/∂T) = (α + 1) R.
+
+Thus there is a useful number to know called the specific heat ratio:
+
+    γ = C_p / C_v = (α + 1)/α = 1 + 1/α. 
+
+Why is this useful? Well, it enters into the formula for an adiabatic process:
+
+    adiabatic process: δS = 0, δNᵢ = 0
+    
+    δE + P δV = 0
+    
+This quantity δE + P δV is sometimes called δQ, the "heat flow", which is why 
+this is called an adiabatic ("constant heat") process. It is a fundamentally 
+reversible process due to δS = 0. Using the ideal gas equation gives:
+    
+    E = α P V,
+    δE = α (P δV + V δP)
+
+    (α + 1) P δV + α V δP = 0
+    (α + 1) δV/V = - α δP/P
+
+Integrating gives:
+    
+    γ log(V) = -log(P) + log(C)
+    V^γ = C / P
+    P V^γ = constant.
+
+This is the equation for any adiabatic process.
+
+It is possible to have another sort of reversible process, other than the 
+adiabatic process. This is based on the observation that the fundamental thing
+banned by the Second Law is heat flowing from a cold reservoir to a hot 
+reservoir, and inferring that heat flowing from a hot reservoir to a cold one
+is the reverse: an irreversible shift. This limits the options: the reversible
+processes are those where heat does not flow (adiabatic processes), or where 
+heat flows, but the temperature of both systems is the same (isothermal 
+processes). In an isothermal process, we have yet another thermodynamic 
+potential to consider, the Helmholtz free energy A:
+    
+    A = E − T S
+    δA = -S δT − P δV + Σᵢ μᵢ δNᵢ
+    
+Again, this represents how much energy is available at constant temperature. 
+There is also a Gibbs free energy at constant temperature and pressure:
+    
+    G = E − T S + P V
+    δG = V δP − S δT  + Σᵢ μᵢ δNᵢ
+
+...and there are also (e.g. in chemistry and in solid state physics) sometimes 
+times where you will subtract μₐ Nₐ for various compounds a to represent that
+the system is able to exchange particles with, say, a large environment which 
+is a solution with a constant density of those particles. They're all just the
+Legendre transforms of that one basic equation. 
+
+For an ideal gas, isothermal processes are a good deal simpler, because:
+    
+    PV = n R T
+
+Thus an isothermal process for an ideal gas is just one where PV = constant.
+
+There are therefore two reversible processes on an ideal gas, and we can use 
+them to construct a reversible heat pump: an ideal gas system which can either
+be run forwards or backwards with the same efficiency. This is called a Carnot
+engine or a Carnot cycle, and it is extremely important for a simple reason:
+the second law guarantees that it is the most efficient engine possible. 
+
+Why? Well, suppose you had a hyperefficient heat engine H and a Carnot engine 
+C. Hook them up between two reservoirs at different temperatures like so:
+    
+    +---------------------------+
+    |           T_hot           |
+    +---+---+-----------+---+---+
+        | | |           |/|\|
+        ( H ) ==> W ==> ( C ) 
+        |\|/|           | | |
+    +---+---+-----------+---+---+
+    |           T_cold          |
+    +---------------------------+
+
+You see, the Carnot engine can be reversed, which is what we're doing here. The
+work done by the superefficient engine drives the Carnot engine to pull heat
+from the cold reservoir into the hot one. Since H is more efficient than C, the
+result is that there is some extra work W, and thus some extra heat going from
+cold to hot. over what is going from hot to cold. It follows that we have 
+broken the second law; heat is flowing from cold to hot in an isolated system.
+The second law therefore forbids anything from being more efficient than a 
+reversible process, and so reversible motors have optimal efficiency.
+
+As mentioned before, the work of a system is P dV, so the work for our ideal 
+gas reversible engine is given by a couple of integrals. With the adiabatic
+process we have:
+    
+    T δS = δE + P δV = 0
+    
+    W = ∫ P dV = -(E₁ − E₀) = - α n R (T₁ − T₀)
+
+The crucil lesson is that the adiabatic process basically just serves the 
+purpose of shifting the temperature of the engine so that it can do its 
+isothermal processes; it does not do any net work (because the return path will
+have these temperatures reversed), nor does it absorb any heat from either of
+the reservoirs, nor does it change the entropy.
+
+You can also work out this expression from P V^γ = constant, if you like.
+
+For an isothermal change the integral is instead:
+
+    δE = 0
+    T δS = δE + P δV = P δV
+    W = ∫ P dV = ∫ T dS = T (S₁ − S₀)
+    
+or, if you prefer:
+    
+    W = ∫ P dV = ∫ n R T dV/V = n R T log(V₁ / V₀).
+
+Either is correct, but I will use the first because it saves me from long 
+reasonings of the form P₁ V₁^γ = P₄ V₄^γ. 
+
+As we travel across an adiabatic process we have in the simplest case two 
+adiabatic and two isothermal processes, with 4 switching points between them:
+
+    1 → 2 → 3 → 4 → 1
+    (P₁, V₁) → (P₂, V₂) → (P₃, V₃) → (P₄, V₄) → (P₁, V₁)
+
+We will say that  1 and 2 are both at temperature T₁, 3 and 4 are both at 
+temperature T₀, 1 and 3 are both at entropy S₀, and 2 and 4 are both at entropy
+S₁. Thus our cycle looks like:
+
+    (T₁, S₀) → (T₁, S₁) → (T₀, S₁) → (T₀, S₀) → (T₁, S₀)
+
+The work in the full cycle is just the sum of the works:
+    
+    W = T₁ (S₁ − S₀) − α n R (T₀ − T₁) + T₀ (S₀ − S₁) − α n R (T₁ − T₀)
+
+The adiabatic work cancels itself exactly out and:
+    
+    W = (T₁ − T₀)(S₁ − S₀) = (T₁ − T₀) n R log(V₂ / V₁)
+
+This enables us to do a quick calculation of the efficiency as just:
+    
+    ε = W / Q₁
+
+The trick is to realize that the heat extracted from the bath at T₁ is all 
+extracted in the 1 → 2 transition when it is turned directly (isothermally) 
+into the work T₁ (S₁ − S₀). Thus:
+    
+    ε = [(T₁ − T₀)(S₁ − S₀)] / [T₁ (S₁ − S₀)] = (T₁ − T₀)/T₁ = 1 − T₀/T₁
+    
+This is the maximum efficiency which any engine can provide from a hot material
+to a cold exhaust. 
+
+A refrigerator efficiency might be written analogously by assuming a negative
+work, and thus a negative Q₀ and Q₁. Whereas the heat engine efficiency was 
+defined as (work output) / (heat input), our refrigerator efficiency is 
+(heat removed from 0) / (work done), which is just:
+    
+    εᵣ = T₀ (S₁ − S₀) / [(T₁ − T₀)(S₁ − S₀)] = T₀ / (T₁ − T₀).
+    
+If we connected a Carnot engine to a Carnot refrigerator, the first would take
+in a heat Q from the hot reservoir and exhaust a heat Q T₀/T₁ to the cold 
+reservoir, doing a work W = Q (T₁ − T₀)/T₁. The refrigerator would then pull 
+out an energy W εᵣ = Q T₀/T₁ from the cold reservoir and exhaust the heat
+Q (T₁ − T₀)/T₁ + Q T₀/T₁ = Q back into the hot reservoir: in all, no net change
+would have happened. Basically, if you disconnected the refrigerator to allow
+the engine to start moving, and then connected the two, the engine would keep
+whatever kinetic energy it had (until friction slowed it down) without moving
+any heat or doing any net work, just moving heat from the hot reservoir to the
+hot reservoir again.
+
+So we come full circle. A Carnot engine is perfectly reversible and therefore
+has the maximum efficiency allowed by the Second Law of Thermodynamics. This
+efficiency is essentially the same in either refrigerator or heat engine form, 
+but we define the two differently and get a subtly different equation for iit 
+in either case. The easiest-to-remember form is:
+    
+    ε = 1 − T₀/T₁.
+
+A nice quote from Wikipedia can round this out with an example:
+    
+>   The efficiency of a Rankine cycle is usually limited by the working fluid.
+>   Without the pressure reaching super critical levels for the working fluid,
+>   the temperature range the cycle can operate over is quite small; in steam
+>   turbines, turbine entry temperatures are typically 565°C (the creep limit
+>   of stainless steel) and condenser temperatures are around 30°C. This gives
+>   a theoretical Carnot efficiency of about 63% compared with an actual  
+>   efficiency of 42% for a modern coal-fired power station. This low turbine 
+>   entry temperature (compared with a gas turbine) is why the Rankine cycle is
+>   often used as a bottoming cycle in combined-cycle gas turbine power 
+>   stations.
+
+So for example, these sorts of industrial steam turbines get close to:
+    
+    1 - 303 K / 838 K = 0.638 = 64%
+
+...but older engines without contents under pressure had to deal with 100°C 
+boiling water on one hand, and perhaps a 30°C environment. Converting to 
+Kelvin, this gives:
+    
+    1 − 303 K / 373 K = 0.187 = 19%. 
+    
+Again, quoth the wiki:
+    
+>   In practice, a steam engine exhausting the steam to atmosphere will 
+>   typically have an efficiency (including the boiler) in the range of 1-10%, 
+>   but with the addition of a condenser and multiple expansion, it may be 
+>   greatly improved to 25% or better.
+
+http://en.wikipedia.org/wiki/Steam_engine#Efficiency
+
+Also interesting:
+
+>   Modern gasoline engines have an average efficiency of about 18% to 20% when
+>   used to power a car. In other words, of the total heat energy of gasoline,
+>   about 80% is ejected as heat from the exhaust, as mechanical sound energy, 
+>   or consumed by the motor (friction, air turbulence, heat through the 
+>   cylinder walls or cylinder head, and work used to turn engine equipment and
+>    appliances such as water and oil pumps and electrical generator), and only
+>    about 20% of the fuel energy moves the vehicle. 
+
