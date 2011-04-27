@@ -44,7 +44,7 @@ those requirements a little less strict, because unfortunately, none of those
 topics is the subject of a typical high school mathematics education. But: this
 is the language of modern quantum mechanics, complex linear algebra.
 
-# The Hilbert Space #
+## The Hilbert Space 
 
 In quantum mechanics, the physical state of a system is usually denoted by a
 Greek letter `Ψ`. `Ψ` is an object which contains all the physics of the
@@ -102,7 +102,7 @@ or subtracted or multiplied. And linear operators, which we write with a little
 changes. If you are new to these notions, it might be a good time to rest and
 reread this paragraph until you're sure you understand these basic lessons.
 
-# Basis
+## Basis
 
 Okay, we have bras and kets. Our Hilbert space also has a "basis": a set of
 "unit vectors" which you can use to express any other ket. It is easiest to
