@@ -870,56 +870,89 @@ Greenberger-Horne-Zeilinger game, or just GHZ for short. The idea is simple:
 the GHZ game is made of, say, 18 "rounds." A team of three people is going
 to go into three isolated rooms and give the response 0 or 1 at every round.
 
-In 9 of these rounds, chosen at random, all three are told "make the sum odd," 
-and the team wins if they do indeed make the sum of their numbers odd.
+In 9 of these rounds, chosen at random, all three are told "make the sum even," 
+and the team wins if they do indeed make the sum of their numbers even.
 
-In the other 9 of these rounds, two of them are told "make the sum even," while 
-the third is still told "make the sum odd". They now win if they are able to
-make the sum of their numbers even -- even though one of them is "working 
+In the other 9 of these rounds, two of them are told "make the sum odd," while 
+the third is still told "make the sum even". They now win if they are able to
+make the sum of their numbers odd -- even though one of them is "working 
 against" the other two. Call that person the "rogue agent." The 9 rounds are 
 chosen so that the rogue agent is equally often the first, second, and third.
 
-The team wins the game if they win all 18 rounds. This game is provably pretty
-difficult for a simple reason: when you hear the command "make the sum odd", 
-you have no idea if you are a rogue agent or not. If you are a rogue agent, you
-would like to help your buddies out by answering 0, so that they could both 
-answer the same (either 1 or 0) and the sum would be even. But if you are not a
-rogue agent, then you would like it if you (and everyone else) answered 1. 
+The team wins the game if they win all 18 rounds. This game is provably
+difficult: no sure algorithm exists to beat it. And it's difficult for a pretty
+simple reason: when you hear the command "make the sum even", you have no idea 
+if you are a rogue agent or not. If you are a rogue agent, you would like to 
+help your buddies out by answering 1, so that they could both answer the same 
+(either 1 or 0) and the sum would be odd. But if you are not a rogue agent, 
+then you would like it if you (and everyone else) answered 0.
 
 You can work out those probabilities and prove that there are no deterministic
 solutions; thus for classical players, you must play probabilistically, and 
 because winning the game means winning all the rounds, this game therefore 
-becomes  difficult as the number of rounds gets very large.
+becomes arbitrarily difficult as the number of rounds gets very large.
 
 Quantum players, however, can cheat and can therefore always win. Consider just
-the very first round. The players prepare their responses in the superposition:
+the very first round, chosen totally at random. Recall that earlier state that 
+we had:
     
-    ½ |001> + ½ |010> + ½ |100> + ½ |111>.
+    √½ |+++> + √½ |−−−> = ½ |000> + ½ |011> + ½ |101> + ½ |110> 
     
-...which if you like is just the state √½ |+++> − √½ |−−−>, similar to what we
-saw above. If they all get the "odd" question then they all measure their 
-qubits separately and they give a response which does indeed have an odd number
-of 1's.
+Let the players prepare one entangled quantum state of this sort for each 
+round, and if they get the command "make the numbers even", they just measure
+their qubits. They will all together measure these four states, and they will
+pass the round.
 
-Now we ask any two of them -- without loss of generality, let us say the second
-two -- to instead find an even solution. This is accomplished by both of them
-perfoming a single qubit phase shift:
-    
+Suppose instead that two of them -- without loss of generality, let us say the
+second two -- instead get the command "make the numbers odd." What can they do
+to fix the game? Simple. They perform a special phase-shift operation on their 
+own qubit states:
+
     |+> → |+>
-    |−> → i|−>.
+    |−> → i|−>
 
-This converts the state:
+Which constructs the state:
+
+    √½ |+++> + √½ |−−−> → √½ |+++> − √½ |−−−>
     
-    √½ |+++> − √½ |−−−> → √½ |+++> + √½ |−−−>
+    √½ |+++> − √½ |−−−> = ½ |001> + ½ |010> + ½ |100> + ½ |111>.
     
-...which *is* the state we saw above, namely:
-    
-    ½ |000> + ½ |011> + ½ |110> + ½ |101>.
-    
-...with only even numbers of 1's. 
+And now when they measure, they give a response which indeed always has an odd
+number of zeroes! The quantum players have succeeded where the classical 
+players were doomed to fail. As long as they can keep quantum superpositions
+alive (which is a very hard problem today!), they can beat this game.
 
 For the GHZ paper, the key idea was *locality*: quantum players of this game 
 could be separated very large distances, so that they could not communicate 
 before they had to render their decision. Still, as long as they take a set of
-|+++> − |−−−> states inside with them, they can always win this game. Quantum
+|+++> + |−−−> states inside with them, they can always win this game. Quantum
 mechanics lets them "cheat" the limits imposed by the classical mechanics.
+
+There is also a very interesting lesson hidden in here, and it comes from this
+question, "what if I ask the even player *first*, so that she/he measures the
+qubit before the odd players get to change it to the right value?" Here is a 
+very peculiar aspect of quantum mechanics indeed: *you can always postpone a
+qubit measurement*. 
+
+What? Well, suppose the measurement came first, and it came out 0. Then the 
+two remaining players would have the state:
+
+    1/√½ <0| { ½ |000> + ½ |011> + ½ |101> + ½ |110> }
+        = √½ |00> + √½ |11> = √½ |++> + √½ |−−>.
+
+Their combined phase shifts would convert this into:
+
+    √½ |++> + √½ |−−> → √½ |++> − √½ |−−>
+    √½ |00> + √½ |11> → √½ |01> + √½ |10>.
+
+So, exactly one of them would measure 1, and the other would measure 0, and
+they would get an odd number! On the other hand, if the measurement first came
+out 1:
+
+    1/√½ <1| { ½ |000> + ½ |011> + ½ |101> + ½ |110> }
+        = √½ |01> + √½ |10> = √½ |++> − √½ |−−>.
+
+And the phase shifts convert this in reverse to √½ |00> + √½ |11>, so that 
+they either both measure 0 or they both measure 1. It is a general property of
+quantum measurement that you can act as if it only happens after all of your 
+quantum processes are done. 
