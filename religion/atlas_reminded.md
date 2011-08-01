@@ -62,12 +62,12 @@ The Objectivist wants it to sound like a trivial, defined, tautological,
 unarguable truth, a matter of mere semantics.
 
 But that's not how they use the actual concept. They want this concept to carry 
-a heavy philosophical weight -- and a tautologies are not load-bearing beams. 
-So, they want to use this to state that some things exist -- rather than 
-nothing. I think a far better argument is that we are existent things, 
-therefore some things exist. They want you to come to recognize that reality -- 
-existence -- rules over your conscious experience: that fantasies cannot become 
-your reality. Implicit here is the relative uselesness of fantasy, and the 
+a heavy philosophical weight -- and tautologies are not load-bearing beams. So, 
+they want to use this to state that some things exist -- rather than nothing. I 
+think a far better argument is that we are existent things, therefore some 
+things exist. They want you to come to recognize that reality -- existence -- 
+rules over your conscious experience: that fantasies cannot become your 
+reality. Implicit here is the relative uselesness of fantasy, and the 
 Objectivist wants to emphasize that you must engage with your real 
 circumstances.
 
@@ -122,6 +122,20 @@ thought, and are not part of a scrupulous logical deliberation. They are just
 things which seem true to us. Where Ayn Rand wants to avoid the junk heap, she 
 does it by sweeping it under a carpet and pretending that it is not there. 
 
+I will give one very peculiar example of this before I go on. Objectivist 
+ethics was the original libertarian philosophy that I know of to make a case
+for the "eye-for-an-eye" system: she classifies force as "initiated" or 
+"retaliatory" and gives sanction to retaliation, while forcing the sin into 
+the initiation. In *The Objectivist Ethics* she says:
+    
+    Men have the right to use physical force only in retaliation and only 
+    against those who initiate its use. The ethical principle involved is 
+    simple and clear-cut: it is the difference between murder and self-
+    defense. A holdup man seeks to gain a value, wealth, by killing his 
+    victim; the victim does not grow richer by killing a holdup man. The 
+    principle is: no man may obtain any values from others by resorting to
+    physical force.
+
 Probably the best voice on the value of intuition comes from Kant, whose 
 analogy in the *Critique of Pure Reason* comes readily to my mind:
 
@@ -146,16 +160,35 @@ non-orientable as a Mobius strip: follow it out far enough and it can suddenly
 reverse its direction, making your previous blessings into sins, and sins into 
 blessings.
 
+This isn't necessarily so bad. It's, I think, very typical of human moral 
+systems that some values and themes expressed become contrary, and one neds to
+prioritize. The famous example is a murderer who is pursuing a woman who you 
+believe is innocent: he asks you where she went, and you must make a choice 
+about which is more valuable: honest dealing with this person, or the life of
+some woman who you've never met. 
+
+I think Rand doesn't have this option. It gets especially problematic because 
+Rand wanted ethics to be absolutely clear and united. She seems to insist, in 
+*The Objectivist Ethics*, that there are no contradictory values in ethics and
+that you must always act according to strict moral imperatives:
+    
+    "...one must earn the right to hold oneself as one’s own highest value 
+    by achieving one’s own moral perfection -- which one achieves by never 
+    accepting any code of irrational virtues impossible to practice and by 
+    never failing to practice the virtues one knows to be rational..."
+
+Notice that we're meant to reject virtues which are "impossible to practice." 
+I think Rand's virtues may well be of this sort. Let us see several instances
+of this Mobius strip, this snake biting its own behind.
+
 The most obvious case to be made is the one of altruism, which in Objectivist 
 philosophy must be distinguished from benevolence: in benevolence, you promote 
 the good of others; in altruism, you sacrifice some share of your own well-
 being to promote the good of others. Objectivists might have done better if 
 they had used the word "sacrifice" and thus said that they were generally 
-opposed to self-sacrifice.
-
-How do they get to this end-point, where they disagree with self-sacrifice? As 
-*Atlas Shrugged* says:
-
+opposed to self-sacrifice. How do they get to this end-point, where they 
+disagree with self-sacrifice? As  *Atlas Shrugged* says:
+    
 	For centuries, the battle of morality was fought between those who claimed 
 	that your life belongs to God and those who claimed that it belongs to your 
 	neighbors - between those who preached that the good is self-sacrifice for 
@@ -164,24 +197,48 @@ How do they get to this end-point, where they disagree with self-sacrifice? As
 	that your life belongs to you and that the good is to live it. 
 
 In other words, the Objectivist has decided to "take her life in her own hands" 
-and thus become essentially self-serving. Objectivism promotes libertarian 
-political ideals as best granting you the freedom to act this way: thus it says 
-that governments must butt-out and allow you to pursue your rational self-
-interests. It is believed that you will be kind to others as part of a communal 
-"tit-for-tat" strategy: if you are unkind to another person, they will be more 
-likely to be unkind to you. 
+and thus become essentially self-serving. 
+
+I will talk more on the paradox that other people project altruism as self-
+serving behaviour later, but it's instructive now to step back and say, "what,
+you don't believe in cooperation? Every man for himself? Nobody sacrifices 
+anything for anyone else, nobody acts with the good of others in mind?" This is
+skipped by Objectivists when they come back to the tail, to reveal the snake 
+biting it. You see, Objectivism believes that you will be kind to others as 
+part of a communal "tit-for-tat" strategy: if you are unkind to another person, 
+they will be more likely to be unkind to you.  The idea is that we benefit so
+much from our shared interactions that we can be altruists due to pure greed.
+
+In other words, if you overpay someone intentionally by $20 because you think
+they need it more than you do, that is the heart and soul of evil. But if you 
+do it because you think it will ease your trading relations with them later,
+that they will think of you as a kind person, then that is the heart and soul
+of goodness. The act of giving the $20 tip is assigned either morality based 
+on the character of your intention, with superficially similar intentions 
+being moral opposites. This is what I mean by a Mobius strip: You can follow
+the same philosophy further and find yourself upside-down compared to where
+you once were.
+
+## Rand on Fraud ##
 
 Now, there are many known problems with this ideology. For example, from day 
 one, Objectivism has had to deal with the chiefly-libertarian problem of fraud. 
 Many libertarians define the essence of wrongdoing as "initiation of force," 
-but it is hard to see how defrauding someone (or any sort of lying) counts as a 
-wrongdoing in this sense. For example, if I successfully spread a rumor that a 
+and as far as I know this distinction is one of Rand's coinings -- or at least
+she is a chief proponent. Yet it is hard to see how things like conspiracy and
+defrauding someone, or any sort of lying or dishonesty, counts as a wrongdoing
+in this sense of "initiating force." Embezzling funds which you were entrusted
+with or failing to complete your side of a contract don't really amount to any 
+sort of physical attack upon someone else. They are strictly speaking just a 
+betrayal of trust. 
+
+I will give a simple example. If I successfully spread a rumor that a 
 company is about to release an exciting new product even when they are not, I 
 can turn a profit both from the excitement of the investors buying up stock, 
 and then another profit from their disappointment when the company releases an 
-official statement saying that they have no such plans.
-
-Here is what Rand has to say about the matter in *Atlas Shrugged*:
+official statement saying that they have no such plans. We'll call this the 
+crooked investor. Here is what Rand has to say about the matter in her novel
+*Atlas Shrugged*:
 
 	Honesty is the recognition of the fact that the unreal is unreal and can 
 	have no value, that neither love nor fame nor cash is a value if obtained 
@@ -190,7 +247,7 @@ Here is what Rand has to say about the matter in *Atlas Shrugged*:
 	you become a pawn of their blindness, a slave of their non-thinking and 
 	their evasions, while their intelligence, their rationality, their 
 	perceptiveness becomes the enemies you have to dread and flee -- that you 
-	do not care to live as a dependent, lest of all a dependent on the 
+	do not care to live as a dependent, least of all a dependent on the 
 	stupidity of others, or as a fool whose source of values is the fools he 
 	succeeds in fooling -- that honesty is not a social duty, not a sacrifice 
 	for the sake of others, but the most profoundly selfish virtue man can 
@@ -198,16 +255,66 @@ Here is what Rand has to say about the matter in *Atlas Shrugged*:
 	deluded consciousness of others.
 
 This is a very peculiar response, and you may need to read it several times in 
-order to fully grasp what she's saying. (I needed to, at any rate.) What she is 
-saying is, nobody should be dependent on anyone for anything, and so, by 
-extension, the fraudster is dependent on someone's stupidity for their own 
-cash. She has extended "dependence" as far as even depending on the expected 
-behaviour of others. Because the rumor-spreader *depends* on the fact that 
-other investors will drive the prices up and then down, the rumor-spreader is 
-sacrificing their own status as an independent being. 
+order to fully grasp what she's saying. (I needed to, at any rate.) The core 
+of the argument is that it is somehow pure selfishness which stops the crooked
+investor from spreading rumors. 
 
-It's not an *incoherent* response, but it is an *unacceptable* one. Because we 
-work together every day. When you drive a car, you are depending on the person 
+I see her argument in two parts, and will respond with three objections.
+
+### When is A not A? ###
+In the first part, she asserts that a liar is somehow metaphysically 
+sacrificing truth within themselves, by being more concerned with what someone else thinks than with what is true. But in Objectivism, "what someone else 
+thinks" is a valid part of objective reality, and this distinction cannot hold. 
+
+You simply aren't intrinsically trading truth for falsehood, as Rand would 
+claim, if you still know the truth yourself. "She thinks I am honest when I am 
+actually conning her" is a perfectly apt description of reality; it does not 
+raise anyone "higher than reality." In addition, the money that our crooked
+investor gets is perfectly real and indeed has value, though obtained by fraud.
+
+You see, on the one branch of the Mobius strip, we say that it's useless to 
+disengage from the brute facts of reality, which has exactly one nature which
+cannot be argued. Money is money because A is A: this means that money has a 
+definite nature which cannot be argued with, and it's no use to say that a $20
+bill has no value. But follow the argument a little further and suddenly, the
+value of the $20 bill is nothing, if you obtained it by fraud, because the
+unreal is unreal. A is A, used to prove that B is not B. 
+
+The only real way to make sense of this is to assert that money never really 
+had value in the first place. But Rand's definition of "value" boils down to
+one thing: the values you have are the stuff that you need to survive. The $20
+bill can certainly help you survive, and can certainly outweigh the loss that
+you face from angering the person you've conned. So let's not have this odd 
+business of saying that it is "unreal" simply because it was obtained by fraud.
+Let's not say that you're a "slave" simply because you have a "day job" which
+consists in knowing how people respond to stimuli, and providing those stimuli 
+for profit. 
+
+### When authors argue against fiction ###
+The second problem that I have in this first stage of the argument is that it
+is already ridiculously overbroad: it takes the form, "all pretending is 
+inherently immoral, and a con artist must pretend." It would seem to be very 
+difficult to accept, then, any writing of fiction or any professional acting, 
+or "little white lies" or even major lies made to save the lives of you or 
+others. At the very least, these things should outweigh business concerns, so 
+that our corrupt investor does not spread rumors.
+
+In a moment I will dive into further arguments where she jumps out of this 
+frying pan, at the cost of plunging headfirst into fire.
+
+### How dependent can we be? ###
+I said she was making two arguments, the first being this overbroad one about
+metaphysical sacrifice. She uses this as a springboard into an associated 
+discussion on dependence. What she is saying is, nobody should be dependent on 
+anyone for anything, and the fraudster is dependent on someone's stupidity for 
+their own cash. Independence is a major talking-point for Rand, but here she 
+extends "dependence" as far as even depending on the expected behaviour of 
+others. Because the corrupt investor *depends* on the fact that speculators
+will drive the prices up and then down, the rumor-spreader is sacrificing their 
+own status as an independent being!
+
+This is not an *incoherent* response, but it's an *unacceptable* one. We work
+together every day. When you drive a car, you are depending on the person 
 driving in the lane beside you to be a competent driver who obeys the rules and 
 conventions of the road. You depend, as a capitalist, on the farmers who 
 actually grow your food to want to trade it for other things, so that your work 
@@ -216,12 +323,109 @@ very harmony of interests which drives libertarian philosophy is a complicated
 interdependence of people -- and Rand's response to fraud is to say that fraud 
 is bad because interdependence is bad. 
 
-So, that is my first example of Objectivism turning upon itself. Looked at one 
-way, you should promote free capitalism and libertarian politics: but follow 
-the Mobius strip far enough, and you will be on the other side, stating that 
-nobody should depend on anybody else, lest they sacrifice their independence. 
-And it's not like no Objectivist has ever said as much -- Ayn Rand used this 
-very ideology to argue why you should not commit fraud as an Objectivist.
+## Fraud and Force as Harm ##
+
+She had modified this point in *The Objectivist Ethics* to incorporate some 
+form of malice, which is an important component. Rand does not rely on the 
+emotional content of malice, but instead portrays it as self-killing:
+    
+    "If some men attempt to survive by means of brute force or fraud, by 
+    looting, robbing, cheating or enslaving the men who produce, it still 
+    remains true that their survival is made possible only by their 
+    victims, only by the men who choose to think and to produce the goods 
+    which they, the looters, are seizing. Such looters are parasites 
+    incapable of survival, who exist by destroying those who are capable, 
+    those who are pursuing a course of action proper to man."
+
+I hope you can see how the argument has shifted: it is no longer that I am 
+somehow sacificing my honesty; it is that I am "biting the hand which feeds 
+me", or somehow harming those who I need to do business with. This seems to do 
+a little better: theft and fraud are subject to a "no harm, no foul" rule where
+if they don't hurt anyone, they are not really evil. 
+
+An "initiation of harm" (my term) becomes the extension of initiation of force 
+which covers fraud. She does not use this term but prefers to just use the word
+"destroying", but the initiation/retaliation distinction is still there. For
+example, here is how she discusses destruction in *Atlas Shrugged*:
+    
+    "It is only as retaliation that force may be used and only against the man 
+    who starts its use. No, I do not share his evil or sink to his concept of 
+    morality: I merely grant him his choice, destruction, the only destruction 
+    he had the right to choose: his own. He uses force to seize a value; I use 
+    it only to destroy destruction."
+    
+In other words, the harming of those you rely on is viewed as implicit 
+self-harm, and, in a bizarre twist, they say "your wish is granted" and try to
+actively harm such people. The Objectivist moral system contorts to describe 
+such people as desiring the retaliatory force and unable to revoke their 
+consent. On the one hand the ideology is pragmatically much better: at least, 
+we can say that acting and fiction and "white lies" are okay. But if we 
+followed these underpinnings we should surely find ourselves in dire straits.
+
+The first implication is that destruction is not a relative term, and there is
+no sense that the punishment should have similar magnitude to the crime. If 
+you taunt someone enough, they might try to slap you: but now you know that they 
+are in the wrong, and you might shoot them! There  is a distinction between tit-
+for-tat and mutual assured destruction, and it's not clear that Objectivist 
+ethics can sustain such a distinction.
+
+The second implication is that destruction does not have to be accomplished by
+the person who was harmed -- indeed, in cases of murder, it cannot be. So, can 
+retaliation be intercessory? Perhaps Alice is harmed by Bob, but she does not 
+retaliate. Perhaps Carl finds out about Bob's initiation of harm. It sounds 
+like Bob is allowed to retaliate without Alice's permission. Perhaps Carl 
+should imagine them both to have a death-wish, and should shoot them both for 
+this crime! 
+
+Carl's predicament can be seen this way: suppose Carl is dating Alice, and Bob
+is Alice's drug-dealer, giving her strongly addictive drugs which, as Carl 
+forsees, will lead to a wasted life and/or a premature death. In some sense,
+Carl is indeed harmed, even though the action is voluntary on Alice's part, but
+it doesn't seem like force is being invoked here. And yet, to follow the Mobius
+strip to the other side, the "high" of drugs seems to be a dishonest
+replacement for the honest and rational life which Rand wants to advocate, and
+Bob as a dealer is a textbook example of a parasite who is damaging his client, 
+*despite* not using force or fraud to do it! One stroll down Objectivist Lane 
+suggests a policy of raw nonintervention in the drug trade; the other suggests 
+that we treat it like all similar offenses and ban it strictly. 
+
+These topics come to the foreground in one example from American history, where
+the U.S. government banned cigarette companies from television advertising.
+Surprisingly, the biggest supporter of this ban was the tobacco lobby! The 
+issue was that the advertising was gettting so extreme that it was draining
+valuable profits; but if any voluntary coalition of companies refused to 
+advertise, a competitor would enter the market who was not party to this 
+agreement, and they would use their monopoly on advertising to succeed wildly. 
+In *The Objectivist Ethics* Rand insists on "a full, pure, uncontrolled, 
+unregulated laissez-faire capitalism -- with a separation of state and 
+economics." Does this apply even when the entire tobacco industry asks us to 
+regulate them -- indeed, to regulate all of posterity in this market -- 
+to prevent ongoing harm?
+
+This comes to the foreground in another example which occurred in several 
+countries: the ban of the slave trade. Once upon a time, the U.S. government
+did not control or regulate the slave trade -- the men on the merchant ships
+said, "yes, these people are our property," and the government did not check
+their assertions (and would have had no way to do so). The government *did*
+enforce these property claims when those slaves attempted to escape, even in
+the face of abuses from the slaveowners. There is tension in the system, 
+then. Sometimes perhaps we need to be "saved from ourselves," even 
+economically.
+
+So which is it? Is there ever just cause to "save us from ourselves"? In
+the case of saving us from our human tendency to commit fraud and to
+initiate force, Rand says yes. But in the broad economics case, Rand has 
+insisted that governments must stay out. Modern Objectivists, I think, would
+ignore Rand's case for unregulated capitalism, in favor of regulations like 
+"you may not trade slaves" and "the government can help a market if it's in
+that market's financial interest." But I can't say for sure. 
+
+So, those are my first examples of Objectivism turning upon itself. Looked at 
+one way, you should promote free capitalism and libertarian politics: but 
+follow  the Mobius strip far enough, and you will be on the other side, 
+stating that nobody should pretend to anything or depend on anybody else, lest 
+they sacrifice their independence. Pressed for further nuance, you articulate
+a condition of not harming others, but this makes the question even murkier.
 
 I will give an example which Ayn Rand does *not* fully develop, however. 
 Objectivism believes that benevolence can come from a rational self-interest. 
@@ -249,10 +453,10 @@ your life in your own hands*. Self-serving might well mean Other-serving or
 God-serving, if those are better than pure greed at serving the self. In fact, 
 it might even be justified for an Objectivist government to *force* you to be 
 God-serving -- a theocracy -- if it were indeed a known truth that God rewards 
-the pious. Because choosing against your rational self-interest (by choosing 
-against God) would be similar to how Rand characterized fraud: and if the 
-Objectivist government protects us from fraud, it would stand to reason that 
-the Objectivist theocracy might protect us from impiety. 
+the pious! Choosing against your rational self-interest (by choosing to reject 
+God) would be similar to how Rand characterized fraud: and if the Objectivist 
+government protects us from fraud, it would stand to reason that the 
+Objectivist theocracy might protect us from impiety. 
 
 So the harmony of interests -- which Objectivists largely accept -- is just one 
 step down the road which rejects hedonism and promotes helping other people. 
