@@ -5,6 +5,7 @@ Conscious phenomena that remind me of QM:
 	- Reminds me of measurement.
 		- The "measurement problem" really asks how a particle is 'guided by' its wavefunction, which is spread across many states, and yet we only observe discrete states with no mixing.
 		- QM allows a state for my television of 50% bedroom, 50% living room, but we never see this sort of state; the television comes to be either 100% in the living room or 100% in the bedroom.
+    - One hyper-relevant aspect: "making up our minds" comes to us as a quantized thing. We can be indecisive for a while but we can force ourselves to make decisions, which have definite barriers. There is a level in our heads where we are 50/50 and then another level where we go 100%.
 - Intentionality
 	- How do we think "about" a cat if that cat doesn't exist? And how can "aboutness" be both objective (I am thinking about a cat) and subjective (this book is about cats)?
 	- Reminds me of entanglement.
@@ -16,6 +17,27 @@ Conscious phenomena that remind me of QM:
 		- Quantum mechanics allows for electrons with opposite momentum to come together, in certain metals called "superconductors", by an electron-phonon interaction. (Basically, if they don't come together, they deform the atomic lattice with much more energy than they repel themselves together.)
 		- This "Cooper pair" of electrons can be treated with quantum mechanics as well, which states that it will form a Bose-Einstein condensate at lower temperatures, which we observe (as superconductivity). 
 		- Lots of mental effort has been spent (wasted?) on the fact that these electrons are moving in opposite directions and so on, and so how do they move charge? et cetera. But they do act as if they have combined into a new joint entity. 
+
+Collapse:
+    We have two pictures of the electron. In one, it takes on a fuzzy, stable orbit of an atom, delocalized, and sometimes its only angular momentum comes from its intrinsic spin, rather than from orbital angular momentum. This is the Hydrogen atom picture. But in the other one, we fire an electron through a nonlinear magnetic field and then we receive a discrete "ping" in one of two detectors, corresponding to whether it had spin "up" or spin "down" -- other detectors along the same axis do not fire; only two for equal and opposite spinniness.
+    The connection between these is held to be *measurement*, which in quantum mechanics displays an odd nonlinear character, at least in the Copenhagen interpretation. The best competition with this comes from Everett, who insists on the linearity of quantum mechanics and the nonlinearity of the human path through the quantum universe -- I observe spin-up, but only because I happened to follow a consciousness trajectory into a state which was entangled with the spin-up state.
+    Another connection is furnished by *decoherence*, which says that in the linear part of quantum mechanics, some qualitative shift in wavefunctions occurs when entanglement does.
+    The connection that I wish to draw at the moment deals with the general nonlinearity of change -- the 'arrow of time' problem. Why is it that, with so many time-reversal-symmetries in the physical laws, we still see time progress in a certain entropy-increasing order?
+
+-- lighthearted observations --
+
+I'm going to try to type this without glasses. Here's hoping.
+
+The first thing that I must say is that there are many things which play together in my thought process. Time and change stop being twp sides of the same coin and start being fundamentally different gestalt.
+
+Sp O guss O jave a bimcj pf dofferemt qiestopms/ Wjy osm
+t a b;al jp;e ab;e tp swa;;pw ots pwm votia; gravotpms amd [jtpms etc/. of ot is able to swallow anything at all? Some things seem to be missing, foce cariers among them.
+
+a more suubtle point: every point paticle with mass should be sitting at the center of a potntial we;; fp fomote ,ass/ Before black holes this was OK, but today every electron sits in the form of a black hole with mass at its senter. 
+
+I guess what I want to say is two things. The first is that I have a mental map which I have occasionally drawn with topics likie consciousness, time, change,, gravity,  measurement, cooper pairs (and particle condensation in general), and so on. 
+
+The second is that at 1am today I wondeed whether coioper pairs weren't aused by two electrons getting within each others' event horizon and tus forming a bkacj hole..I couldn't make this work too well with superpositions, and with entanglement, but it could explainwhy he parity reversal fails to operate and thus all of the wavefunctions become symmetryic.
 
 -- Cloning --
 If you were to undergo some sort of horrible accident in the distant future, we might have this idea: "Oh, we will create a backup copy of you, so that you can live on in a new body without all of this injured tissue."
@@ -67,3 +89,39 @@ Since every moment is a definite timestep, perhaps every motion is an "observati
 Since time connects to energy, perhaps everything automatically finds itself in the energy eigenbasis, thus solving the question of "why is |0>, |1> and not |+>, |-> the eigenbasis?" The basis is whatever your energy eigenbasis is. When you want quantum effects, you make it so that you aren't doing this fundamental energy-gap thing, usually by keeping your Hamiltonian generation away from the system.
 
 In other words, the uniqueness of basis and the uniqueness of time strike me as parallels of each other.
+
+Penrose's idea:
+    All mass carries a clock along with it by virtue of having a rest mass E = m c², E = h f. Massive things can experience time not just because they're not going at the speed of light, but because they actually carry these "intrinsic" clocks with them. 
+    
+An idea regarding local conservation laws:
+
+QM pretty blatantly breaks locality in wavefunction collapse. I would like to tie this to the fact that QM breaks conservation laws in general, in these evanescent wavefunctions (tunnelling processes) that extend through potential barriers. 
+
+The idea is very simple. Einstein's argument for the relativity of simultaneity was applied to conservation laws, arguing that they must be local, by Feynman in his Cornell lectures, in the following way.
+
+Imagine two trains with observers at the center which happen to line up just as some event happens at both sides:
+    
+    ====A====
+    x       x
+    ====B====
+
+Imagine that this is a nonlocal charge conservation process for observer A: A sees an electron disappear at the front of the train, and a positron disappears at the back of the train; both of these release gamma rays which A detects at the center.
+
+If observer B moves forward relative to A, then B sees the oncoming light first and the light behind comes second. B therefore comes up with this idea that conservation was broken: while energy was conserved, for a brief instant there was one extra positron in the universe while its electron was missing.
+
+Here's the trick: Quantum mechanics allows a violation of energy conservation for a highly limited time, or a violation of momentum conservation over a very thin length, so long as it all 'eventually' comes back into equilibrium. So QM behaves in the same way that relativity behaves when you have a nonlocal conservation principle, and QM is itself not amenable to a local theory anyways. Is there some detailed connection to be drawn here?
+
+Another interesting peculiarity from the same Feynman lecture: angular momentum is conserved, and comes in lumps, but you would expect that it can't possibly come in lumps because you can always look at any definite-angular-momentum state from a slightly different angle. I include it here because angular momentum is a particular *changing state* -- a state where change is manifest -- and yet it's also a state where quantum weirdness is most manifest.
+
+Dan Dennett and "Kinds of Minds"
+
+In his book /Kinds of Minds/, Dennett tries to talk about different ways which we might use to describe a system, and insists that the 'intentional description' -- where we imagine that an unconscious thing has preferences and acts as an agent to fulfill those preferences -- is a valid way to describe things which are too complicated for a 'design description' or a 'physical description.' His example of a design description is an alarm clock. I might have never seen this particular alarm clock go off, but on the assumption that it does in fact stand in the 'alarm clock' design pattern, I can guess that if I press a couple buttons and go to bed, its internal physical structure will compel it to wake me up with some sort of noise. I don't in advance know what the noise will be or how it is internally structured, and I really don't have to. The fact that it is designed this way is sufficient.
+
+Dennett is much less clear about what 'physical descriptions' are, giving fewer examples. Crucial to his points about consciousness is the fact that an intentional description can be wholly valid whether or not the described thing has any modicum of consciousness.
+
+As a way to justify a certain use of language about the rest of the world, I think this isn't a bad effort -- i.e. that a solipsist might be able to use this sort of dialogue to discuss what other people 'feel' or 'think' even if he or she does not believe that they are conscious. But of course, Dennett is much more concerned with giving an evolution's-eye-view of a potential emergence of things that look like conscious organization, not in the physical/ontological characterization of the actual facts of conscious experience -- the engineering question of "how could I go about reading your mind?"
+
+What I want to bring up is this: the intentional approach is actually, I think, much broader than Dennett gives it credit for. I would go so far as to say that our physical laws are based on an intentional description. A universe wanders about its phase space following gradients in its Hamiltonian; if there is dissipation then it wants to minimize its energy; if we are uncertain about where exactly it is then it sees this and multiplies our uncertainty with its interaction terms; and so forth. Physical objects "follow the laws of physics". If there is a difference, it is only that the principle of inertia says that particles don't want to follow their preferences (the forces on them) straight away, but instead modify their current trajectory in that general direction. This can lead to cases like orbit, where the Earth's preference is to go toward the Sun, but it is stuck in a stable elliptical orbit instead because it is "lazy" and prefers to keep going in the same direction and speed that it started going in.
+
+If that's right, then there are in fact *two* ways we conceptualize change, not just one. We conceptualize change in terms of *time*, yes, but we also conceptualize it in terms of *agency*. I don't think that these are opposed to each other, but it might provide a bit of a hint, since agency is so fundamental to how we think of ethical situations anyway. We can account for change by inventing a timeline and saying "A was this way, now it is this way" but we also have this more in-the-moment sense of "A is following a set of preferences."
+
