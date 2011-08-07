@@ -26,18 +26,26 @@ Collapse:
 
 -- lighthearted observations --
 
-I'm going to try to type this without glasses. Here's hoping.
-
 The first thing that I must say is that there are many things which play together in my thought process. Time and change stop being twp sides of the same coin and start being fundamentally different gestalt.
 
-Sp O guss O jave a bimcj pf dofferemt qiestopms/ Wjy osm
-t a b;al jp;e ab;e tp swa;;pw ots pwm votia; gravotpms amd [jtpms etc/. of ot is able to swallow anything at all? Some things seem to be missing, foce cariers among them.
+So I guess I have a bunch of different questions. Why isn't  a black hole able to swallow its own virtual gravitons and photons etc.? Or is it able to swallow anything at all? Some things seem to be missing, force carriers among them.
 
-a more suubtle point: every point paticle with mass should be sitting at the center of a potntial we;; fp fomote ,ass/ Before black holes this was OK, but today every electron sits in the form of a black hole with mass at its senter. 
+A more subtle point: every point paticle with mass should be sitting at the center of a potential well of finite mass. Before black holes this was OK, but today every electron sits in the horizon of a black hole with mass at its center. 
 
-I guess what I want to say is two things. The first is that I have a mental map which I have occasionally drawn with topics likie consciousness, time, change,, gravity,  measurement, cooper pairs (and particle condensation in general), and so on. 
+I guess what I want to say is two things. The first is that I have a mental map which I have occasionally drawn with topics like consciousness, time, change, gravity,  measurement, cooper pairs (and particle condensation in general), and so on. 
 
-The second is that at 1am today I wondeed whether coioper pairs weren't aused by two electrons getting within each others' event horizon and tus forming a bkacj hole..I couldn't make this work too well with superpositions, and with entanglement, but it could explainwhy he parity reversal fails to operate and thus all of the wavefunctions become symmetryic.
+The second is that at 1am today I wondeed whether cooper pairs weren't caused by two electrons getting within each others' event horizon and thus forming a black hole. I couldn't make this work too well with superpositions, and with entanglement, but it could explain why the parity reversal fails to operate and thus all of the wavefunctions become symmetric. (Also relativity makes clear sense of one central paradox of Cooper pairs: these two electrons with opposite momentum, for some strange reason, stay "near each other". In general relativity this is generally considered unobjectionable; even if they are flying apart at the speed of light, they cannot escape the warped geometry which they havve induced.)
+
+-- recording --
+
+A central problem in the denial of consciousness (as mere computation) comes when we distinguish computations from consciousness in the following way: let us watch a computation in a Chinese room unfold. You say "Do you understand Chinese?" and there is some symbol-shuffling and then a response comes out, "of course I understand Chinese." We record all of these actions on successive frames of movie film.
+
+Now, Perose points out in Shadows of the Mind, we're in a bit of a sticky point. When we 'replay' the film, isn't this the exact same computation being done a second time? Does it again evoke the same conscious experiences? Notice that we seem to respond very emotionally to film in general, we treat (via suspension of disbelief) the images on the screen as real people whom we empathize with; we may even feel scared at the possibility that the images can "jump out at us" (hiding behind the couch from the Daleks or the fears embodied in /The Ring/).
+
+But, when push comes to shove, we would clearly state that the images on the screen are *not* conscious. Perhaps someone *was* conscious at the time when the film was created, but this consciousness is merely "simulated" and not "reenacted" now.
+
+The problem is that logical structures don't make this distinction. A computation which is played through a second time is, indeed, reenacted. And due to the media-independence inherent to the definition of computation, the black and white blobs moving around on screeen must also constitute a computation of the answer. But there's just something not right here. The computation frozen-in-film becomes noninteractive, static, predetermined. The printing of a copy of the film doesn't seem to evoke consciousness. Nor does the playing of it, nor does its brute existence. Maybe, you argue, there was consciousness at the moment it was recorded, but the recording itself does not suffice to reenact consciousness.
+
 
 -- Cloning --
 If you were to undergo some sort of horrible accident in the distant future, we might have this idea: "Oh, we will create a backup copy of you, so that you can live on in a new body without all of this injured tissue."
