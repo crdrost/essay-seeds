@@ -1,9 +1,16 @@
 # Problem Statement
 
-I was reading an average-sized book and I was on a page, when I realized that 
-the sum of all of the page numbers before that page was equal to the sum of all 
-the page numbers after that page. (The current page is not included in either 
-sum.) How many pages did my book have?
+This is a simple numbers problem that reads like so:
+
+>   I was reading an average-sized book and I was on a certain page, when I 
+>   was suddenly shocked to discover that this page was very special. It was
+>   special because the sum of all of the page numbers on the pages before, was 
+>   equal to the sum of all of the page numbers on the pages after. (The 
+>   current page was not a part of either of these sums.) In fact, that can 
+>   only happen on special books with a certain total number of pages! So how
+>   many pages did my book have?
+
+It's not too hard to understand. Let's see how hard it is to program.
 
 # The beauty of brute-force
 
