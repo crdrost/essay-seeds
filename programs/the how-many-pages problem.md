@@ -72,6 +72,7 @@ This rectangle obviously has 4 * (4 + 1) checkers total, half red and half
 black. So if we say S = 1 + 2 + ... + m, this cute trick says that:
 
 >   2 S = m (m + 1)
+>   
 >   S = m (m + 1) / 2.
 
 This can apply in multiple ways to our problem, but the fundamental idea would
