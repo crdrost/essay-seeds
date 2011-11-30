@@ -8,7 +8,7 @@ You see, if that first sentence doesn't bug us, that second sentence probably sh
 
 I'd like to show you how it does all these things, and why perhaps it should bug you that this sentence doesn't have a good true/false status. But first I would like to show you that the obvious answer doesn't work. 
 
-# Just Give Up
+# The Obvious Answer: Just Give Up
 
 The obvious answer is that this sentence should be labeled 'undecidable': if we decide that it is true, then it is false; if we decide that it is false, then it is true; so we decide that we cannot decide. If you like, we are throwing our hands up and simply saying 'Error!'
 
@@ -65,26 +65,29 @@ It then goes into an infinite loop, because it reduces 'diagonal(diagonal)' to '
 
 Our only choice as the safe() mechanism is to fail to analyze the situation. Javascript gives a couple of different ways to do this, but we might return the special Javascript value 'undefined'. Notice that this changes the behavior of the program, and thus diagonal(diagonal) will give back the value 'false', and it is indeed perfectly safe to call diagonal on itself: but our safe() program cannot say that without being wrong. There must be programs which safe() simply cannot analyze.
 
-# The Diagonal Argument
+# Sets and Diagonals
 There is a certain reason that I have called this procedure 'diagonal', and it's because it has a deep connection to a set of 'diagonal arguments' made by Cantor. These have to do with sets.
 
 Sets are just collections of items: {apple, banana, pear}. The order doesn't matter. We can ask if a set contains an object, and we can construct sets from a bunch of objects that we want to group together, and so on. You can even have sets of fundamentally different objects, like {1, apple}, or sets of sets, like:
     
     {{1, 2}, {1, apple}}.
     
-They can also be infinite, like the set of numbers: {1, 2, 3, 4, ...}.
+They can also be infinite, like the set of counting numbers: {0, 1, 2, 3, 4, ...}.
 
-Now, a guy named Bertrand Russell was trying to standardize mathematics, and he ran into this little problem with sets. Normally, you just give a description of a set, like "the set of even numbers", and that *predicate* -- even numbers -- defines the set. 
+So for example we have the even numbers: {0, 2, 4, 6, 8, ...}. It's very easy, then, to ask a question like, "Is 3 in the set of even numbers?" and the answer is "no."
 
-He showed that some predicates contain a liar paradox, too. For example, sets can contain other sets, and so *in principle* a set could contain itself as an element. A good example is 'the set of all sets.' Does this contain itself? Sure, it contains all sets, therefore it contains itself.
+Here's the trick: at one point, big names like Frege had more or less naively assumed, "that's all there is to the set. A set is defined by 'is in.' For every set, we need to be able to quickly say, 'Is ___ in this set?' and that's all we mean by a 'set'." But, as Bertrand Russell discovered, there's a liar paradox in that simple definition. Let me recall: sets can contain other sets. In fact, it can be very common to speak of, say, the set of all sets. The "is in" rule here is very simple: "is it a set? yes? then it's in there!" We can therefore see that the set-of-all-sets is in the set-of-all-sets. It is a set which contains itself as a member. 
 
-Here is the paradox: Let's call L the set of all sets which don't contain themselves as members. If you ask whether {2, 3} is in L, it says "sure, it doesn't contain itself." If you ask whether the set of all sets is in L, then it says "nope, it contains itself."
+Let me get some quick words out of the way. A simple rule for saying "x is in this set" would be a *predicate*, and Frege was allowing ad-hoc sets that were just defined by predicates. But some sets can contain themselves. Here is the liar paradox:
 
-But here is the trick: does L contain L? If it doesn't, then it should. If it does, then it shouldn't. Either one is an error. Russell responded to this by choosing type (1) above: he said "oh, I'll just have an infinity of 'types' in my set theory," the way that we might invent an infinity of undecidables.
+    S = {X is in this set, if X is not in X.}
+    Is S in S?
+
+You can ask whether {2, 3} is in S, and it would say "yes." You could ask if the set of all sets was in S, and it would say "no." But the moment you ask if S is in S, the answer is "yes" if and only if the answer is "no". If S doesn't contain S, then it should. If it does, then it shouldn't. Either one is an error. Russell responded to this by choosing type (1) above: he said "oh, I'll just have an infinity of 'types' in my set theory," the way that we might invent an infinity of undecidables.
 
 Infinity just keeps coming back, doesn't it? Infinite loops, infinite undecidables, infinite types. There is a more poignant way that it connects. The 'diagonal arguments' by Cantor are used to prove that set A is larger than set B. How do we do this? By a contradiction.
 
-So let us take the set of subsets of numbers: a set including things like {1, 5, 9} and {2, 3, 5, 7, 11, ...} and other wonderful numbers. It is called the 'power set' and sometimes called 2^N, because if you consider the set of subsets of {1, 2, 3}, you find that there are 2^3 = 8 of them. (It connects back to binary: you can represent the subset {1, 2} as the binary number 110, where the first number is 1 when the subset contains 1, the second number is 1 when the subset contains 2, and so on. There are 8 binary numbers 000 ... 111.)
+So let us take the set of subsets of numbers: a set including things like {1, 5, 9} and {2, 3, 5, 7, 11, ...} and other wonderful numbers. It is called the 'power set' and sometimes called 2^N, because if you consider the set of subsets of {1, 2, 3}, you find that there are 2^3 = 8 of them. (It connects back to binary: you can represent the subset {1, 2} as the binary number 110, where the first number is 1 when the subset contains 1, the second number is 1 when the subset contains 2, and so on. There are 8 binary numbers 000, 001, 010, ... 111.)
 
 Cantor says, 'the power set is larger than the set of numbers.' Assume that the set was enumerable: that you could say "subset #1 is {2, 3}, subset #2 is {1, 2, 5}, subset #3 is {2, 3, 5, 8, 13, ...} ..." by some as yet undiscovered mechanism. This is necessary if they're both the same size -- you might not *know* the enumeration, but one exists in principle.
 
@@ -107,7 +110,7 @@ You can imagine that we draw the binary strings which represent subsets (1 if th
 
     Cantor constructs: 0110111...
 
-He is clearly defining some sort of subset of the numbers, but if you ever told him, "Oh, I reached that set N in the enumeration," then he could say, "no you didn't -- my set differs from enumeration #N. One contains N, the other doesn't." So all such enumerations are hopelessly incomplete!
+He is clearly defining some sort of subset of the numbers, but if you ever told him, "Oh, I reached that set N in the enumeration," then he could say, "no you didn't -- my set differs from enumeration #N. One contains N, the other doesn't." So all such enumerations are hopelessly incomplete! Or else, perhaps, you would have to study some new mathematics where such things could "hide" off at infinity.
 
 So there must be a new infinity which describes the size of the power set, much larger than the original infinity. In fact, we can look at the set of subsets of the power set, and that must be larger than the power set. There are infinitely many infinities! 
 
@@ -117,45 +120,27 @@ Cantor shows that you can't enumerate numbers; Turing shows that you can't figur
 
 A common thread in much of this discussion has been self-reference: "This sentence says X". It is very easy to see that the problem does not require self-reference and in fact exists within any circular reference system: "The next sentence is true. The last sentence is false." 
 
-Sometimes people have assumed that the problem disappears when we forbid the phrase 'this sentence' or things like that. This is not quite correct. Our procedure above for diagonal was quite carefully chosen to apply to any procedure you want -- at least, it applies to any procedure which accepts procedures as input and returns boolean values like true or false. The first-order self-reference can even be eliminated by an approach like this:
-
-    function diagonal_maker(n) {
-        return function (P) {
-            var f = P(n + 1);
-            return safe(f, P) ? 
-                f(P) + 1: 
-                n;
-        };
-    }
-
-Notice that diagonal_maker now creates one of several "diagonal" functions depending on which number you give it. Those diagonal functions now expect, as input, a function-maker which accepts an integer and produces a function. 
-
-When we compute diagonal_maker(0)(diagonal_maker), we are not actually handing diagonal_maker to itself; we are instead handing it to a diagonal() function which it created.
-
-Nonetheless, the internal code creates f = diagonal_maker(1), which is not the same as either diagonal_maker(0) or diagonal_maker. Creating this function is perfectly safe in Javascript. The code then asks if it's safe to run f on diagonal_maker.
-
-The examples available mostly focus on situations where you can construct the same sentence from information available within that sentence. For example, W.V.O. Quine offers the generalization:
+Sometimes people have assumed that the problem disappears when we forbid the phrase 'this sentence' or things like that. This is not quite correct. The examples available mostly focus on situations where you can construct the same sentence from information available within that sentence. For example, W.V.O. Quine offers the liar paradox:
     
     "Yields falsehood when preceded by its quotation" yields falsehood when preceded by its quotation.
 
-This statement is not explicitly self-referencing. It is talking about what a phrase does when that phrase follows itself in quote marks. It happens to be the case, though, that the whole statement is in fact identical to the quoted sub-phrase followed by itself. 
+This statement is not explicitly self-referencing. It is talking about what a phrase does when that phrase follows itself in quote marks. It *just happens to be the case*, though, that the whole statement is in fact identical to the quoted sub-phrase followed by itself. But that's not part of what this sentence is saying. The sentence happens to identify itself without actually referencing itself, by quotation.
 
-The same thing that predicates like "yields falsehood when preceded by its quotation" do can be emulated by functions in Javascript. The equivalent of the Quine example is to say, instead of:
+You might wonder what this looks like in programming, for something to identify itself without referencing itself. Is there such a thing? The answer is "yes but it looks even more clumsy than Quine's attempt." So for example, here is a function which returns itself:
     
-    function factorial (n) { 
-        return n <= 0 ? 1 : n * factorial(n - 1);
-    }
-    
-...where you are explicitly referring to factorial in the factorial function itself, you instead say:
-    
-    function factorial (n) { 
-        function factorial_maker(recurse) {
-            return function (n) {
-                return n <= 0 ? 1 : 
-                    n * recurse(recurse)(n - 1);
-            };
-        }
-        return factorial_maker(factorial_maker);
+    function self() { 
+        return self;
     }
 
-Notice that factorial_maker doesn't happen to explicitly reference itself. It does still hand a 
+If you want a distinguishing property of this function for identifying it, it is a function that you could call `self()()()()()...` as much as you want and you would never run into a problem. 
+
+Here is a function which also returns itself in a strange way:
+
+    function maker(recurse) {
+        return function () {
+            return recurse(recurse);
+        };
+    }
+    var self2 = maker(maker);
+
+You see, stored in the variable self2 is a function with the name "self" which, if you run it, constructs and hands you a new function which will do the exact same thing as the original if you run it. It turns out that the Javascript `===` operator will tell you that `self() === self` is true -- they are the same referenced function -- while `self2() === self2` is false -- they are different functions which perform the same action.
