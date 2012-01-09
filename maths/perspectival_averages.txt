@@ -4,7 +4,7 @@ Everyone is familiar with the normal method of averaging a sequence of N numbers
 
 And we of course use it all the time in conditions of uncertainty -- we have five values and we don't know which is the right one, so we average them out in the above way to get a representative measurement. With 10-100 samples we can even begin to see how "spready" they are around this arithmetic mean. But, you might be interested to see some of the other interesting averages out there, and how this generalizes.
 
-The central idea that I want to introduce here is the notion of a "space average" -- an average which is taken when the data is looked at from a different perspective. For this, I require a certain sort of function -- which I'll call a perspective, and define more narrowly here as functions which are continuous on the positive real line (0, ∞) and which are either strictly increasing, or strictly decreasing, on that interval. 
+The central idea that I want to introduce here is the notion of a "<function>-space average" -- an average which is taken when the data is looked at from a different perspective. For this, I require a certain sort of function -- which I'll call a perspective, and define more narrowly here as functions which are continuous on the positive real line (0, ∞) and which are either strictly increasing, or strictly decreasing, on that interval. 
 
 Perspectives, because they are strictly (in/de)-creasing, have inverses, and they begin to define a space for averages in the following sense. Let p(x) be a perspective, then the sequence of { zᵢ } has a p-space average given by:
 
@@ -12,9 +12,26 @@ Perspectives, because they are strictly (in/de)-creasing, have inverses, and the
 
 In other words, we apply p to every input in the set, we average them out within our new perspective space, and then we apply the inverse operaton to return to our original perspective. You can now see why I need p to be continuous: if it jumps discontinuously, then p⁻¹ will be undefined on part of its domain, and the average would be able to access that point of its domain by averaging out two points near this boundary.
 
-All such perspectival averages obey some conditions which makes them "adequate" to be called averages -- for example, the average of a sequence of numbers is somewhere between the maximum and minimum of those numbers. A consequence is that if the sequence only contains one number, like {3, 3, 3}, then the average, in all perspectives, is just that number (in this case 3). These constructions also allow you, if you prefer, to form a general weighted average with a sequence of weighting factors { wᵢ }:
+All such perspectival averages obey some adequacy conditions which makes them, well, adequate to be called averages:
+    
+    (1) The p-space average of several objects does not depend on the order of those objects.
+    (2) The p-space average of the same object repeated multiple times is that object.
+    (3) The p-space average is always between the extrema of the set.
+    (4) There is a straightforward generalization to a "weighted" p-space average, which gives identical results as when you simply find a rational approximation to the weights and then use repetition.
 
-	< z; p, w > =  p⁻¹( Σᵢ wᵢ p(zᵢ) / Σᵢ wᵢ )
+The last construction is given by:
+
+    < z; p, w > =  p⁻¹( Σᵢ wᵢ p(zᵢ) / Σᵢ wᵢ )
+
+There is one remaining adequacy condition which is not absolutely necessary, and it is not guaranteed by this construction for arbitrary p(x) -- but it seems to be a property of all practically-used p-space averages:
+    
+    (5*) The average scales linearly; < k z; p > = k < z; p >.
+    
+There is a practical, physical argument to this last property: it extends the p-space average to numbers which have *units* associated with them, which happens frequently in physics. That is, imagine that the zᵢ have the same units as a reference unit L. Then the p-space average can be extended to physical units by the construction:
+    
+    < z; p > = L * p⁻¹( (1/N) Σᵢ p(zᵢ / L) )
+
+Only constructions which satisfy (5*) can do this without actually caring about the exact magnitude of L. Any other construction cannot consistenty be applied to a physical quantity.
 
 What's interesting about these functions is that they sometimes define the same space. For example, take any affine transform of a perspective:
 
@@ -28,7 +45,7 @@ Then the A[p]-space average is the same as the p-space average, because the arit
 	< z; A[p] > = p⁻¹( < p(zᵢ) > )
 	< z; A[p] > = < z; p >
 
-It follows that all of the affine perspectives p(x) = a x + b are the same as the arithmetic mean. While affine transforms to the output of p don't do anything, it might occasionally be useful to see what happens when we change the scale of the input data: if we have a positive real number k, and define p*(x) = p(kx), how does the p*-space average compare to the p-space average?
+It follows that all of the affine perspectives p(x) = a x + b are the same as the arithmetic mean.
 
 Here are some interesting averages that I have seen in my physics career.
 

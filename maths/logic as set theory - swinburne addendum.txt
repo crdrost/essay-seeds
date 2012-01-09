@@ -1,0 +1,72 @@
+This is Swinburne's argument. 
+
+Bayes' Theorem, Introduction Lemma:
+
+In Bayes Theorem, you can introduce a new event C which all of the 
+probabilities are conditioned upon. In other words:
+
+    P(A | B) = P(B | A) P(A) / P(B) 
+
+becomes: 
+
+    P(A | B & C) = P(B | A & C) P(A | C) / P(B | C)
+
+Proof:
+
+    P(A | B & C & D) = P(A & B & C & D) / P(B & C & D)
+    P(A | B & C & D) = P(B | A & C & D) P(A & C & D) / P(B & C & D)
+    P(A | B & C & D) = P(B | A & C & D) P(A | C & D) P(C & D) / P(B & C & D)
+    P(A | B & C & D) = P(B | A & C & D) P(A | C & D) / P(B | C & D)
+
+The case above comes when C is the trivial set of all events, so that it does
+not tell us anything. The general lemma is then proven by taking C as the
+intersection of events that have already been introduced, while D is the new 
+event.
+
+This is a peculiar result because it's not true as a fact about the probability
+function -- that is, if P(A) = P(B), it is not then true that P(A|C) = P(B|C).
+A good example: let C = A, so P(A|C) = 1. Now let A = "the coin flipped heads"
+and B = "the coin flipped tails." P(A) = P(B), but P(A|C) = 1 while P(B|C) = 0.
+
+The question then is, is there a nice way to view this result in the set theory
+guise? A | B has a nice interpretation as the area of one set divided by the
+area of the set that contains it. Introducing C seems a bit peculiar in this
+context. 
+
+Anyways, let Γ(A, B, C) =  P(B | A & C) / P(B | C), then this says:
+
+    P(A | B & C) = Γ(A, B, C) P(A | C)
+
+Thus Γ(A, B, C) reflects how the information of a new event B affects A, given 
+that you already know that C. If Γ > 1, then your information is confirmatory. 
+If Γ < 1, then your information is disconfirmatory.
+
+Thus it is confirmatory iff P(B | A & C) > P(B | C).
+
+We can phrase this as:
+    
+    P(event | old & new evidence) = P(event | old evidence) * Γ(event, new evidence, old evidence)
+    
+The new evidence is confirmatory if and only if:
+
+    P(new evidence | event & old evidence) > P(new evidence | old evidence)
+    
+Swinburne uses this to ask whether God exists, by saying "is the world more
+likely to be, say, ordered, if God exists? Yes. Therefore, the order that we
+see is confirmatory evidence for God's existence." 
+
+Discussed in a Fig Hunter forum message:
+
+I know that something is hard. What does this tell me about the probability 
+that it is right?
+
+    Γ(right, hard, Ω) > 1 iff
+    P(hard | right & Ω) > P(hard | Ω)
+
+Assume that I didn't know whether it was hard or not, and just had the 
+background information Ω furnished by my intuitions. If the added information 
+that the action is right actually makes it more likely to be hard, then this 
+information is confirmatory.
+
+If knowing that an action is right makes it easier, even given all of your 
+other intuitions, then it is less likely to be hard.

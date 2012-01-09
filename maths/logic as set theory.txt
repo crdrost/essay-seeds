@@ -1,0 +1,22 @@
+Always explain the contrapositive rule and logical deduction with reference to cheating. It always makes more sense to the human brain:
+
+http://www.schneier.com/blog/archives/2011/04/detecting_cheat_2.html
+
+Here is one way to phrase an if-then:
+
+    You have to eat your vegetables before you can have ice cream.
+
+This is the same as saying:
+
+    Anyone who eats ice cream, ate their vegetables. 
+    {ate ice cream} subset of {ate vegetables}.
+    {ate ice cream} implies {ate vegetables}
+    If you eat ice cream, then you ate your vegetables.
+
+It is not the same as saying:
+
+    If you ate your vegetables, then you ate ice cream
+
+...because maybe someone just doesn't like ice cream. The rule says nothing about what happens if you don't eat ice cream.
+
+

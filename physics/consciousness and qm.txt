@@ -17,12 +17,22 @@ Conscious phenomena that remind me of QM:
 		- Quantum mechanics allows for electrons with opposite momentum to come together, in certain metals called "superconductors", by an electron-phonon interaction. (Basically, if they don't come together, they deform the atomic lattice with much more energy than they repel themselves together.)
 		- This "Cooper pair" of electrons can be treated with quantum mechanics as well, which states that it will form a Bose-Einstein condensate at lower temperatures, which we observe (as superconductivity). 
 		- Lots of mental effort has been spent (wasted?) on the fact that these electrons are moving in opposite directions and so on, and so how do they move charge? et cetera. But they do act as if they have combined into a new joint entity. 
-
 Collapse:
     We have two pictures of the electron. In one, it takes on a fuzzy, stable orbit of an atom, delocalized, and sometimes its only angular momentum comes from its intrinsic spin, rather than from orbital angular momentum. This is the Hydrogen atom picture. But in the other one, we fire an electron through a nonlinear magnetic field and then we receive a discrete "ping" in one of two detectors, corresponding to whether it had spin "up" or spin "down" -- other detectors along the same axis do not fire; only two for equal and opposite spinniness.
     The connection between these is held to be *measurement*, which in quantum mechanics displays an odd nonlinear character, at least in the Copenhagen interpretation. The best competition with this comes from Everett, who insists on the linearity of quantum mechanics and the nonlinearity of the human path through the quantum universe -- I observe spin-up, but only because I happened to follow a consciousness trajectory into a state which was entangled with the spin-up state.
     Another connection is furnished by *decoherence*, which says that in the linear part of quantum mechanics, some qualitative shift in wavefunctions occurs when entanglement does.
     The connection that I wish to draw at the moment deals with the general nonlinearity of change -- the 'arrow of time' problem. Why is it that, with so many time-reversal-symmetries in the physical laws, we still see time progress in a certain entropy-increasing order?
+
+-- fractals? --
+Maybe the single most important mathematical breakthrough in our modern era was the invention of self-similarity down to infinity in the form of fractal mathematics. At the same time, QM has remained clean, linear, unbroken by this. 
+
+At the same time, I have a hint that consciousness is probably fractal at some level. See, it seems clear to me that if you froze a brain in time -- created some "suspended animation" -- that it would cease to feel things. If that's true, then consciousness is not directly induced by geometry, but has deep ties to *process* -- it is the *dance* which is conscious, and if you stop the dance, you stop the consciousness, even when the matter and linkages and interrelationships live on.
+
+The reason why this is fractal has to do with the unificationism mentioned before. Different qualitative aspects like sight and sound fundamentally "come together" in the conscious process: I would not be unconscious if you emoved my sight-stimulus at some level, even though that aspect of me would have disappeared from "the dance". So the dance of consciousness recurs, even when I shrink it by removing vision. In this sense, the "building blocks" of consciousness are probably very simple dances.
+
+But I've occasionally wondered whether this is also to be found in quantum gravity. We see problems of renormalizability as well as problems of geometric scaling progression in quantum mechanics all the time; Feynman diagrams just seem to go on forever, but we can sum them all up with a couple of interesting procedures, or else avoid infinities in other ways. How much is nature governed by self-similarity? Is it just trees and cliffs which are fractal, or are the core laws also going to be fractal when we dive into them?
+
+At least for now, we are fortunate that the patterns appear to stop with quarks and that there are only three families of subatomic particles. Yay for that. I just wanted to write this as a reminder to think fractally about problems sometimes. Nature obviously breaks the scale variance symmetry and so maybe it's nothing -- rather, something that can only occur at a high-level description. But there might be something interesting there in this discussion of how particles condense to be "the same" even when Pauli exclusion indicates that they shouldn't be "the same". I know, they don't Pauli-exclude because they have opposite momentum, but in what sense are they 'condensed' by the lattice deformation (which is real-space deformation!) if they are doomed to ultimately leave each other due to opposite momenta?
 
 -- lighthearted observations --
 
@@ -69,6 +79,65 @@ If we wanted to generate |Ψ, Ψ> in general, without knowing what |Ψ> is, what
     |0, Ψ> → |Ψ, 0>. 
     
 There is something irresistably human about the no-cloning theorem: it says that if I just treat you as a black-box quantum state, I cannot copy your consciousness without sending someone through the same path of life-experiences as you. I may be able to transfer it, but I could not have this moment of "seeing yourself and wondering who is more properly you." I might be able to find a "shortcut" to this process, but only if I could reliably measure your quantum state so that I knew what superposition I was trying to create. But measurement tends to be destructive in quantum mechanics and probably wouldn't work well unless I had a couple thousand copies of you to compare.
+
+-- limitations on measurement--
+
+I was interested once by a Doctor Who episode called "Blink" where the scary 
+monsters are the "Weeping Angels". The Doctor says that they are "quantum 
+locked": the moment that you observe them, they turn to stone, until you cease
+observing them. That sounded very wrong to me. It means that they exist in a 
+state where some observable -- the predicate of being stone -- is 0, and this
+presumably exists as a superposition of different position-states. But in each
+of those position-states, the predicate of being stone is 1. How can that be?
+
+The quick answer is, it can't. But let me follow this question logically.
+
+Now, it might have sounded wrong purely because it's wrong in classical theory.
+We can do this via its embedding in quantum theory as incoherence: In an 
+incoherent system, any predicate true of the basis states is also true 
+of the system as a whole. This is because you get a diagonal density matrix:
+
+    ρ = Σᵢ Pᵢ |i><i|
+
+And if <i| Â |i> = C for all n, then < Â > = Tr {ρ Â} = Σᵢ Pᵢ <i|Â|i> = C. 
+Thus I can state the following theorem:
+
+>    Any numerical observable which is C for all of a set of states is also C 
+>    for their incoherent superposition.
+
+But, it turns out, quantum mechanics bends this a little bit with coherences. A
+good example is the σₓ Pauli matrix, σₓ = |0><1| + |1><0| . In the 
+computational basis {|0>, |1>}, you have <0| σₓ |0> = <1| σₓ |1> = 0. But in a 
+state like |+> = √½ |0> + √½ |1> you can magically see <+| σₓ |+> = 1.
+
+Clarity, and the statement of the theorem, comes if we understand that there is
+also a state |−> = √½ |0> − √½ |1>, which has <−| σₓ |−> = -1. Thus in order to
+sustain this "quantum lock" we need a negative number. But a proper predicate
+can be treated as true-or-false, one-or-zero. There is no -1 available. So let
+me state the theorem this way:
+
+>    A predicate is an observable which can only take on values 0 or 1. Any 
+>    predicate which is C for all of a set of states is also C for their 
+>    coherent superposition.
+
+This requires a simple lemma:
+
+    If Â is a predicate, then <φ|Â|φ> = 0 → Â |φ> = 0.
+
+Proof: project `|φ>` into the eigenbasis of `Â` to get `|φ> = a |α> + b |β>`, 
+with `Â |α> = 0` and `Â |β> = |β>`. Thus `<φ|Â|φ> = |b|²` and `b = 0` under the
+above assumption. Then `Â |φ> = a Â |α> + 0 Â |β> = 0 + 0 = 0`.
+
+From there it is simple. First: `Â` is a predicate → `1 − Â` is a predicate.
+So without loss of generality we can therefore let `C = 0`. Now call the basis 
+states |φᵢ> and we have that `<φᵢ|Â|φᵢ> = C = 0`, thus `Â|φᵢ> = 0`. Any 
+coherent superposition is a sum of eigenvectors with the same eigenvalue, and
+is therefore by linearity also an eigenvector with that same eigenvalue. 
+
+This lemma could probably be stated more generally as:
+
+    If Â is an observable with eigenvalues on the interval [α, β] then 
+    <φ|Â|φ> = α → Â |φ> = α |φ> and <φ|Â|φ> = β → Â |φ> = β |φ>.
 
 -- The basis problem --
 Here is another subtle problem which has been raised within the many-worlds interpretation but applies everywhere. You have TV in living room |L>, L = |L><L|. You have TV in bedroom |B>, B = |B><B|. (Substitute live or dead cats as you wish for Schrodinger's cat paradoxes.) Presumably these are orthogonal: <L|B> = 0. 
@@ -120,6 +189,28 @@ If observer B moves forward relative to A, then B sees the oncoming light first 
 Here's the trick: Quantum mechanics allows a violation of energy conservation for a highly limited time, or a violation of momentum conservation over a very thin length, so long as it all 'eventually' comes back into equilibrium. So QM behaves in the same way that relativity behaves when you have a nonlocal conservation principle, and QM is itself not amenable to a local theory anyways. Is there some detailed connection to be drawn here?
 
 Another interesting peculiarity from the same Feynman lecture: angular momentum is conserved, and comes in lumps, but you would expect that it can't possibly come in lumps because you can always look at any definite-angular-momentum state from a slightly different angle. I include it here because angular momentum is a particular *changing state* -- a state where change is manifest -- and yet it's also a state where quantum weirdness is most manifest.
+
+# Will and Time
+
+John Searle in his Authors@Google talk identifies free will as a "tough nut to crack" -- maybe the toughest such nut in consciousness. It's a very simple principle: that free will is an illusion and doesn't do anything. (He doesn't take seriously the idea that we are not conscious in this talk, as far as I can tell. He probably shouldn't.) He says that there is only one big problem with free will being an illusion, although he identifies one small problem too.
+
+The small problem is that, so he says, it's unlike evolution to give us something so resource-intensive as free will, if it doesn't really do anything. That is, we seem to spend a lot of time sustaining consciousness and will, seeking out food so that we can angst about other decisions. A system where consciousness is epiphenomenal and will is illusory is, in essence, a system of near-dualism, where consciousness is perhaps effected by the brain but cannot affect it. It would be strange for nature to give us all of this conscious stuff if we didn't have a "gap" in which our consciousness could act causally.
+
+This ties into time and change because under the changeless picture afforded by time, evolution is in some basic sense wrong. Nothing is really evolving in a changeless picture because, well, nothing is changing. Consciousness and will, too, become impossible on the changeless picture.
+
+It helps to see the world as physicists see it. Step outside of yourself into 4d spacetime, where the human body appears as a rope composed of over 10^27 particles all very parallel knotting into a body. The exact size of their knotting is a little interesting too: you are about 2m tall, 1 m across, 0.5 m wide, and about 100 ms in duration -- that is about your reaction time, and it is approximately the boundary between things perceived as distinct and things perceived as continuous. In relativity this becomes 30,000 km. So you're 2 in one way, 1 in another, 0.5 in the third direction, and 30,000,000 in the "weird direction". What I'm really saying is that to about 1 ppm, your worldlines are parallel and do not knot.
+
+In this sense, as we see the world 4-dimensionally, we end up seeing the whole past and future as dictated by classical physics, and the fact that we call any given configuration "now" has to be described at two levels: there is the level where the worldlines themselves somehow encode the pattern "hey, it's now" -- and in that sense every moment on the worldline is "conscious" in some degenerate sense, but none of them are actually progressing forward in time; they are all bound to their present existence, changeless. It's like the old audio cassettes; the music exists purely on the magnetic track, changeless, waiting to be played. Then on the upper level, though, we might want to really describe ourselves as changing, so we might explicitly attach a dualistic soul to *actually feel* these images as it flies forth along the rope -- just like the magnetic reader which the walkman attaches to actually convert the latent music into sound. 
+
+Evolution is relatively obvious if change is really happening, but on this account where change doesn't happen except as we attach real consciousness to latent consciousness, it's not clear why evolution would ever happen. Evolution cannot happen at any moment in time because the world is as it is, unchanging. But evolution is also not observer-dependent, so it doesn't reside in attaching the mind to the body. It's pivotal because the little problem is now seen as a big one. When you don't believe in free will, you don't believe that anything is really changing -- I mean, maybe we are experiencing change, but we're experiencing change atop a changeless universe. Without change and inheritance and the death of inadequacy, you do not see a change towards populations of greater inherited adequacy. The problem of change existing in time is seen as one and the same with the problem of will existing in matter.
+
+Something identical happens with Searle's other argument, his big argument. He says, if you think about this stance, unfortunately, you cannot "shake the illusion", you cannot get rid of it, you are stuck with it. If you are on an airline and the hostess comes to you and says "would you like the chicken or the pasta" it does you no good to say "look, my answer was written in the book of history, so I'm just gonna sit back and see what I order." That refusal to act is only intelligible to you as an exercise of free rational action to persist in indifference rather than choose one or the other.
+
+Tim Maudlin says in Through the Wormhole 2x03 that he's noticed the same thing in time. As much as we might say "time is an illusion", it is an illusion which we can't shake off. Our refusal to accept that we are growing old, changing, thinking -- this is only intelligible as a change, as a thought, as growth.
+
+
+
+
 
 Dan Dennett and "Kinds of Minds"
 

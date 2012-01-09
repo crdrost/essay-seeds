@@ -1,0 +1,95 @@
+# Derivation of the logistic map #
+
+Consider the population growth model
+
+    pᵢ₊₁ − pᵢ = a [1 − pᵢ/c] pᵢ
+
+...where a is the small-population growth rate and c is the capacity. In this model, when you're near the capacity population growth drops to 0, but if you're nearer to 0 then you experience a percentage increase in population Δp/p ~= a at every timestep. So it is an exponential growth model, but limited by the environment.
+
+Expanding this and shifting the pᵢ on the left gives:
+
+    pᵢ₊₁ = (a + 1) pᵢ −  pᵢ² a/c
+
+We can do something interesting by dividing everything by c and then defining:
+
+    zᵢ = pᵢ / c:
+
+to be the filling fraction of the capacity, so that:
+
+    zᵢ₊₁ = (a + 1) zᵢ −  a zᵢ².
+
+And thus c disappears. We can then choose an alternate way to represent "a" as part of the model, by defining that:
+
+    k xᵢ = zᵢ
+
+    xᵢ₊₁ = (a + 1) xᵢ −  a k xᵢ².
+
+If we choose ak = a + 1 = α this simply becomes:
+
+    xᵢ₊₁ = α xᵢ (1 − xᵢ) 
+    pᵢ = c xᵢ α / a.
+
+This is called the /logistic map/. α has a straightforward interpretation: if a is 5% growth, α just says "multiply the last generation by 1.05". On the other hand, x is a little more complicated, being defined as z 0.05 / (1.05) = z / 21. It is a rescaled version of the filling fraction.
+
+The condition pᵢ > 0 restricts xᵢ > 0. But if xᵢ > 1, then by the above formula, xᵢ₊₁ < 0. Thus we can say that the "interesting" values of x are on the interval (0, 1) -- everything else is "unphysical" in some sense.
+
+As the system goes from a state x₀ to increasing i, we say that it follows an "orbit".
+
+# Varying α #
+The most simple limit of α is α < 1, where the growth rate is negative, the population is dying, and all orbits drop to 0. On the other hand, if α > 1 the system is growing and the population will ultimately tend towards p = c, x = a/α, if it does not overshoot that number.
+
+For this reason it's worthwhile to consider *interval confinement*. Let xᵢ live on (0, b) -- does xᵢ₊₁ stay on that interval? 
+
+If b < 0.5, then we can say that the maximum of xᵢ (1 − xᵢ) is b (1 − b) and:
+
+    0 < xᵢ₊₁ < α b (1 − b).
+
+It is confined to the interval if α b (1 − b) < b. The smallest such b -- the smallest interval we can confine it into -- is b = a/α. So for b < 0.5, which is α < 2, the system grows toward a/α and never exceeds it.
+
+For b > 0.5, there is a transition as the maximum of xᵢ (1 − xᵢ) is not at xᵢ = b, but rather at xᵢ = 0.5, where it takes on the maximum value 0.5 * 0.5 = 1/4. Thus:
+
+    α/4 < b
+
+and the smallest such b is just α/4. The only restriction now is given by the fact that b itself is < 1, thus α < 4.
+
+So in fact some α's are too big! For α > 4, we have this problem:
+
+    if x₀ = 1/2:
+    x₁ = α x₀ (1 − x₀) = α/4 > 1
+
+But, again, if xᵢ leaves (0, 1) this way, then the orbit goes into negative numbers, which we cannot allow. 
+
+So, it is possible for each generation to have "too many" children per timestep! The number for "too many" is just 3. At more than 3 children, the discrete equations that we are using fundmentally break down. It is basically a problem where the capacity is not enforced often enough, so that when it *is* enforced it *overcompensates* too much, killing off the entire population.
+    
+# Fixed points #
+
+Maybe the most interesting thing is one that we noticed very briefly in passing: as α goes over its valid range (0, 4), the system goes through various regimes of fixed points. The first one is in (0, 1), where there is one fixed point at 0. Then on (1, 2), the system travels uniformly towards the capacity. 
+
+The interesting thing happens on (2, 4). Here the system can "overshoot" and then bounce around the capacity. The stability of the point x = a/α is given by:
+
+    δxᵢ₊₁ = α δxᵢ (1 − 2 xᵢ) 
+    |δxᵢ₊₁| < |δxᵢ|
+    -1 < α (1 − 2 a/α) < 1
+
+Thus we should be concerned with whether 1 − a = 2 − α is on the interval (-1, 1). As it happens, when α > 3, the fixed point becomes *unstable*: small deviations around it grow, rather than shrink. Thus the system enters a new phase characterized by stable oscillations. If we assume a period-2 oscillation, it would be given by:
+
+    xᵢ₊₁ = α xᵢ (1 − xᵢ)
+    xᵢ = α xᵢ₊₁ (1 − xᵢ₊₁)
+
+Which becomes:
+    
+    x = α² (x − x²) − α³ (x − x²)²
+
+This is a quartic equation with two easy roots: x = 0, and our fixed point x = a/α where α x − x² = x. 
+
+    x/α² = x − x² − α x² + 2 α x³ − α x⁴
+    0 = x [1 − 1/α² − (α + 1) x + 2 α x² − α x³]
+    
+    0 = α x (x − a/α) (x² + β x − β/α)
+
+...where β = (α + 1)/α. Thus the remaining oscillations are based in this new polynomial x² + β x − β/α, which has two roots. 
+
+Even more interesting things apparently happen above α > 3.56995, where chaos suddenly appears in the system.
+
+
+    

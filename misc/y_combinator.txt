@@ -148,20 +148,20 @@ code twice, since F does not use its own name. This version avoids naming any
 sort of variable whatsoever, except for single arguments. And each function is 
 exactly one statement long:
 
-	function Y(maker) {
-		return
-			function (f) {
-				return maker(function () {
-					return f(f).apply(this, arguments);
-				});
-			}(
-				function (f) {
-					return maker(function () {
-						return f(f).apply(this, arguments);
-					});
-				}
-			);
-	}
+
+    function Y(maker) {
+        return (function (f) {
+            function recurse() {
+                return f(f).apply(this, arguments);
+            }
+            return maker(recurse);
+        }(function (g) {
+            function recurse2() {
+                return g(g).apply(this, arguments);
+            }
+            return maker(recurse2);
+        }));
+    }
 
 This is the purest form I know of the construct known as the Y combinator. We have defined a recursive function without it making any sort of explicit reference to itself anywhere. 
 

@@ -1,0 +1,125 @@
+# Multiple Particles
+
+Multiple particles present an interesting case in quantum mechanics. We will 
+for the moment just take two, separable into states φ and χ. The whole 
+wavefunction could thus be written:
+
+    |Ψ> = |φ> ⊗ |χ>
+
+...although for most circumstances it helps to build up a "joint" notation 
+where we just write this as:
+
+    |Ψ> = |φχ>
+
+As we've seen in qubits, not all states are separable in this way and in fact 
+two qubits can instead take on a lot of states, with four complex numbers given
+by:
+
+    A |00> + B |01> + C |10> + D |11>
+
+... while separable qubit states are limited to states of the form:
+
+    (a |0> + b |1>) ⊗ (c |0> + d |1>) = ac |00> + ad |01> + bc |10> + bd |11>.
+
+The general state is thus separable if and only if A D = B C:
+
+    if A == 0: 
+        it's trivial; one of the two qubits is |1>.
+    else:
+        let λ² = |A|² / (|A|² + |C|²): 
+            (λ |0> + λ C/A |1>) ⊗ (A/λ |0> + B/λ |1>)
+
+# Indistinguishable Particles in Thermodynamics
+
+What's truly remarkable about nature is that nature cannot tell certain 
+particles apart. The first inclination of this fact comes from the entropy of
+an ideal gas,
+
+    Ω = h⁻³ⁿ ∫d³ⁿx ∫d³ⁿp
+    S = k log Ω
+
+The position integral is held to work out to Vⁿ, while the momentum integral is
+a volume of a 3n-dimensional hypersphere, due to the constraint that the energy
+is less than E, and the energy is quadratic:
+    
+    H = Σᵢ pᵢ²/(2 m)
+    
+The volume of such an n-ball turns out to be:
+    
+    V(n, R) = π^(n/2) / (n/2)! R^n
+
+...with the analytic continuation value that -0.5 ! = √π. Thus, for example,
+the unit 3-ball has volume π^1.5 / (√π * 1/2 * 3/2) = 4π/3. In the case of this
+momentum integral the radius is √(2 m E), so:
+    
+    Ω = V^n (2 π m E / h²)^(3n/2) / (3n/2)!
+
+It is usual to define a thermal wavelength based on this momentum integral:
+    
+    λ = h / √[4 π m E / (3n)]
+    Ω = (V / λ³)^n (3n/2)^(3n/2) / (3n/2)!
+
+Using the approximation log(x!) ≈ x log x − x then gives:
+
+    S = k log Ω = n k log (V / λ³) + 3 n k / 2
+
+Here is the problem: if we were to now put two boxes next to each other, both 
+full of the same gas, both in equilibrium, we could slide a partition between 
+them arbitrarily. There would be no entropic force on the partition, so there
+must be no entropy difference between the two considered separately and the 
+two considered together. But this above formula contains precisely such a 
+difference! If you double n, V, and E, you do not change λ, but you do change
+S:
+    
+    S → 2 n k log (2 V / λ³) + 3 n k = 2 S₀ + n k 2 log 2
+
+So two containers considered separately contain less entropy than 2 containers
+considered together. Indeed, if they had distinguishable gases, those gases 
+would mix. But for indistinguishable particles we must modify this approach. 
+The appropriate response is to divide Ω by n! to get:
+    
+    S = n k log [V / (n λ³)] + 5 n k / 2
+
+Thus the inability to distinguish the particles saves us in this case.
+
+# Indistinguishable particles in quantum mechanics
+
+For the quantum version, you introduce a particle-exchange operator:
+    
+    P |φ χ> = exp(i θ) |χ φ>.
+
+It's clear that any such operator must obey P² = 1: exchange particles twice,
+and you must get exactly back where you started. This means that such an 
+operator can only be of two forms:
+    
+    P |φ χ> = ± |χ φ>
+
+Remarkably, nature has decided to obey this principle very precisely via the
+'spin-statistics theorem', which says that the proper way to interchange two
+integer-spin particles is to always use a + sign for particle exchange, and
+the proper way to interchange two half-integer spin particles is to always use
+a − sign for particle exchange. The first are called 'bosons' and they obey
+'Bose-Einstein statistics', while the second are called 'fermions' and they 
+obey 'Fermi-Dirac statistics'. 
+
+Bosons in particular can form a new state of matter predicted by quantum 
+mechanics where they all occupy the ground state at once. If everything is in 
+the ground state, dissipation must be forbidden by quantum mechanics plus 
+conservation of energy. Such states can be manufactured in the laboratory, and
+are our present explanation for superfluids like helium-4, where a fluid loses
+its viscosity completely. These are called Bose-Einstein condensates.
+
+One of the most startling facts about this is that two fermions can, in 
+principle, pair together and act like a particle with integer spin:
+    
+    Ŝ |↑↓> = Ŝ |↓↑> = 0
+    Ŝ |↑↑> = +1 |↑↑>
+    Ŝ |↓↓> = -1 |↓↓>
+
+This is observed in atoms: Helium-3 can also form a superfluid, but it requires
+a much lower temperature to do so. It is also observed in electrons: the 
+current understanding of the phenomenon of superconductivity involves electrons
+pairing together in "Cooper pairs", with those Cooper pairs able to enter a 
+Bose-Einstein condensate. The exact understanding of how fermions become bosons
+is, as far as I can tell, vague and qualitative: but it tends to happen in 
+situations where the particles are attracted to within a certain limit. 
