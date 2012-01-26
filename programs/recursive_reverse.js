@@ -75,15 +75,14 @@ function bad_reverse2(list) {
         var base;
         if (ls.rest === undefined) {
             base = new Link(ls.first, undefined);
-            return {first: base, last: base};
+            return {links: base, last_link: base};
         } else {
             base = subreverse(ls.rest);
-            base.last.rest = new Link(ls.first, undefined);
-            base.last = base.last.rest;
-            return base;
+            base.last_link.rest = new Link(ls.first, undefined);
+            return {links: base.links, last_link: base.last_link.rest};
         }
     }
-    return subreverse(list).first;
+    return subreverse(list).links;
 }
 bad_reverse2(Link.from_array([7,8,9,10])).to_array();
     // [10, 9, 8, 7]
