@@ -65,7 +65,7 @@ of our Hilbert space. A bra is a complex-conjugated transpose of its ket. Thus:
     <Φ| = a* <u| + b* <v|
 
 ...where * is the complex conjugation operation. The reason for the weird names
-"bra" and "key" is that this is called the "bra-ket" notation, which sounds
+"bra" and "ket" is that this is called the "bra-ket" notation, which sounds
 like "bracket." They can combine together in an *inner product* `<u|v>`, which
 is just some complex number. This inner product works like any multiplication
 that you've ever heard of, distributing across sums in both directions:
