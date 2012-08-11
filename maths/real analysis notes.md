@@ -2,9 +2,9 @@ These are my notes on Real Analysis, in case I ever want to teach a course on
 it.
 
 # The Integers
-I'm going to start off by assuming that you know everything about the integers:
-zero, the negatives, and the positives. It's a lot of axioms when you write it
-down! Let a, b, c be integers, then their algebraic structure looks like this:
+I'm going to start off by assuming that you know a lot about the integers,
+including zero and the negatives. It's a lot of axioms when you write it down!
+Let a, b, c be integers, then their algebraic structure looks like this:
 
     « closure »                    « associative »
         a + b is an integer            (a + b) + c = a + (b + c)
@@ -85,13 +85,25 @@ sets. So for example, `2 ∉ {3, 27, {1, 2}, 5}`. Yes, that is a valid set, but
 
 We can begin to build even larger sets with *set-builder notation*:
 
-    {n ∈ Z: n > 2}.
+    squares = {n * n: n ∈ Z},
+    gt3 = {n ∈ Z: n > 2}.
 
-This is read as "`n` is in **Z** such that `n` is greater than 2." The `:` means
-"such that". Notice that we are now establishing the *variable* `n`. It is
-helpful to *immediately restrict* the variable to be in some known set, because
-if we do not restrict it in certain ways, we may get certain paradoxes due to
-unrestricted quantification. The most famous of these is Russel's paradox:
+This is read as: "`squares` is the set of all `n * n` such that `n` is in **Z**,
+`gt3` is the set of all `n` in **Z** such that `n` is greater than 2."
+
+The first key idea here is that there is a *variable* `n` which is allowed to
+describe the system, and there is a *filtering restriction* created by these
+words "such that", which is embodied by the symbol `:`. The relation "is in"
+could appear on either side or could perhaps not appear at all; we could perhaps
+restrict the set in other ways, like the power set `2ᵂ = {a: a ⊆ W}`. (The
+syntax here is in part because 2^{1, 2, 3} has 2³ elements which can be mapped
+straightforwardly to binary strings `000-111`.) 
+
+It is worth remarking that there must be some sense of restriction when we use
+set-builder syntax, because not every well-formed set-builder expression defines
+a set. The problem is letting "for all" operate boundlessly on the set of all
+sets. If you do this you run into certain paradoxes, most notably Russell's
+paradox:
 
     Let S = {s: s ∉ s}
     Then S ∈ S implies S ∉ S which also implies S ∈ S.
@@ -278,4 +290,178 @@ a function?
 > is also a *total function*, or simply a *function*, if for all `s ∈ S` there 
 > exists some `t ∈ T` such that `(s, t) ∈ f`.
 >
-> If `(x, y) ∈ f`, we often write that `f(x) = y`.
+> If `(x, y) ∈ f`, we often write that `f(x) = y`. `S` is called the *domain* of
+> `f`, `T` is called the *codomain* of `f`, and we often write this information
+> as its *type signature* `S → T` as `f: S → T`.
+
+We often propose functions via some procedure, like `sq(z) = z * z` being the
+square function. These algorithms are well-defined if they are functions.
+(In general when something new is defined over an equivalence class, it is
+crucial that it be *well-defined* --that it does not matter which representative
+for the equivalence class you use to 
+in terms of a concrete representative of that equivalence class, it is
+*well-defined* if the definition )
+In
+this case we do in fact have the square function on Z:
+
+    sq = {(0, 0), (1, 1), (-1, 1), (2, 4), (-2, 4), ...}.
+
+We can now define *binary operations* on a set S as functions `f: S × S → S`,
+and write `a f b = f((a, b))` as notation for them.
+
+We can now say what exactly would be wrong about defining addition as:
+
+    a/b + c/d = (a + c)/(b + d)
+
+which would more formally be the set:
+
+    {(a + c)/(b + d): a/b ∈ Q, c/d ∈ Q}
+    
+While that is a perfectly agreeable definition for `(a, b) + (c, d)`, it is not
+an agreeable procedure for `a/b + c/d` because it is not *well-defined*: the set
+we've just described contains both `((0/1, 1/1), 1/2)` and `((0/2), 1/1), 1/3)`,
+which violates the definition of a function because `(0/1, 1/1) = (0/2, 1/1)`
+while `1/2 ≠ 1/3`.
+
+Of course, with the rationals, we are used to an idea that `1/5 + 2/5 = 3/5` and
+we can say that due to the fact that `a/b = (an)/(bn), n ≠ 0,` we have in any
+case that `a/b + c/d = (ad)/(bd) + (cb)/(bd)` for any well-defined operation
+`+`. So we choose normally that `a/b + c/d = (ad + bc)/(bd)` as a rule.
+
+This certainly defines subsets of `{((a, b), c): a, b, c ∈ Q}`. But is it
+well-defined as a function `Q × Q → Q`? First off, notice that this definition
+clearly commutes: `a/b + c/d = c/d + a/b`. The question is then, if `a/b = e/f`,
+do we have `a/b + c/d = e/f + c/d`? Here is the proof:
+
+    af = be
+    afdd = bedd
+    afdd + bcfd = bedd + bcfd
+    fd(ad + bc) = bd(ed + cf)
+    (ad + bc, bd) ~ (ed + cf, fd)
+    (ad+bc)/(bd) = (ed + cf)/(fd)
+    a/b + c/d = e/f + c/d
+
+So rational addition is indeed a function `Q × Q → Q`. Similarly we have
+rational multiplication, which we of course define as:
+
+    a/b * c/d = (ac)/(bd),
+
+and this is also well-defined. Just like the integers, we have an additive
+identity `0/1` and a multiplicative identity `1/1`, the two operations are
+associative and obey the same distributive law that they did for `Z`, and we
+have additive inverses `(-a)/b`. We actually have something a little more
+special now: the multiplicative inverse `a/b * b/a = 1` for every rational
+except `0/1`. This is, presumably, why we did it: we can now not just multiply
+by three, but also divide by 3, in the sense of multiplying by `1/3`.
+
+These axioms are the **field axioms**, and we say that the rationals, unlike the
+integers, are a *field*.
+
+The last thing that you might care about is *order*. The rationals have an
+ordering, just as the integers did. What is an ordering?
+
+> A relation between S and S is *antisymmetric* if a ≤ b and b ≤ a together
+> implies a = b for all a, b ∈ S; it is *total* if for all a, b ∈ S either a ≤ b
+> or b ≤ a.
+>
+> A *total order* on S is a transitive, antisymmetric, total relation ≤ between
+> S and S. (A *partial order* is transitive, antisymmetric, and reflexive, but
+> need not be total.)
+
+Recall that **Z** was constructed from **N** = {0, 1, 2, ...}, which was then
+embedded within it. On **Z** we had that `m ≤ n if and only if n − m ∈ N`. We
+will have to do something similar here, and define the nonnegative rational
+numbers in terms of the natural numbers **N**, with the order of **Q** based on
+a nonnegative difference.
+
+That is not so hard: `m/n is nonnegative if m * n ∈ N` is, in fact,
+well-defined, and then we can say that:
+
+    m/n ≤ p/q if and only if p/q − m/n is nonnegative.
+
+We can work backwards to recover antisymmetry and totality from those rather
+easily, so I won't bore you with the details. One key fact about these orders
+is that they are *translation-invariant*: that is, for all `r, s, t ∈ Q`, if
+`r ≤ s` then `r + t ≤ s + t`.
+
+It is worth mentioning one other property of rationals, which is a sort of
+counterpart to the unique factorization of the integers: the reduced form. The
+reduced form of `p/q` is `(m, n) = (p/g, q/g)`, where `g = gcd(p, q)` is the
+greatest common divisor of `p` and `q`. We have `m/n = p/q` but `gcd(m, n) = 1`.
+Each rational has a unique reduced form, if we specify that `q > 0` and that the
+reduced form of `0/1` is `(0, 1)`. 
+
+This means that we could actually make the "addition" relation
+`a/b + c/d = (a + c)/(b + d)` well-defined! All we need to say is that for this
+formula we assume that both `a/b` and `c/d` are in reduced form. So you should
+feel this sudden freedom in analysis: we could be choosing all sorts of
+alternate definitions. Similarly we could choose a different order 
+
+# The Need for Reals
+The Greeks knew that there were some proportions of lines which they could draw,
+but which didn't seem to be rational. Today the best-known example is probably
+the ratio of the circumference of a circle to its radius, but it turns out that
+this took a very long time to prove, and Archimedes developed some very good
+rational approximations to it. The one which the Greeks could prove was
+irrational, was the ratio of a square's sides to its diagonal, given by the
+Pythagorean Theorem as:
+
+    x² = 2.
+
+The proof was simple: a proof by contradiction, or "reductio ad absurdum" (a
+"reduction to absurdity"). Suppose for the sake of argument that `x` is in fact
+a rational number `m/n` in the above expression, so that:
+
+    m² = 2 n².
+
+We make one further assumption, which is that the greatest common divisor
+`gcd(m, n) = 1`. We say that "which states that `m/n` is in reduced form." Is
+this always satisfiable? Well, that requires some properties of the integer
+division-with-remainders procedures. We can guarantee that `gcd: N × N → N`, so
+it is a function, because for any `(a, b) ∈ N²` there are only finitely many
+candidates (mutual divisibility is bounded by `min(a, b)`), and at the very
+least, `1` is a common divisor. (Actually, we can compute `gcd(a, b)` quite
+efficiently with an algorithm known as the Euclidean algorithm, but that's not
+strictly necessary.) Once we have `g = gcd(a, b)`, we know that `m = a/g` and
+`n = b/g` are both integers (because `g` is a common divisor) and that
+`gcd(m, n) = 1` (because `g` was the *greatest* common divisor). But we also
+have that `m/n = (gm)/(gn) = a/b`, so they are the same fraction.
+
+So the point of that long paragraph is simply: we can freely choose that m/n is
+in reduced form, and there are no common factors. The rest of the argument is as
+follows:
+
+Since `2 n²` is even, `m²` is even. Odd numbers have odd squares, so this means
+that `m` is even. But let us use this knowledge and say that `m = 2 p`, for some
+integer p. Now our above expression says:
+
+    2² p² = 2 n²,
+    2 p² = n²
+
+from which it follows that `n` is also even and divisible by 2, so let us say
+that `n = 2q` for some integer `q`, and thus both numbers were divisible by 2.
+But `m/n` was in reduced form, so both cannot be divisible by 2, which gives us
+our contradiction.
+
+We conclude that there is *no* rational number which can satisfy this expression
+`x² = 2` without generating a contradiction.
+
+    p² = 2 q²
+
+but this means that `p/q = m/n`. The Greeks understood that this was an
+absurdity.
+
+We need one more assumption: let `g` be the greatest common divisor of `m` and
+`n`, so that `m/g = a` and `n/g = b` are integers and `gcd(a, b) = 1`. This is
+not only always guaranteed, it's also efficient to calculate `g` and perform the
+division (with the Euclidean algorithm). Then I claim `a/b = m/n`.
+
+So we can always assume *without loss of generality* that for any rational
+number `m/n`, that `gcd(m, n) = 1`. There is always *some* representative of
+that rational which has this property, known as the *reduced form*.
+
+So: assume that x² = 2 for x = m/n where gcd(m, n) = 1. Then, because of the
+above argument, m and n are both divisible by 2, which means gcd(m, n) ≥ 2. And
+*that* is a contradiction: you can't have 1 ≥ 2. Thus there is *no* such
+rational, which is what we wanted to prove.
+
