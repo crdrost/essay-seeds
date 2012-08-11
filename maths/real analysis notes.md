@@ -355,7 +355,10 @@ except `0/1`. This is, presumably, why we did it: we can now not just multiply
 by three, but also divide by 3, in the sense of multiplying by `1/3`.
 
 These axioms are the **field axioms**, and we say that the rationals, unlike the
-integers, are a *field*.
+integers, are a *field* `(Q, +, *)`. We specify always with the field the
+operations of "addition" and "multiplication" which obey the field axioms, since
+they might be very different from our conventional arithmetical expectations in
+some branches of mathematics.
 
 The last thing that you might care about is *order*. The rationals have an
 ordering, just as the integers did. What is an ordering?
@@ -381,8 +384,17 @@ well-defined, and then we can say that:
 
 We can work backwards to recover antisymmetry and totality from those rather
 easily, so I won't bore you with the details. One key fact about these orders
-is that they are *translation-invariant*: that is, for all `r, s, t ∈ Q`, if
-`r ≤ s` then `r + t ≤ s + t`.
+is that they play nice with the field operations:
+
+> We say that `(F, +, *, ≤)` is an *ordered field* if and only if all of the
+> following hold:
+> 1. `(F, +, *)` is a field,
+> 2. `≤` is a total order on `F`, 
+> 3. `a ≤ b` implies `a + c ≤ b + c`,
+> 4. `0 ≤ a` and `0 ≤ b` both imply `0 ≤ a * b`.
+
+We have that, with the operations defined above, the rationals form an ordered
+field.
 
 It is worth mentioning one other property of rationals, which is a sort of
 counterpart to the unique factorization of the integers: the reduced form. The
