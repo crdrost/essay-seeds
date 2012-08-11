@@ -4,7 +4,7 @@ it.
 # The Integers
 I'm going to start off by assuming that you know a lot about the integers,
 including zero and the negatives. It's a lot of axioms when you write it down!
-Let a, b, c be integers, then their algebraic structure looks like this:
+Let a, b, c be integers, then their arithmetic structure looks like this:
 
     « closure »                    « associative »
         a + b is an integer            (a + b) + c = a + (b + c)
@@ -395,73 +395,47 @@ This means that we could actually make the "addition" relation
 `a/b + c/d = (a + c)/(b + d)` well-defined! All we need to say is that for this
 formula we assume that both `a/b` and `c/d` are in reduced form. So you should
 feel this sudden freedom in analysis: we could be choosing all sorts of
-alternate definitions. Similarly we could choose a different order 
+alternate definitions. Similarly we could choose a different order relation for
+the rationals, like the lexicographical pair ordering,
+
+    (a, b) ≤ (c, d) if and only if either a < c or both a = c and b ≤ d.
+
+That isn't well-defined on the rationals as it stands, but it would be
+well-defined if you just require that `a/b` and `c/d` are in reduced form; and
+then you would indeed have that `1/3 ≤ 1/4` even though `1/3 = 2/6`. Finding
+some operations which respect this order among the rationals, on the other hand,
+might be a rather tricky challenge.
 
 # The Need for Reals
 The Greeks knew that there were some proportions of lines which they could draw,
 but which didn't seem to be rational. Today the best-known example is probably
 the ratio of the circumference of a circle to its radius, but it turns out that
 this took a very long time to prove, and Archimedes developed some very good
-rational approximations to it. The one which the Greeks could prove was
+rational approximations to it. The one which the Greeks *could* prove was
 irrational, was the ratio of a square's sides to its diagonal, given by the
 Pythagorean Theorem as:
 
     x² = 2.
 
-The proof was simple: a proof by contradiction, or "reductio ad absurdum" (a
-"reduction to absurdity"). Suppose for the sake of argument that `x` is in fact
-a rational number `m/n` in the above expression, so that:
+The proof was simple: a proof by contradiction. Suppose for the sake of argument
+that `x` is in fact a rational number `m/n` in the above expression, so that:
 
     m² = 2 n².
 
-We make one further assumption, which is that the greatest common divisor
-`gcd(m, n) = 1`. We say that "which states that `m/n` is in reduced form." Is
-this always satisfiable? Well, that requires some properties of the integer
-division-with-remainders procedures. We can guarantee that `gcd: N × N → N`, so
-it is a function, because for any `(a, b) ∈ N²` there are only finitely many
-candidates (mutual divisibility is bounded by `min(a, b)`), and at the very
-least, `1` is a common divisor. (Actually, we can compute `gcd(a, b)` quite
-efficiently with an algorithm known as the Euclidean algorithm, but that's not
-strictly necessary.) Once we have `g = gcd(a, b)`, we know that `m = a/g` and
-`n = b/g` are both integers (because `g` is a common divisor) and that
-`gcd(m, n) = 1` (because `g` was the *greatest* common divisor). But we also
-have that `m/n = (gm)/(gn) = a/b`, so they are the same fraction.
+We see from the right-hand side that `m²` is even. Now, an odd number of the
+form `2k + 1` for integer `k` has a square of the form `4 k² + 4 k + 1`, which 
+is also odd. It follows that for `m²` to be even, `m` must itself be even. Let
+us phrase this as `m = 2 k` for integer `k`. Then the above equation says:
 
-So the point of that long paragraph is simply: we can freely choose that m/n is
-in reduced form, and there are no common factors. The rest of the argument is as
-follows:
+    2² k² = 2 n²,
+    2 k² = n².
 
-Since `2 n²` is even, `m²` is even. Odd numbers have odd squares, so this means
-that `m` is even. But let us use this knowledge and say that `m = 2 p`, for some
-integer p. Now our above expression says:
+From this it follows that `n` is also even, and thus that `gcd(m, n) ≥ 2`. But
+this means that a rational solution `x = m/n` can never be in reduced form,
+since reduced form states that `gcd(m, n) = 1`. Since all rationals have a
+reduced form, we've run into a contradiction: whatever `x` is, it is not in Q.
 
-    2² p² = 2 n²,
-    2 p² = n²
-
-from which it follows that `n` is also even and divisible by 2, so let us say
-that `n = 2q` for some integer `q`, and thus both numbers were divisible by 2.
-But `m/n` was in reduced form, so both cannot be divisible by 2, which gives us
-our contradiction.
-
-We conclude that there is *no* rational number which can satisfy this expression
-`x² = 2` without generating a contradiction.
-
-    p² = 2 q²
-
-but this means that `p/q = m/n`. The Greeks understood that this was an
-absurdity.
-
-We need one more assumption: let `g` be the greatest common divisor of `m` and
-`n`, so that `m/g = a` and `n/g = b` are integers and `gcd(a, b) = 1`. This is
-not only always guaranteed, it's also efficient to calculate `g` and perform the
-division (with the Euclidean algorithm). Then I claim `a/b = m/n`.
-
-So we can always assume *without loss of generality* that for any rational
-number `m/n`, that `gcd(m, n) = 1`. There is always *some* representative of
-that rational which has this property, known as the *reduced form*.
-
-So: assume that x² = 2 for x = m/n where gcd(m, n) = 1. Then, because of the
-above argument, m and n are both divisible by 2, which means gcd(m, n) ≥ 2. And
-*that* is a contradiction: you can't have 1 ≥ 2. Thus there is *no* such
-rational, which is what we wanted to prove.
-
+(This last step is often enforced by going back to the beginning of the proof
+and making the arbitrary-seeming-at-the-time restriction that `m/n` be in
+reduced form. When working with an equivalence class we can have a lot of
+freedom to just choose the set member which best suits our proof.)
