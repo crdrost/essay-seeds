@@ -286,13 +286,13 @@ such *operations* we must have a general notion of *functions*. What exactly is
 a function?
 
 > A *partial function* `f` from `S` to `T` is a subset of `S × T` such that both
-> `(s, a) ∈ f` and `(s, b) ∈ f` together imply `a = b`. A partial function `f` 
-> is also a *total function*, or simply a *function*, if for all `s ∈ S` there 
-> exists some `t ∈ T` such that `(s, t) ∈ f`.
+> `(s, a) ∈ f` and `(s, b) ∈ f` together imply `a = b`. If `(x, y) ∈ f`, we
+> often write that `f(x) = y`. `S` is called the *domain* of `f`, `T` is called
+> the *codomain* of `f`, and we often write this information as its *type
+> signature* `S → T` as `f: S → T`.
 >
-> If `(x, y) ∈ f`, we often write that `f(x) = y`. `S` is called the *domain* of
-> `f`, `T` is called the *codomain* of `f`, and we often write this information
-> as its *type signature* `S → T` as `f: S → T`.
+> A partial function `f: S → T` is also a *total function*, or simply a
+> *function*, if for all `s ∈ S` there is some `t ∈ T` such that `(s, t) ∈ f`.
 
 We often propose functions via some procedure, like `sq(z) = z * z` being the
 square function. These algorithms are well-defined if they are functions.
@@ -451,3 +451,273 @@ reduced form, we've run into a contradiction: whatever `x` is, it is not in Q.
 and making the arbitrary-seeming-at-the-time restriction that `m/n` be in
 reduced form. When working with an equivalence class we can have a lot of
 freedom to just choose the set member which best suits our proof.)
+
+Now what's really weird about this is that you can form good *rational
+approximations* to `x`: in other words, you can make `x² − 2` as small as you
+like by choosing `x` properly. So the specific value of `x` is almost like some
+sort of "hole" in the number line that we've already got. We want to be able to
+fill in these gaps "between rationals" -- of course there's always a rational
+`(r + s)/2` between two rationals `r` and `s`, but we need to find something
+which cannot be *assigned* a rational even though it can be *approximated* by
+rationals.
+
+# From Rational Approximations to a Set Description
+This is a key idea from Dedekind. What if we start to think about the set of
+all rationals `{r ∈ Q: either r ≤ 0 or r² ≤ 2}`? This is in some sense the
+entire rational number line up to this mysterious `x`, but not including it. We
+have thus partitioned Q into a "lesser" and "greater" section, and this set
+identifies a point "just between" them.
+
+This set is peculiar because it is *bounded* (at least, from above) but it has
+no *maximum* (at least, not among the rationals). These words come up frequently
+enough that we should say what they mean:
+
+> Suppose `≤` is a total order on `S` and `A ⊆ S`, then we call `b ∈ S` an
+> *upper bound* on `A` when for all `a ∈ A` we have `a ≤ b`. We call `b ∈ S` a
+> *lower bound* on `A` when for all `a ∈ A` we have `b ≤ a`. Then we say that
+> `A` is *bounded above* if there exists an upper bound on `A`, or *bounded 
+> below* if there exists a lower bound on `A`.
+>
+> The *supremum* of `A`,  denoted `sup A`, is an upper bound `b` such that for
+> any `c ∈ S` such that `c < b`, `c` is not an upper bound on `A`. In this
+> sense the supremum is the *least* upper bound. If `sup A ∈ A` we call it the
+> *maximum* of A.
+
+For finite sets, and sets which have a "clear boundary" in some sense, the
+supremum corresponds nicely to what we think of as the "maximum". If we ask for
+`sup {r ∈ Q: r² ≤ 4}` we can nicely answer that this is `2`. On the other hand,
+the supremum can be used for sets which *don't* have a clear boundary, and can
+then "escape the set" a little, so that `sup {r ∈ Q: r² < 4}}` is also `2` even
+though this number is not in that set. We will call a supremum which 
+
+What about `sup Q`? We say informally that since `Q` is not bounded above in the
+first place that `sup Q = ∞`, which is just a symbolic notation to indicate the
+reason why we lack a supremum. This is not a "real" problem, in the sense that
+it doesn't threaten our notion of *continuity*. Rather, the fact that
+`sup {r ∈ Q: r² ≤ 2} ∉ Q` is a very strong problem for our notion of continuity.
+Fixing this problem leads us straight to the real numbers **R**: the
+*completeness axiom* on **R** states that every non-empty `S ⊆ R` which is
+bounded above has a supremum in **R**.
+
+Now how do we construct the reals? We do the same as we did for rationals: we
+construct reals as sets! Sets of what? This time, sets of rationals! Which sets?
+Somewhat ironically, ones which do not have maximums:
+
+> A *real number* `r` is a subset of **Q** for which all of the following hold:
+> 1. `∅ ≠ r ≠ Q`, « not infinity »
+> 2. for all `x ∈ r` and `y ∈ Q`, `y ≤ x` implies `y ∈ r`, « closed downwards »
+> 3. for all `x ∈ r` there is a `y ∈ r` such that `x < y`. « no maximum »
+> The set of all real numbers is denoted **R**.
+
+This construction of **R** is known as a construction by "Dedekind cuts." The
+condition of *no maximum* is, if you like, the driving force behind the fact
+that `0.999... = 1.0`. The condition that real numbers be *closed downwards*
+allows us to immediately define a total order: for all `r, s ∈ R` we say that
+`r ≤ s` when `r ⊆ s`. The fact that we ignore `± ∞` makes the arithmetic a bit
+simpler.
+
+# Arithmetic on Dedekind Cuts
+It is already pretty amazing that we can easily state the order in this
+construction of the reals: that `r ≤ s` when `r ⊆ s`. What's even more
+surprising is how simple addition is.
+
+What is addition? Simple: `r + s = {a + b: both a ∈ r and b ∈ s}`. Remember, we
+can include duplicate elements in a set definition, so the fact that this set
+definition contains infinitely many elements is not troubling. And what is the
+additive identity? Simple: `zero = {q ∈ Q: q < 0}`.
+
+Well, stating these things is simple, but *checking* them is not so simple.
+There are a lot of axioms to check! Is `0` a real number? Is `r + s`? Do we have
+that `r + s = s + r`? I will take these in turn.
+
+Since `r` and `s` are both not **Q** there exists, for each, a rational which
+they do not contain, call these `a` and `b`. These are upper bounds on those
+sets because `r` and `s` are closed downwards, and `a + b` becomes therefore an
+upper bound on `r + s`, so `r + s` is not **Q**. It is also not empty. So we
+never have `r + s` becoming infinity. Now is it still closed downwards? Let us
+go through the above:
+
+    assuming: x ∈ r + s, y ∈ Q, y ≤ x.
+      x = a + b such that both a ∈ r and b ∈ s, by definition of +.
+      y ≤ a + b, applying the above assumption.
+      y − b ≤ a, thus (y − b) ∈ r, because r is closed downwards)
+      (y − b) + b ∈ r + s, by definition of r + s
+      y ∈ r + s
+
+So yes, we have that for all `x ∈ r + s` and `y ∈ Q`, `y ≤ x` implies
+`y ∈ r + s` and `r + s` is closed downwards. Finally, did `r + s` gain a
+maximum? No: for any element `m ∈ r + s` there was an `a ∈ r` and `b ∈ s` such
+that `a + b = m`. But there is also some `c ∈ r : a < c`, because `r` does not
+have a maximum, thus we have `m < (c + b) ∈ r + s`, and there is no maximum in
+`r + s` either. Therefore: `r + s ∈ R`. Whew!
+
+The commutativity and associativity of `+` is pretty obvious in the definition.
+That `r + zero = r` is not: every element in `r + zero` has the form `a + b`
+for `b < 0`, implying `a + b < a`, so `a + b` is in `r` because `r` is closed
+downwards: thus `r + zero ⊆ r`. And if `a ∈ r` there is some `b ∈ r` such that
+`a < b` (no maximum), and then we have `a − b < 0` which implies that
+`a − b ∈ zero`. But `b ∈ r`, thus `b + (a − b) ∈ r + zero` and `r ⊆ r + zero`.
+So indeed, `r = r + zero`.
+
+All of that, while tedious, is pretty straightforward. Let me show you how the
+Dedekind cuts suddenly spiral into a tremendous degree of complexity. It comes
+when we start to define multiplication and the additive inverses. Let me first
+define:
+
+    flip(x) = {y + z: y, z ∈ Q and z > 0 and y ∉ x}
+    
+This could be called the "open complement" of `x`; what I'm really trying to do
+here is to form `Q − x − {sup x}`, which is why this parameter `z > 0` appears.
+Of course, `sup x` might not exist as a rational, but if it does exist, I'd like
+to remove it from the set. Now I can define:
+
+    -r = flip({-x: x ∈ r})
+
+So the problem is that `{-x: x ∈ r}` is closed *upwards* and the problem with
+`Q − {-x: x ∈ r}` is that if `r` was one of those real numbers which we will
+identify with a rational `q`, then this set contains `q` as a maximal element.
+So in the above definition we have corrected for this, and the above definition
+is closed downward, has no maximum, and is neither empty nor **Q**, and we
+therefore have generated a real number.
+
+It can now be shown that `r + -r = zero` because the definitions above yield:
+
+    r + -r = {x − (y + z): x ∈ r and y, z ∈ Q and z > 0 and y ∉ r}
+
+Since `y ∈ Q − r` and `r` is closed downwards and `x ∈ r`, we know `y > x`. Now
+if there were a rational `k ≥ 0` which fit this description then we'd have
+`0 ≤ x − (y + z)` and hence `y + z ≤ x` for some `x`, `y`, and `z`. But we know
+`x < y` and `0 < z`, so we know that `x < y + z`, yielding the contradiction. So
+we know that `r + -r ⊆ zero`. The converse is harder to prove: the idea is that
+since `Q − r` gets arbitrarily close to `r`, we can make `y − x` arbitrarily
+small, so that any point in `zero` is in `r + -r`.
+
+The same trouble occurs for multiplication, so we start with a partial function
+`prod: R × R → R`, defined as:
+
+    prod = {((r, s), {x * y: x ∈ r, y ∈ s}): r, s ∈ R and 0 ≤ r and 0 ≤ s}.
+
+This is a partial function; it is not defined for negative reals. But it does
+indeed map pairs of positive reals to positive reals, quite the same as how the
+proof that `+` takes real pairs to reals was performed. Now we just have to
+weave around the sign flips associated with negative numbers, so we define `*`
+for all real numbers piecewise as:
+
+    r * s = prod(r, s) if 0 ≤ r and 0 ≤ s
+    r * s = -((-r) * s), if r < 0
+    r * s = -(r * (-s)), if s < 0
+
+I am being a little sloppy by recursively defining this in terms of itself, I
+admit. I am doing this because we also have a multiplicative identity
+`one = {q ∈ Q: q < 1}`, and we must define a multiplicative inverse piecewise:
+
+    r⁻¹ = flip({x⁻¹ : x ∈ r, 0 < x}) if zero < r ≤ one
+    r⁻¹ = zero ∪ {0/0} ∪ {x⁻¹ : x ∈ flip(r)} if one < r
+    r⁻¹ = -(-r)⁻¹ if r < zero.
+
+Again, one merely needs to confirm that in the first two cases we get the right
+closed-downwards no-maximum set of rationals, and then the negative case follows
+from that. And then there is a flurry of checking to make sure that the field
+axioms on these new definitions are all valid, that they respect the notion of
+order that we started with, and so forth.
+
+# From the Set Description Back to Rational Approximations
+
+After all that tedium we are prepared to say:
+
+> For all `q ∈ Q`, there is an *embedding* of `q` in **R** as `{x ∈ Q: x < q}`,
+> so that the operations `+`, `-`, `*` and `⁻¹` and the relation `≤` acting on 
+> these real representations of **Q** are algebraically identical to the
+> similarly-named operations defined over **Q**.
+
+But if we're going to be mathematical about this, we should make sure that the
+converse is not true -- that the real numbers, as we've defined them, really
+are *different* from the rationals! To that effect, I observe:
+
+> Let `S` be any nonempty set of real numbers, then `m = {q: q ∈ r and r ∈ S}`
+> is a real number if `S` is bounded above. Furthermore, `m = sup S`.
+
+How do we see this? The above `m` is neither ∅ nor **Q**, and for each `q` there
+is some `r ∈ S` to which it belonged, so it automatically contains some
+rationals larger than `q` and all rationals smaller than `q`. So the
+construction above *exists as a real number*; it satisfies all of the real
+number criteria.
+
+Why is that real number the supremum? Well, it is an upper bound because
+`r ⊆ {q: q ∈ r and r ∈ S}`, which means `r ≤ m for all r ∈ S`, given how we've
+defined `≤`. It is the *smallest* such upper bound because imagine if
+`t ⊆ m` were also an upper bound for `m ≠ t`: then there would be some rational
+in the set `m − t` where `−` is the set difference. This element again must be
+in some `r ∈ S`, otherwise it wouldn't be in `m`. But if it's in some `r ∈ S`
+then we `t < r` and `t` was not really an upper bound at all. Thus `m` is the
+smallest upper bound, which makes it the supremum.
+
+This is a property which the rationals do not share, so the reals really are
+distinct from the rationals: they enjoy a *completeness axiom*: every non-empty
+`S ⊆ R` which is bounded above has a supremum in **R**. The completeness axiom
+allows us to construct decimals. Consider first the ratio of successive
+Fibonaccis:
+
+    {0/1, 1/2, 3/5, 8/13, 21/34, ...}
+
+All of those numbers are real numbers by virtue of the embedding of **Q** in
+**R**. Furthermore, that is an increasing sequence which is in fact bounded from
+above and therefore has a supremum. If you are curious, that number is
+(√(5) − 1)/2. Now imagine that I try to form the same number by a decimal
+expansion:
+
+    0.618033988749894...
+
+This decimal expansion is nothing more than a sequence of rationals
+
+    {0, 6/10, 61/100, 618/1000, 6180/10000, ...},
+    
+and we have merely found a convenient and non-repetitive way of writing it. By
+taking the supremum of this infinite decimal we do in fact get "all the way
+there" to (√(5) − 1)/2, because a supremum does *not* have to be in the set
+which it maximizes.
+
+This is hinting at an alternate construction of the real numbers with what are
+called Cauchy sequences: sequences of rationals which "get closer" to each other
+and therefore to a final result. The definitions that we've been building amount
+in this picture to extending the rational arithmetic to all things which can be
+*approximated by rationals* directly. 
+
+It turns out that there is always an isomorphism between any other ordered field
+which obeys the completeness axiom and **R** -- to say that there is an
+"isomorphism between" two fields just means that there is an embedding of each
+in the other, so that their field operations are fundamentally "the same" in
+some sense. So **R** really is *the* ordered continuum of numbers.
+
+# Properties of the Reals
+
+Often in analysis you have access to some simple statement which can be reused
+over and over to get correct proofs. So for example we have that the rationals
+are *Archimedean*: a word which is a fancy way of saying "none of the
+reals are infinite with respect to each other". This can be formally stated as:
+if `0 < x < y` then there is some natural number `n` such that `n * x > y`. How
+do we do this for the rationals? Write `x = p/q`, `y = a/b`, and then you have
+that actually `x * q/p * a/b = y`, so that `x q a = y p b ≥ y`. We can
+thus construct `n = q a + 1` such that `n * x > y`. But how would you do this
+with the *reals*, where you don't have these sorts of extractable integers?
+
+We would probably construct the least such `n` with the "floor function"
+`floor(r) = sup {z ∈ Z: z ≤ r}`, the largest integer less than or equal to the
+given real number. At this stage we won't even bother making the distinction of
+converting `z ≤ r` to `{q ∈ Q: q < z/1} ≤ r`, it's just assumed that you know
+about the embedding which connects them both. How do we know that `floor(r)` is
+defined for all `r`? Because we've got a bounded supremum (which is in fact a
+maximum) and therefore `floor: R → Z`, with `floor(r) ≤ r`. As you probably
+already know, we then have `n = floor(y/x) + 1 > y/x`, thus `n * x > y`. And it
+comes from this fact that a bounded set has a supremum. 
+
+Since there is some `n` such that `1 < n * r` we have that `1/n < r` for some
+`n`. This means that if `x, y ∈ R`, and `x < y`, there is some `q ∈ Q` for which
+`x < q < y`. We have some `n` such that `1/n < y − x` Now consider
+`sup {m: m ∈ N, m/n < x}`. We have that `m/n ≤ x < m/n + 1/n`, and so
+`m/n + 1/n ≤ x + 1/n < y`. It follows that `x < m/n + 1/n < y`.
+
+This will surprise you later in the course because it turns out that there are
+many *more* reals than there are rationals, and yet even though one infinity is
+absurdly larger than the other, there are still "enough rationals" to make this
+statement true. 
