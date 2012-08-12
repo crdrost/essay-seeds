@@ -65,7 +65,7 @@ is usually written as follows:
 Here `A` is the set, and `x` is some arbitrary object. There is a very important
 set which contains no objects at all, called empty set `{}` (also denoted as
 `∅`). As for other sets, we have already met the set of integers, which have an
-official name: **Z**. Certain finite sets can be listed directly, like
+official name: ℤ. Certain finite sets can be listed directly, like
 `{1, 2, 3}`, in curly braces. It is worth re-emphasizing that order does not
 matter and repetition does not matter, so that `{1, 2, 3} = {3, 1, 1, 2}`. We
 see that, like ordered pairs and integers, there is a set equality relation.
@@ -85,11 +85,11 @@ sets. So for example, `2 ∉ {3, 27, {1, 2}, 5}`. Yes, that is a valid set, but
 
 We can begin to build even larger sets with *set-builder notation*:
 
-    squares = {n * n: n ∈ Z},
-    gt3 = {n ∈ Z: n > 2}.
+    squares = {n * n: n ∈ ℤ},
+    gt3 = {n ∈ ℤ: n > 2}.
 
-This is read as: "`squares` is the set of all `n * n` such that `n` is in **Z**,
-`gt3` is the set of all `n` in **Z** such that `n` is greater than 2."
+This is read as: "`squares` is the set of all `n * n` such that `n` is in ℤ,
+`gt3` is the set of all `n` in ℤ such that `n` is greater than 2."
 
 The first key idea here is that there is a *variable* `n` which is allowed to
 describe the system, and there is a *filtering restriction* created by these
@@ -196,13 +196,13 @@ anything, we know that `(2, 3) ≠ (4, 6)`.
 
 Surely we mean that, in some sense, `(2, 3)` and `(4, 6)` are "equivalent". You
 might even see the sense directly: the idea is that `(2 n, 3 n)` are all
-"equivalent" to `(2, 3)` in the rational sense, for all `n ∈ Z − {0}`.
+"equivalent" to `(2, 3)` in the rational sense, for all `n ∈ ℤ − {0}`.
 
 So we have these murky ideas floating around, but we want to make them concrete.
 The first thing to think about is that `2/3 = 4/6` could, in set theory, mean
 that both the thing on the left and the thing on the right are the same set.
 
-"Aha," you say, "I shall construct 2/3 = {(2 n, 3 n): n ∈ Z − {0}}." That is a
+"Aha," you say, "I shall construct 2/3 = {(2 n, 3 n): n ∈ ℤ − {0}}." That is a
 good start, but when you follow through for `4/6`, you'll find that the set for
 `4/6` does not contain `(2, 3)` and is therefore not equal to the above set! The
 idea is right -- I will even say that the above construction of `2/3` is right
@@ -213,7 +213,7 @@ two rationals are the same number is to say that they are the same set. How will
 we formalize that? That is a trickier question, and it requires defining a
 relation. What is a relation?
 
-> Let R be any subset of A × B. Then a R b means that (a, b) ∈ R. We say that R
+> Let R be any subset of A × B. Then a R b means that (a, b) ∈ ℝ. We say that R
 > is a "binary relation" between A and B, and that a is related to b through R.
 
 Well, that was easy, but we care about one subset of relations more importantly:
@@ -246,13 +246,13 @@ and then a rational can be the *equivalence class* of a pair of numbers.
 
 Formally:
 
-> Let `P = Z × (Z − {0})` be the set of pairs of integers for which the second
+> Let `P = ℤ × (ℤ − {0})` be the set of pairs of integers for which the second
 > is nonzero. Define `~ ⊆ P × P` to be the relation among such pairs:
 > 
 >     (a, b) ~ (c, d) if and only if ad = bc.
 >
 > Then `~` is an equivalence relation on `P`. Let `a/b` be the equivalence class
-> of `(a, b)` under `~`, then **Q** = `{a/b: (a, b) ∈ P}` is the set of 
+> of `(a, b)` under `~`, then ℚ = `{a/b: (a, b) ∈ P}` is the set of
 > *rational numbers*.
 
 We first off notice that it is an equivalence relation: It is reflexive because
@@ -269,15 +269,15 @@ So we have an equivalence relation, and we can easily form equivalence classes
 `a/b` such that `2/3 = 4/6` simply because `(2, 3) ~ (4, 6)`. 
 
 In an earlier digression I mentioned that one could generate the whole numbers
-`N = {0, 1, 2, ...}` from set theory directly, but that one then needs to
-construct the negatives to create **Z** from **N**. One way to construct **Z**
-from **N** follows the exact same description: let
+`ℕ = {0, 1, 2, ...}` from set theory directly, but that one then needs to
+construct the negatives to create ℤ from ℕ. One way to construct ℤ
+from ℕ follows the exact same description: let
 `(a, b) ≡ (c, d) if and only if a + d = b + c`, then each positive integer `n`
 is the equivalence class of `(n, 0)`, while each negative integer `-n` is the
-equivalence class of `(0, n)`, and there are no other integers in **Z**.
+equivalence class of `(0, n)`, and there are no other integers in ℤ.
 
-So we observe that we can *embed* **N** in **Z** and similarly we can embed
-**Z** in **Q** by taking z → z/1.
+So we observe that we can *embed* ℕ in ℤ and similarly we can embed
+ℤ in ℚ by taking z → z/1.
 
 # Operations on the Rationals
 You now have seen how to *construct* a set of numbers? Well, not quite! We still
@@ -294,20 +294,8 @@ a function?
 > A partial function `f: S → T` is also a *total function*, or simply a
 > *function*, if for all `s ∈ S` there is some `t ∈ T` such that `(s, t) ∈ f`.
 
-We often propose functions via some procedure, like `sq(z) = z * z` being the
-square function. These algorithms are well-defined if they are functions.
-(In general when something new is defined over an equivalence class, it is
-crucial that it be *well-defined* --that it does not matter which representative
-for the equivalence class you use to 
-in terms of a concrete representative of that equivalence class, it is
-*well-defined* if the definition )
-In
-this case we do in fact have the square function on Z:
-
-    sq = {(0, 0), (1, 1), (-1, 1), (2, 4), (-2, 4), ...}.
-
 We can now define *binary operations* on a set S as functions `f: S × S → S`,
-and write `a f b = f((a, b))` as notation for them.
+and write `a f b = f(a, b)` as notation for them.
 
 We can now say what exactly would be wrong about defining addition as:
 
@@ -315,21 +303,22 @@ We can now say what exactly would be wrong about defining addition as:
 
 which would more formally be the set:
 
-    {(a + c)/(b + d): a/b ∈ Q, c/d ∈ Q}
+    {(a + c)/(b + d): a/b ∈ ℚ, c/d ∈ ℚ}
     
 While that is a perfectly agreeable definition for `(a, b) + (c, d)`, it is not
 an agreeable procedure for `a/b + c/d` because it is not *well-defined*: the set
 we've just described contains both `((0/1, 1/1), 1/2)` and `((0/2), 1/1), 1/3)`,
 which violates the definition of a function because `(0/1, 1/1) = (0/2, 1/1)`
-while `1/2 ≠ 1/3`.
+while `1/2 ≠ 1/3`. A function is *not well-defined* when it is given in the form
+of a procedure which may give different answers for the same input.
 
 Of course, with the rationals, we are used to an idea that `1/5 + 2/5 = 3/5` and
 we can say that due to the fact that `a/b = (an)/(bn), n ≠ 0,` we have in any
 case that `a/b + c/d = (ad)/(bd) + (cb)/(bd)` for any well-defined operation
 `+`. So we choose normally that `a/b + c/d = (ad + bc)/(bd)` as a rule.
 
-This certainly defines subsets of `{((a, b), c): a, b, c ∈ Q}`. But is it
-well-defined as a function `Q × Q → Q`? First off, notice that this definition
+This certainly defines subsets of `{((a, b), c): a, b, c ∈ ℚ}`. But is it
+well-defined as a function `ℚ × ℚ → ℚ`? First off, notice that this definition
 clearly commutes: `a/b + c/d = c/d + a/b`. The question is then, if `a/b = e/f`,
 do we have `a/b + c/d = e/f + c/d`? Here is the proof:
 
@@ -341,7 +330,7 @@ do we have `a/b + c/d = e/f + c/d`? Here is the proof:
     (ad+bc)/(bd) = (ed + cf)/(fd)
     a/b + c/d = e/f + c/d
 
-So rational addition is indeed a function `Q × Q → Q`. Similarly we have
+So rational addition is indeed a function `ℚ × ℚ → ℚ`. Similarly we have
 rational multiplication, which we of course define as:
 
     a/b * c/d = (ac)/(bd),
@@ -352,13 +341,15 @@ associative and obey the same distributive law that they did for `Z`, and we
 have additive inverses `(-a)/b`. We actually have something a little more
 special now: the multiplicative inverse `a/b * b/a = 1` for every rational
 except `0/1`. This is, presumably, why we did it: we can now not just multiply
-by three, but also divide by 3, in the sense of multiplying by `1/3`.
+by three, but also divide by 3, in the sense of multiplying by `1/3`. 
 
 These axioms are the **field axioms**, and we say that the rationals, unlike the
-integers, are a *field* `(Q, +, *)`. We specify always with the field the
-operations of "addition" and "multiplication" which obey the field axioms, since
-they might be very different from our conventional arithmetical expectations in
-some branches of mathematics.
+integers, are a *field*, sometimes written `(ℚ, +, *)`. It is important to be
+a little careful: there are actually a lot of things to specify with a field,
+and a more proper description would probably be `(ℚ, (+, 0, -), (*, 1, ⁻¹))`.
+In practice people just assume that the knowledge about the identity and the
+inverse "come along with" the operations `+` and `*`, because those two are, we
+would say, *group operations*.
 
 The last thing that you might care about is *order*. The rationals have an
 ordering, just as the integers did. What is an ordering?
@@ -371,13 +362,13 @@ ordering, just as the integers did. What is an ordering?
 > S and S. (A *partial order* is transitive, antisymmetric, and reflexive, but
 > need not be total.)
 
-Recall that **Z** was constructed from **N** = {0, 1, 2, ...}, which was then
-embedded within it. On **Z** we had that `m ≤ n if and only if n − m ∈ N`. We
+Recall that ℤ was constructed from ℕ = {0, 1, 2, ...}, which was then
+embedded within it. On ℤ we had that `m ≤ n if and only if n − m ∈ ℕ`. We
 will have to do something similar here, and define the nonnegative rational
-numbers in terms of the natural numbers **N**, with the order of **Q** based on
+numbers in terms of the natural numbers ℕ, with the order of ℚ based on
 a nonnegative difference.
 
-That is not so hard: `m/n is nonnegative if m * n ∈ N` is, in fact,
+That is not so hard: `m/n is nonnegative if m * n ∈ ℕ` is, in fact,
 well-defined, and then we can say that:
 
     m/n ≤ p/q if and only if p/q − m/n is nonnegative.
@@ -445,7 +436,7 @@ us phrase this as `m = 2 k` for integer `k`. Then the above equation says:
 From this it follows that `n` is also even, and thus that `gcd(m, n) ≥ 2`. But
 this means that a rational solution `x = m/n` can never be in reduced form,
 since reduced form states that `gcd(m, n) = 1`. Since all rationals have a
-reduced form, we've run into a contradiction: whatever `x` is, it is not in Q.
+reduced form, we've run into a contradiction: whatever `x` is, it is not in ℚ.
 
 (This last step is often enforced by going back to the beginning of the proof
 and making the arbitrary-seeming-at-the-time restriction that `m/n` be in
@@ -463,9 +454,9 @@ rationals.
 
 # From Rational Approximations to a Set Description
 This is a key idea from Dedekind. What if we start to think about the set of
-all rationals `{r ∈ Q: either r ≤ 0 or r² ≤ 2}`? This is in some sense the
+all rationals `{r ∈ ℚ: either r ≤ 0 or r² ≤ 2}`? This is in some sense the
 entire rational number line up to this mysterious `x`, but not including it. We
-have thus partitioned Q into a "lesser" and "greater" section, and this set
+have thus partitioned ℚ into a "lesser" and "greater" section, and this set
 identifies a point "just between" them.
 
 This set is peculiar because it is *bounded* (at least, from above) but it has
@@ -485,34 +476,34 @@ enough that we should say what they mean:
 
 For finite sets, and sets which have a "clear boundary" in some sense, the
 supremum corresponds nicely to what we think of as the "maximum". If we ask for
-`sup {r ∈ Q: r² ≤ 4}` we can nicely answer that this is `2`. On the other hand,
+`sup {r ∈ ℚ: r² ≤ 4}` we can nicely answer that this is `2`. On the other hand,
 the supremum can be used for sets which *don't* have a clear boundary, and can
-then "escape the set" a little, so that `sup {r ∈ Q: r² < 4}}` is also `2` even
+then "escape the set" a little, so that `sup {r ∈ ℚ: r² < 4}}` is also `2` even
 though this number is not in that set. We will call a supremum which 
 
-What about `sup Q`? We say informally that since `Q` is not bounded above in the
-first place that `sup Q = ∞`, which is just a symbolic notation to indicate the
+What about `sup ℚ`? We say informally that since ℚ is not bounded above in the
+first place that `sup ℚ = ∞`, which is just a symbolic notation to indicate the
 reason why we lack a supremum. This is not a "real" problem, in the sense that
 it doesn't threaten our notion of *continuity*. Rather, the fact that
-`sup {r ∈ Q: r² ≤ 2} ∉ Q` is a very strong problem for our notion of continuity.
-Fixing this problem leads us straight to the real numbers **R**: the
-*completeness axiom* on **R** states that every non-empty `S ⊆ R` which is
-bounded above has a supremum in **R**.
+`sup {r ∈ ℚ: r² ≤ 2} ∉ ℚ` is a very strong problem for our notion of continuity.
+Fixing this problem leads us straight to the real numbers ℝ: the
+*completeness axiom* on ℝ states that every non-empty `S ⊆ ℝ` which is
+bounded above has a supremum in ℝ.
 
 Now how do we construct the reals? We do the same as we did for rationals: we
 construct reals as sets! Sets of what? This time, sets of rationals! Which sets?
 Somewhat ironically, ones which do not have maximums:
 
-> A *real number* `r` is a subset of **Q** for which all of the following hold:
-> 1. `∅ ≠ r ≠ Q`, « not infinity »
-> 2. for all `x ∈ r` and `y ∈ Q`, `y ≤ x` implies `y ∈ r`, « closed downwards »
+> A *real number* `r` is a subset of ℚ for which all of the following hold:
+> 1. `∅ ≠ r ≠ ℚ`, « not infinity »
+> 2. for all `x ∈ r` and `y ∈ ℚ`, `y ≤ x` implies `y ∈ r`, « closed downwards »
 > 3. for all `x ∈ r` there is a `y ∈ r` such that `x < y`. « no maximum »
-> The set of all real numbers is denoted **R**.
+> The set of all real numbers is denoted ℝ.
 
-This construction of **R** is known as a construction by "Dedekind cuts." The
+This construction of ℝ is known as a construction by "Dedekind cuts." The
 condition of *no maximum* is, if you like, the driving force behind the fact
 that `0.999... = 1.0`. The condition that real numbers be *closed downwards*
-allows us to immediately define a total order: for all `r, s ∈ R` we say that
+allows us to immediately define a total order: for all `r, s ∈ ℝ` we say that
 `r ≤ s` when `r ⊆ s`. The fact that we ignore `± ∞` makes the arithmetic a bit
 simpler.
 
@@ -524,32 +515,32 @@ surprising is how simple addition is.
 What is addition? Simple: `r + s = {a + b: both a ∈ r and b ∈ s}`. Remember, we
 can include duplicate elements in a set definition, so the fact that this set
 definition contains infinitely many elements is not troubling. And what is the
-additive identity? Simple: `zero = {q ∈ Q: q < 0}`.
+additive identity? Simple: `zero = {q ∈ ℚ: q < 0}`.
 
 Well, stating these things is simple, but *checking* them is not so simple.
 There are a lot of axioms to check! Is `0` a real number? Is `r + s`? Do we have
 that `r + s = s + r`? I will take these in turn.
 
-Since `r` and `s` are both not **Q** there exists, for each, a rational which
+Since `r` and `s` are both not ℚ there exists, for each, a rational which
 they do not contain, call these `a` and `b`. These are upper bounds on those
 sets because `r` and `s` are closed downwards, and `a + b` becomes therefore an
-upper bound on `r + s`, so `r + s` is not **Q**. It is also not empty. So we
+upper bound on `r + s`, so `r + s` is not ℚ. It is also not empty. So we
 never have `r + s` becoming infinity. Now is it still closed downwards? Let us
 go through the above:
 
-    assuming: x ∈ r + s, y ∈ Q, y ≤ x.
+    assuming: x ∈ r + s, y ∈ ℚ, y ≤ x.
       x = a + b such that both a ∈ r and b ∈ s, by definition of +.
       y ≤ a + b, applying the above assumption.
       y − b ≤ a, thus (y − b) ∈ r, because r is closed downwards)
       (y − b) + b ∈ r + s, by definition of r + s
       y ∈ r + s
 
-So yes, we have that for all `x ∈ r + s` and `y ∈ Q`, `y ≤ x` implies
+So yes, we have that for all `x ∈ r + s` and `y ∈ ℚ`, `y ≤ x` implies
 `y ∈ r + s` and `r + s` is closed downwards. Finally, did `r + s` gain a
 maximum? No: for any element `m ∈ r + s` there was an `a ∈ r` and `b ∈ s` such
 that `a + b = m`. But there is also some `c ∈ r : a < c`, because `r` does not
 have a maximum, thus we have `m < (c + b) ∈ r + s`, and there is no maximum in
-`r + s` either. Therefore: `r + s ∈ R`. Whew!
+`r + s` either. Therefore: `r + s ∈ ℝ`. Whew!
 
 The commutativity and associativity of `+` is pretty obvious in the definition.
 That `r + zero = r` is not: every element in `r + zero` has the form `a + b`
@@ -564,38 +555,38 @@ Dedekind cuts suddenly spiral into a tremendous degree of complexity. It comes
 when we start to define multiplication and the additive inverses. Let me first
 define:
 
-    flip(x) = {y + z: y, z ∈ Q and z > 0 and y ∉ x}
+    flip(x) = {y + z: y, z ∈ ℚ and z > 0 and y ∉ x}
     
 This could be called the "open complement" of `x`; what I'm really trying to do
-here is to form `Q − x − {sup x}`, which is why this parameter `z > 0` appears.
+here is to form `ℚ − x − {sup x}`, which is why this parameter `z > 0` appears.
 Of course, `sup x` might not exist as a rational, but if it does exist, I'd like
 to remove it from the set. Now I can define:
 
     -r = flip({-x: x ∈ r})
 
 So the problem is that `{-x: x ∈ r}` is closed *upwards* and the problem with
-`Q − {-x: x ∈ r}` is that if `r` was one of those real numbers which we will
+`ℚ − {-x: x ∈ r}` is that if `r` was one of those real numbers which we will
 identify with a rational `q`, then this set contains `q` as a maximal element.
 So in the above definition we have corrected for this, and the above definition
-is closed downward, has no maximum, and is neither empty nor **Q**, and we
+is closed downward, has no maximum, and is neither empty nor ℚ, and we
 therefore have generated a real number.
 
 It can now be shown that `r + -r = zero` because the definitions above yield:
 
-    r + -r = {x − (y + z): x ∈ r and y, z ∈ Q and z > 0 and y ∉ r}
+    r + -r = {x − (y + z): x ∈ r and y, z ∈ ℚ and z > 0 and y ∉ r}
 
-Since `y ∈ Q − r` and `r` is closed downwards and `x ∈ r`, we know `y > x`. Now
+Since `y ∈ ℚ − r` and `r` is closed downwards and `x ∈ r`, we know `y > x`. Now
 if there were a rational `k ≥ 0` which fit this description then we'd have
 `0 ≤ x − (y + z)` and hence `y + z ≤ x` for some `x`, `y`, and `z`. But we know
 `x < y` and `0 < z`, so we know that `x < y + z`, yielding the contradiction. So
 we know that `r + -r ⊆ zero`. The converse is harder to prove: the idea is that
-since `Q − r` gets arbitrarily close to `r`, we can make `y − x` arbitrarily
+since `ℚ − r` gets arbitrarily close to `r`, we can make `y − x` arbitrarily
 small, so that any point in `zero` is in `r + -r`.
 
 The same trouble occurs for multiplication, so we start with a partial function
-`prod: R × R → R`, defined as:
+`prod: ℝ × ℝ → ℝ`, defined as:
 
-    prod = {((r, s), {x * y: x ∈ r, y ∈ s}): r, s ∈ R and 0 ≤ r and 0 ≤ s}.
+    prod = {((r, s), {x * y: x ∈ r, y ∈ s}): r, s ∈ ℝ and 0 ≤ r and 0 ≤ s}.
 
 This is a partial function; it is not defined for negative reals. But it does
 indeed map pairs of positive reals to positive reals, quite the same as how the
@@ -609,7 +600,7 @@ for all real numbers piecewise as:
 
 I am being a little sloppy by recursively defining this in terms of itself, I
 admit. I am doing this because we also have a multiplicative identity
-`one = {q ∈ Q: q < 1}`, and we must define a multiplicative inverse piecewise:
+`one = {q ∈ ℚ: q < 1}`, and we must define a multiplicative inverse piecewise:
 
     r⁻¹ = flip({x⁻¹ : x ∈ r, 0 < x}) if zero < r ≤ one
     r⁻¹ = zero ∪ {0/0} ∪ {x⁻¹ : x ∈ flip(r)} if one < r
@@ -625,10 +616,10 @@ order that we started with, and so forth.
 
 After all that tedium we are prepared to say:
 
-> For all `q ∈ Q`, there is an *embedding* of `q` in **R** as `{x ∈ Q: x < q}`,
+> For all `q ∈ ℚ`, there is an *embedding* of `q` in ℝ as `{x ∈ ℚ: x < q}`,
 > so that the operations `+`, `-`, `*` and `⁻¹` and the relation `≤` acting on 
-> these real representations of **Q** are algebraically identical to the
-> similarly-named operations defined over **Q**.
+> these real representations of ℚ are algebraically identical to the
+> similarly-named operations defined over ℚ.
 
 But if we're going to be mathematical about this, we should make sure that the
 converse is not true -- that the real numbers, as we've defined them, really
@@ -637,7 +628,7 @@ are *different* from the rationals! To that effect, I observe:
 > Let `S` be any nonempty set of real numbers, then `m = {q: q ∈ r and r ∈ S}`
 > is a real number if `S` is bounded above. Furthermore, `m = sup S`.
 
-How do we see this? The above `m` is neither ∅ nor **Q**, and for each `q` there
+How do we see this? The above `m` is neither ∅ nor ℚ, and for each `q` there
 is some `r ∈ S` to which it belonged, so it automatically contains some
 rationals larger than `q` and all rationals smaller than `q`. So the
 construction above *exists as a real number*; it satisfies all of the real
@@ -654,14 +645,14 @@ smallest upper bound, which makes it the supremum.
 
 This is a property which the rationals do not share, so the reals really are
 distinct from the rationals: they enjoy a *completeness axiom*: every non-empty
-`S ⊆ R` which is bounded above has a supremum in **R**. The completeness axiom
+`S ⊆ ℝ` which is bounded above has a supremum in ℝ. The completeness axiom
 allows us to construct decimals. Consider first the ratio of successive
 Fibonaccis:
 
     {0/1, 1/2, 3/5, 8/13, 21/34, ...}
 
-All of those numbers are real numbers by virtue of the embedding of **Q** in
-**R**. Furthermore, that is an increasing sequence which is in fact bounded from
+All of those numbers are real numbers by virtue of the embedding of ℚ in
+ℝ. Furthermore, that is an increasing sequence which is in fact bounded from
 above and therefore has a supremum. If you are curious, that number is
 (√(5) − 1)/2. Now imagine that I try to form the same number by a decimal
 expansion:
@@ -684,10 +675,10 @@ in this picture to extending the rational arithmetic to all things which can be
 *approximated by rationals* directly. 
 
 It turns out that there is always an isomorphism between any other ordered field
-which obeys the completeness axiom and **R** -- to say that there is an
+which obeys the completeness axiom and ℝ -- to say that there is an
 "isomorphism between" two fields just means that there is an embedding of each
 in the other, so that their field operations are fundamentally "the same" in
-some sense. So **R** really is *the* ordered continuum of numbers.
+some sense. So ℝ really is *the* ordered continuum of numbers.
 
 # Properties of the Reals
 
@@ -702,19 +693,19 @@ thus construct `n = q a + 1` such that `n * x > y`. But how would you do this
 with the *reals*, where you don't have these sorts of extractable integers?
 
 We would probably construct the least such `n` with the "floor function"
-`floor(r) = sup {z ∈ Z: z ≤ r}`, the largest integer less than or equal to the
+`floor(r) = sup {z ∈ ℤ: z ≤ r}`, the largest integer less than or equal to the
 given real number. At this stage we won't even bother making the distinction of
-converting `z ≤ r` to `{q ∈ Q: q < z/1} ≤ r`, it's just assumed that you know
+converting `z ≤ r` to `{q ∈ ℚ: q < z/1} ≤ r`, it's just assumed that you know
 about the embedding which connects them both. How do we know that `floor(r)` is
 defined for all `r`? Because we've got a bounded supremum (which is in fact a
-maximum) and therefore `floor: R → Z`, with `floor(r) ≤ r`. As you probably
+maximum) and therefore `floor: ℝ → ℤ`, with `floor(r) ≤ r`. As you probably
 already know, we then have `n = floor(y/x) + 1 > y/x`, thus `n * x > y`. And it
 comes from this fact that a bounded set has a supremum. 
 
 Since there is some `n` such that `1 < n * r` we have that `1/n < r` for some
-`n`. This means that if `x, y ∈ R`, and `x < y`, there is some `q ∈ Q` for which
+`n`. This means that if `x, y ∈ ℝ`, and `x < y`, there is some `q ∈ ℚ` for which
 `x < q < y`. We have some `n` such that `1/n < y − x` Now consider
-`sup {m: m ∈ N, m/n < x}`. We have that `m/n ≤ x < m/n + 1/n`, and so
+`sup {m: m ∈ ℕ, m/n < x}`. We have that `m/n ≤ x < m/n + 1/n`, and so
 `m/n + 1/n ≤ x + 1/n < y`. It follows that `x < m/n + 1/n < y`.
 
 This will surprise you later in the course because it turns out that there are
