@@ -208,11 +208,11 @@ Something identical happens with Searle's other argument, his big argument. He s
 
 Tim Maudlin says in Through the Wormhole 2x03 that he's noticed the same thing in time. As much as we might say "time is an illusion", it is an illusion which we can't shake off. Our refusal to accept that we are growing old, changing, thinking -- this is only intelligible as a change, as a thought, as growth.
 
+In other words, if you want to say that past and future "do not exist" and everything is only the present moment, so that all that's left is a durationless film of oil between, you seem to be stuck. Because let's suppose you've asked me a question. Now you face the radical problem that the asking and the question are in the past -- in what sense are they "illusory"? It's not just Searle saying "you can't be rational unless you assume that you really have free will," but we've also got that "you can't be rational unless you assume that your memories really map to some present state-of-affairs." This is all the more crucial because if we're honest with ourselves: we live in the past! It's not just that there is an intrinsic delay due to the speed of light and speed of sound in our senses, but also that there is preprocessing before you become consciously aware of something, as proven e.g. in the cutaneous rabbit illusion. What you are perceiving now is the universe as it once was, not as it now is.
 
+There is an aspect of the Berkeleyan critique here. Bishop Berkeley dismissed dualism, you'll recall, by saying "what sense is it to say that an image resembles its object, when the object strictly speaking is totally invisible?". You see the same argument in Milič Čapek's "elusive nature of the past": how can our present-memories resemble the past when the past is totally illusory?
 
-
-
-Dan Dennett and "Kinds of Minds"
+# Dan Dennett and "Kinds of Minds"
 
 In his book /Kinds of Minds/, Dennett tries to talk about different ways which we might use to describe a system, and insists that the 'intentional description' -- where we imagine that an unconscious thing has preferences and acts as an agent to fulfill those preferences -- is a valid way to describe things which are too complicated for a 'design description' or a 'physical description.' His example of a design description is an alarm clock. I might have never seen this particular alarm clock go off, but on the assumption that it does in fact stand in the 'alarm clock' design pattern, I can guess that if I press a couple buttons and go to bed, its internal physical structure will compel it to wake me up with some sort of noise. I don't in advance know what the noise will be or how it is internally structured, and I really don't have to. The fact that it is designed this way is sufficient.
 
