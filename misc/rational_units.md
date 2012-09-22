@@ -7,15 +7,34 @@ Some thoughts which I am still developing:
     1 thomson = -10^18 elementary charges. 
         Thus e = 1 Mt/ag. 1 t = 0.1602 C.
     1 fing = 2.59 cm ?
-        Thus c = 10^9 f/i. 
+        Thus c = 10^9 f/i, g = 2.827 f/i^2.
         Could choose 25.9 cm, 10^8 f/i.
-    1 ruth = 1.67 gr.
+    1 ruth = 1.67 gr?
+    unfortunately the smallness of this mass unit is nasty, you get a
+    fundamental force unit of only 5.8 mN. You want it closer to 5.8 N.
+    The above is 1 agroamu, but 10^27 amu might have been better for this. On the other hand, an agro is square-rootable.
+    Energy is also at a very low scale due to being force * distance. We
+    start off with 1.67kg * (2.59 cm)^2 / (0.0864 s)^2 = 0.150 J.
+    10^9 (energy units) ~= 40 kWh ~= $1 in cash, so it's not necessarily a
+    bad way to measure energy, in Giga___s.
+
+    In its present form, one kelvin is ~10^-22 * 0.150 J. In fact this
+    combination is c^2 * 1 amu / Boltzmann contant = 1.08095 * 10^13 K, and you
+    can get water to boil at 92.5 degrees.
+
+    The alternative is to use electron masses, which gives 5.92988981 * 10^9 K.
+    Then water boils at 168.6 degrees above freezing, body temperature is 62
+    units, but periodic tables are no longer in native units. :-(.
     
     right now the rational volt looks like:
     1.67 gr * (2.59 cm)^2 / ((0.0864 s)^2 * 0.1602 C)
         = 0.936 mV.
-    Want instead 0.936 V? Then need to raise or lower
-    something.
+    Want instead 0.936 V? Then need to raise or lower something.
+
+    Milliamps and volts? th = -10^15 e, so that 1 th/i ~= 1.85 mA.
+    Then you just naturally get a rational volt of 0.936 V, plus
+    milliamps are much nicer for currents and the force gets a little
+    less outrageous between two point charges separated by one unit of distance, only ~344 kN or ~30 metric tons.
 
 # Introduction
 
@@ -99,7 +118,7 @@ The SI units are given by choosing a couple of basic elements, which in this cas
 * We define the second as one 86,400th of a day.
 * We define a gram as the mass of one cubic centimeter of water.
 * We define that there is a 100 kelvin temperature difference between water's boiling and freezing points, at atmospheric pressure.
-* We define the Coulomb like so: two infinite straight wires placed one meter apart in a vacuum, both carrying constant currents of one coulomb per second, feel an attractive force of 0.0000002 kilogram meters per second squared.
+* We define the Coulomb like so: two infinite straight wires placed one meter apart in a vacuum, both carrying constant currents of one coulomb per second, feel an attractive force of 0.0000002 kilogram meters per second squared. The ultimate goal of this is to get a joule per coulomb to be a unit of energy about the size of a volt.
 * We define a candela to be about the luminous intensity of a candle.
 * A mole is the number of carbon atoms in 12 grams of carbon-12.
 
@@ -198,7 +217,7 @@ recover from a brief painful stimulus like getting pinched. So seconds also
 have their use. But minutes are far more important for day-to-day life, since
 they represent a concerted period of focused activity. 
 
-They take a natural place in ou unit system:
+They take a natural place in our unit system:
 
     1000 instants = 1 ki = 86.4 s = 1 minute + 26.4 s.
 
