@@ -23,6 +23,18 @@ Collapse:
     Another connection is furnished by *decoherence*, which says that in the linear part of quantum mechanics, some qualitative shift in wavefunctions occurs when entanglement does.
     The connection that I wish to draw at the moment deals with the general nonlinearity of change -- the 'arrow of time' problem. Why is it that, with so many time-reversal-symmetries in the physical laws, we still see time progress in a certain entropy-increasing order?
 
+# compatiblism
+
+Something I first observed in September 2007: the way we talk about determinism is a little bit hazy in the following way. We would normally say that something in physics is predetermined if, given the same initial conditions (up to our ability to resolve this), the system would achieve the same outcome. Such a physical theory is a 'deterministic' theory.
+
+But actually, there seems to be a hazy gap between 'the same actions produce the same results' and 'those results are already written in the book of history'. How we talk about human "free will" is actually very close to this paradox.
+
+Just think of this scenario: on Tuesday, you have a job interview. On Wednesday, they say "we liked you, how about you come and work for us?" and you say "I'll call you back," weigh the pros and cons, and call back having made a free choice: you choose "yes." On Thursday, we'll say that you find out that your boss at the new job has some deal-breaking idiosyncrasy -- maybe you've noticed that your new boss does not ever allow you to ask questions about anything, and you're an inquisitive sort.
+
+If I ask you, was your decision predetermined on Tuesday, you'll probably say "no". If I ask you whether at that point it was written in the book of history, you might say "maybe in some abstract sense yes -- but no, pragmatically speaking, that wasn't written down until I wrote it down on Wednesday."
+
+Crucial point: if I now ask you, "given the same beliefs and thoughts and hopes and ambitions -- i.e. not taking your newfound knowledge from Thursday back with you -- would you have made the same choice on Wednesday?" you would probably also say "yes". That choice was "deterministic" in the physical sense that the same initial conditions lead to the same choice afterwards. It is not "deterministic" in some more *causal* sense.
+
 -- fractals? --
 Maybe the single most important mathematical breakthrough in our modern era was the invention of self-similarity down to infinity in the form of fractal mathematics. At the same time, QM has remained clean, linear, unbroken by this. 
 
