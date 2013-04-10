@@ -1,0 +1,9 @@
+Suppose you have N users and they need tech support on average m times per year. What is a tech support call really? Time. And they'd probably need about 5 ki (7.2 minutes) of tech support to help them along. This factor of (1 year)/(5 ki) is about 73,000; the year has about 73,000 tech support calls potentially. Of course, no one person can use all of those calls because you're only at work for 8 hours and they have to give you 1 hour of lunch break and hopefully 1 hour of sanity time, so we're down to 6 hours per day -- one paid person can handle 1/4 of that theoretical capacity: about 18000 calls per year.
+
+So each full-time paid person can handle 18,000 calls per year, which is a pretty awesome multiplier due to patience.
+
+On the other hand, imagine that you are getting towards Google's scale, you have hypothetically a billion users. Even if you do really well and they only want help once every ten years or so, you're still in crisis; (100 million calls / year) / (18000 calls / year / person) = 5,500 people. That's over five thousand people just to handle the average demand; you can imagine that there would be peaks where you'd need 10,000 support staff just to keep a good support reputation.
+
+That's not crazy, but it is massive. The supporting staff needed to manage that many people can probably be estimated by looking at how many administrators there are in Cornell University, which has about 10,000 graduates and 10,000 undergraduates, roughly.  
+
+Dell at least once-upon-a-time had a great support reputation; Microsoft has never supported Windows at full scale -- at least, not with humans in call centers. (Their strategy is to use Windows Update, etc.) So there are these two models of how to scale to that worldwide population limit of 1 billion people, ignorance and indulgence.
