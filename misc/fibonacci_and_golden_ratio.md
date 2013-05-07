@@ -49,9 +49,70 @@ the *quadratic equation* to find the two solutions:
             2
 
 The fact that they have the same decimal is due to the fact that the second is
-just -1/φ and the equations imply that 1 + 1/φ = φ.
+just -1/φ and the equations imply that `1/φ = φ − 1`.
 
-That last equation is worth remark: expanding it recursively we find that:
+# Connection to pentagons
+The sum of angles in a triangle must sum to π (or 180°) and the angles in a
+quadrilateral must sum to 2π (or 360°) and the pattern does continue to 5-sided
+shapes as 3π. This means that if you draw a regular pentagon, all of the angles
+are 3π/5.
+
+Now inside the pentagon we inscribe a pentagram. There are a lot of isosceles
+triangles to be had, starting with the top one. ASCII does not really do this
+justice, but let me take the top part of the pentagram first:
+
+              .
+          ,-`/ \`-,
+       ,-`  /   \  `-,
+    ,-`α___/β___β\___α`-,
+
+The top angle, we've said, is 3π/5; the sides of this triangle must be the same
+angle α because it is isosceles; and all three angles must sum to π because it
+is a triangle. So α = π/5. Now looking at the top, we see three angles, but they
+must all be π/5 (the outer ones are part of isosceles triangles with the angle α
+and the inner one comes from the fact that they must all sum to 3π/5). 
+
+We therefore conclude that β = 2π/5. However, this means that there is also an
+isosceles triangle laying alongside the pentagram, which I'll highlight here:
+
+              .
+          ,-`/ β`-,
+       ,-`  /      `-,
+    ,-`____/β________α`-,
+
+Now that we have that bit of geometry, isosceles triangles will get us the rest
+of the way. Let the short bit on the left be of length 1 and the side be of
+length s, so that:
+
+              .
+      s   ,-`/  `-,  s
+       ,-`  /      `-,
+    ,-`____/__________`-,
+        1        s
+
+We see that the bottom is 1 + s due to the isosceles triangles. However, the
+triangle on the left is similar to the overall triangle, and thus we find:
+
+    1 + s = s²
+
+It follows that s = φ, and thus the ratio between the long horizontal line and
+the side is also φ. And finally the line in the middle, which defines the
+pentagon at the center of the pentagram, is just s − 1 = 1/s. 
+
+We see that this top portion of the pentagram can be defined in golden terms,
+"a golden triangle is an isosceles triangle such that when you split off an
+isosceles triangle, you get another golden triangle." It's done with triangles
+instead of squares but it displays the exact same ratio.
+
+# But what makes φ special?
+
+I must explain what I mean a bit more, but φ is basically the most irrational
+number. Why? It comes from the fact that, if we rearrange the defining equation,
+we get
+
+    φ = 1 + 1/φ .
+
+Expanding this recursively we find that:
 
                          1
     φ = 1 + −−−−−−−−−−−−−−−−−−−−−−−−−−−
@@ -111,18 +172,20 @@ like:
 
     N + 1/(n1 + 1/(n2 + ...)).
 
-Only the very first integer can be negative -- all of the other integers are
-positive. (Zero is not allowed because `x - int(x) < 1`.) Furthermore, each of
-these terms which appears as `1/(n + ...)` can be bounded: it is positive
-because it's made of positive numbers. It can get arbitrarily close to 0,
-because `n` can be arbitrarily large and the `...` is positive. It also cannot
-be bigger than 1 because it is at its biggest when both the `n` and the `...`
-are at their smallest; as we just covered the `...` can be made arbitrarily
-close to 0 and the smallest `n` can be is 1, so we can also get arbitrarily
-close to `1/(1 + 0) = 1`.
+Only the N can be negative -- n1, n2 and so on are all positive, if you look at
+the program I've written above. (In other words, `0 ≤ x - int(x) < 1` and
+therefore `1 < 1/(x - int(x)) < ∞`.) Furthermore, each of these terms which
+appears as `1/(n + ...)` can be bounded between 0 and 1. How? It is surely
+positive because it's made of additions and inversions of positive numbers. It
+can also get arbitrarily close to 0, because `n` can get arbitrarily large. But
+to make 1/(n1 + 1/(n2 + ...)) as big as possible, we make the denominator as
+small as possible; this comes when we make `n1 = 1` and `1/(n2 + ...)` as small
+as possible -- but we can make it arbitrarily close to 0.
 
-Because these sorts of terms are bounded between 0 and 1, we can often ignore
-them after a point to create *rational approximations*:
+So the smallest we can go is 1/∞ → 0 and the largest we can go is 1/(1 + 0) = 1.
+
+Because these sorts of terms are bounded between 0 and 1, we can ignore them
+after a point to create *rational approximations*:
 
     from fractions import Fraction
     def approx(number, n):
@@ -139,31 +202,41 @@ So, for example, the rational approximations to pi are:
     >>> ', '.join(str(approx(pi, n)) for n in range(1, 8))
     '3, 22/7, 333/106, 355/113, 103993/33102, 104348/33215, 208341/66317'
 
-You can see that some of these are uncommonly good, from how the denominator is
-growing in jumps. 22/7 is within 0.04% of the right value for pi even though the
-bottom number is as big as 7. On the other hand, while 333/106 is even better
-and gets to 0.0026% of the right value, it's not really surprising given that
-its denominator is in the hundreds, and it's quickly corrected by 355/113, which
-blows it out of the water, getting within 0.000008% of the right value.
+Now I will define what I mean by the "most irrational number." You can see from
+how the denominator is growing that we are getting better and better rational
+approximations, but you can also see that some approximations are *uncommonly
+good*. Why? Because the denominator grows by sudden jumps.
+
+So, 22/7 is within 0.04% of the right value for pi even though the bottom number
+is as big as 7. That is uncommonly good; the approximation does not get better
+until 333/106. While 333/106 is even better and gets to 0.0026% of the right
+value, this is not really surprising given that its denominator is in the
+hundreds, and it's quickly corrected by 355/113, which blows it out of the
+water, getting within 0.000008% of the right value.
 
 We can see this directly in the continued fraction:
 
     3 + 1/(7 + 1/(15 + 1/(1 + 1/(292 + ...))))
 
 If a number is big, that means that it's really good to truncate just before
-that number, because 1 + 1/(292 + ...) is very very close to 1. So big numbers
-in the continued fraction cause extremely good rational approximations.
+that number, because 1 + 1/(292 + ...) is very very close to 1. We know that the
+rest of the series is somewhere between 0 and 1 so this is somewhere between
+1 + 1/292 and 1 + 1/293, both of which are basically 1.
 
-What does that mean for phi, which, you'll recall, was given by:
+So continued fractions give better and better rational approximations because
+the error is bounded; and a rational approximation is very good when the next
+number in the continued fraction is huge.
+
+What does that mean for phi? Phi, you'll recall, was given by:
 
     >>> take(20, continued_fraction((1 + Decimal(5).sqrt())/2))
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-It means that all of the rational approximations are *as bad as they can be*. It
-means that the golden ratio is the *most irrational number*.
+It means that all of the rational approximations are *as bad as they can be*.
+You cannot get worse. And in this sense, the golden ratio is indeed the *most
+irrational number*.
 
-## Sunflower spirals
-
+# Sunflower spirals
 Nature doesn't like rational approximations. Suppose you are a sunflower, and
 you're going to grow these big flowery spaces full of seeds. You're going to do
 this by a really simple spiral algorithm: turn a certain amount and push out a
@@ -193,8 +266,7 @@ sunflower and they seem to "merge together", but if you really settle on a
 system for counting them, you'll find a Fibonacci number of spirals, because
 you'll be trying to rationally approximate the golden ratio.
 
-## Wait, where did Fibonaccis come from?
-
+# Wait, where did Fibonaccis come from?
 The Fibonaccis are defined by a recurrence which mathematicians would write as:
 
     F_n = F_{n - 1} + F_{n - 2}
@@ -233,6 +305,8 @@ look like (0, 1) or (1, 1). You sometimes see other such sequences in nature
 which are like the Fibonacci sequence; they can start like (2, 2), which gives
 the numbers `2 F_n` (i.e. double every Fibonacci in the sequence), but also you
 can start with (1, 3) to get totally non-Fibonacci numbers [1, 3, 4, 7, 11, ...]
+    def approximations(number, n):
+        return ', '.join(str(approx(pi, n)) for n in range(1, n + 1))
 
 After lots of these iterations the Fibonacci rectangles get closer and closer to
 being a golden rectangle, so that F_n / F_{n - 1} ≈ φ. We can actually be even
