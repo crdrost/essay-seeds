@@ -41,11 +41,13 @@ function pmf(spread, offset) {
 function sure(pmf, others) {
     var i, p = 0, p2 = 0;
     // we could be sure because we generate a result 10 or greater
-    for (i = 10; i < pmf.length; i++) p += pmf1[i];
+    for (i = 10; i < pmf.length; i++)
+        p += pmf[i];
     // otherwise we could be sure because the others are all less than the 
     // minimum score of the PMF.
     for (i = 0; i < pmf.length; i++) {
-        if (pmf[i] > 0) break;
+        if (pmf[i] > 0)
+            break;
         p2 += others[i]; // so p2 = prob that max(i,j,k) < min_index(pmf)
     }
     return p + (1 - p) * p2;
@@ -63,11 +65,11 @@ function win(p1, p2) {
 // so now we look at all the win-rates > 0.7 and find the minimum sure-rate.
 res = [];
 for(offset = 0; offset < 10; offset++) {
-    for(spread = 1; spread < 40; spread++) {
-        p = win(pmf(spread, offset), three_contestants);
+    for(spread = 1; spread < 100; spread++) {
+        p = win(pmf(spread, offset), three_others);
         if (p >= 0.7)
-            res.push([sure(pmf(spread, offset)), p, spread, offset])
+            res.push([sure(pmf(spread, offset), three_others), p, spread, offset])
     }
 }
 // we sort by least-sure and take the lowest 12 as options for me to choose from
-res.sort(function (x, y) { return x[0] - y[0]; }).slice(12);
+console.log(res.sort(function (x, y) { return x[0] - y[0]; }).slice(0,12));
