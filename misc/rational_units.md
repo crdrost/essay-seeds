@@ -68,7 +68,7 @@ One *newt*, written `1 n`, is defined as the Coulomb force experienced by two 1-
 
 It is a relatively small force. Due to the fact that the SI unit fixes the electric constant, the only uncertainty lying between these two units comes from the uncertainty of the relationship between 1 ℓ and 1 C. This will in the proposed revision of SI become a real uncertainty in its value for the electric constant. The SI system forces the vacuum permittivity to be:
 
-> ε<sub>0</su> = 10<sup>7</sup> (farads/m) /(4 π * 299792458<sup>2</sup>))
+> ε<sub>0</sub> = 10<sup>7</sup> (farads/m) /(4 π * 299792458<sup>2</sup>))
 
 From these we can ascertain that `1 n = 4.32118749(19) mN`.
 
