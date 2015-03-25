@@ -74,13 +74,13 @@ From these we can ascertain that `1 n = 4.32118749(19) mN`.
 
 With this complicated definition we are setting the Coulomb force law to have the form:
 
-> F = (10<sup>9</sup> n d<sup>2</sup>/ℓ<sup>2</sup> q<sub>1</sub> q<sub>2</sub> / (4 π r<sup>2</sup>).
+> F = (10<sup>9</sup> n d<sup>2</sup>/ℓ<sup>2</sup>) * q<sub>1</sub> q<sub>2</sub> / (4 π r<sup>2</sup>).
 
 Using cgs-style unit puns, we identify this prefactor with `c` so that formally:
 
 > 1 ℓ = 1 √(n d i).
 
-This unit pun causes the Maxwell equations to take on a pleasing form, if we specify that primes are time derivatives divided by c (so `X' = 1/c ∂X/∂t`:
+This unit pun causes the Maxwell equations to take on a pleasing form, if we specify that primes are time derivatives divided by c so that `X' = 1/c ∂X/∂t`
 
     Maxwell Equations
         ∇ · E = c ρ    ∇ × E = -B'
@@ -115,7 +115,7 @@ This temperature interval can be used as a temperature scale in two ways: the si
 ## Derived units
 One *jay* is the work done by a force of one newt acting through a distance of one dee; `1 j = 0.1119276938(49) mJ`.
 
-One *em* is the unit of mass such that a force of one newt accelerates it by one dee per square ee; `1 m = 1.245363547(54) gr`.
+One *em* is the unit of mass such that a force of one newt accelerates it by one dee per square ee; `1 m = 1.245363547(54) gr`. (This may need to be changed so that we don't overlap with the SI unit of length.)
 
 One *vee* is the unit of electric potential of one jay per lor: `1 v = 0.698597746(15) V`.
 
