@@ -1,100 +1,21 @@
-# Base units as of 2011-06-28
+# Rational Units
+**Note:** These units may still be in flux; this document is an essay-seed and not a final proposal. Until these are standardized, and final names are chosen, these units should be called "rational units" to discourage their actual use, as that name is unnecessarily nonspecific and confusing. When a plan is actually put forward we can call these "Drost units" or whatever.
 
-Some thoughts which I am still developing:
+This essay is a semi-serious proposal for a new system of measurement units, appropriate for our macroscopic measurements and reckoning, but ultimately also interesting for microscopic and astronomical sciences. Now, normally when a physicist proposes a new system of units, it is a matter of laziness in the presentation of formulas: we choose to set G, ħ, c, or k_B to 1, so that we may omit them from our equations. The actual procedure of restoring these constants is notoriously error-prone and usually requires the reader to rederive the formula; even worse, the units are typically absolutely unacceptable values for day-to-day usage -- a good example is the 'natural units' unit for length, which is about 10<sup>20</sup> times smaller than the diameter of a proton.
+
+The goal here is different, and has to do with unit conversions. I take as my target a comment by Richard Feynman which I have transcribed in its entirety in Appendix A:
     
-    1 agro = 10^24.
-    1 instant = 0.0864 s
-    1 thomson = -10^18 elementary charges. 
-        Thus e = 1 Mt/ag. 1 t = 0.1602 C.
-    1 fing = 2.59 cm ?
-        Thus c = 10^9 f/i, g = 2.827 f/i^2.
-        Could choose 25.9 cm, 10^8 f/i.
-    1 ruth = 1.67 gr?
-    unfortunately the smallness of this mass unit is nasty, you get a
-    fundamental force unit of only 5.8 mN. You want it closer to 5.8 N.
-    The above is 1 agroamu, but 10^27 amu might have been better for this. On the other hand, an agro is square-rootable.
-    Energy is also at a very low scale due to being force * distance. We
-    start off with 1.67kg * (2.59 cm)^2 / (0.0864 s)^2 = 0.150 J.
-    10^9 (energy units) ~= 40 kWh ~= $1 in cash, so it's not necessarily a
-    bad way to measure energy, in Giga___s.
+> The proof that physicists are human is the idiocy of all the different units which they use 
+> in measuring energy. [...] If anything could be analogous to it at all, the only hope would 
+> be to say that there are 20 shillings to a pound, and that you have shillings and pounds, 
+> with one complication that the physicist allows, in that instead of saying he has 20 
+> shillings to a pound, he says he has irrational ratios like 1.6183178 shillings to a pound.
 
-    In its present form, one kelvin is ~10^-22 * 0.150 J. In fact this
-    combination is c^2 * 1 amu / Boltzmann contant = 1.08095 * 10^13 K, and you
-    can get water to boil at 92.5 degrees.
+In the appendix, Feynman states that his preference is for everybody to synchronize upon the same units: "We don't need any more inventions; we should measure the energy in one unit." This essay comes out in contradiction to this statement. I would rather create a system of units which are analogous to SI units but "accumulate" these different perspectives on energy with factors-of-10 differences between them.
 
-    The alternative is to use electron masses, which gives 5.92988981 * 10^9 K.
-    Then water boils at 168.6 degrees above freezing, body temperature is 62
-    units, but periodic tables are no longer in native units. :-(.
-    
-    right now the rational volt looks like:
-    1.67 gr * (2.59 cm)^2 / ((0.0864 s)^2 * 0.1602 C)
-        = 0.936 mV.
-    Want instead 0.936 V? Then need to raise or lower something.
+I reason thusly: Social forces *have compelled* people to use these different scales. Someone who is concerned with nanoelectromechanical systems uses eV, because charge is quantized in units of e and voltages in such devices are key. Meanwhile, if someone is studying molecular quantum effects, they need to purchase refrigerators and thus they use kelvin. People who just want some macroscopic energy (especially some kinetic energy) use Joules, unless they are studying processes which happen over hours or days, in which case kilowatt-hours become more useful. Since the social forces are so strong, I don't think that the irrational ratios can disappear due to Feynman's imagining of a sudden consensus among physicists.
 
-    Milliamps and volts? th = -10^15 e, so that 1 th/i ~= 1.85 mA.
-    Then you just naturally get a rational volt of 0.936 V, plus
-    milliamps are much nicer for currents and the force gets a little
-    less outrageous between two point charges separated by one unit of distance, only ~344 kN or ~30 metric tons.
-
-# Introduction
-
-This essay is a semi-serious proposal for a new system of measurement units,
-appropriate for macroscopic measurements and reckoning, but ultimately also 
-interesting for microscopic and astronomical sciences. Now, normally when a 
-physicist proposes a new system of units, it is a matter of laziness in the
-presentation of formulas: we choose to set G, ħ, c, or k_B to 1, so that we may
-omit them from our equations. The actual procedure of restoring these constants
-is notoriously error-prone and usually requires the reader to rederive the 
-formula; even worse, the units are typically absolutely unacceptable values for
-day-to-day usage -- a good example is the 'natural units' unit for length, 
-which is about 10^20 times smaller than the diameter of a proton. 
-
-The goal here is different, and has to do with unit conversions. I take as my 
-target a comment by Richard Feynman which I have transcribed in its entirety in
-Appendix A:
-    
->   The proof that physicists are human is the idiocy of all the different 
->   units which they use in measuring energy. [...] If anything could be 
->   analogous to it at all, the only hope would be to say that there are 20 
->   shillings  to a pound, and that you have shillings and pounds, with one 
->   complication that the physicist allows, in that instead of saying he has 
->   20 shillings to a pound, he says he has irrational ratios like 1.6183178 
->   shillings to a pound.
-
-In the appendix, Feynman states that his preference is for everybody to 
-synchronize upon the same units: "We don't need any more inventions; we should 
-measure the energy in one unit and let it be done, instead of having all these 
-different names." This paper comes out in contradiction to this statement, 
-instead preferring to create a system of units which are analogous to SI units,
-but which allow for non-irrational ratios between different perspectives on 
-energy.
-
-So, what I want to do with my proposal, which I am calling "rational units" for 
-the moment, is to provide a macroscopic replacement for the SI units, in which
-it doesn't matter whether you prefer to measure energies in eV or Joules or 
-kelvin or kilowatt-hours -- the equivalent units are the same, up to a factor 
-of a power of 10. 
-
-Social forces compel people to use these different scales; someone who is 
-concerned with nanoelectromechanical systems uses eV, because charge is 
-quantized in units of e and voltages in such devices are key. Meanwhile, if  
-someone is studying molecular quantum effects, they need to purchase 
-refrigerators and thus they use kelvin. Meanwhile people who just want some
-macroscopic energy use Joules, unless they are studying processes which happen
-over hours or days, in which case kilowatt-hours become more useful. Since the
-social forces are so strong, I don't think that the irrational ratios can 
-disappear due to Feynman's imagining of a sudden consensus among physicists. 
-
-So, we have our alternative: define a set of units where the ratios are no 
-longer so irrational. It must be as pedagogically simple as the Système 
-International, with macroscopic lengths and times given reasonable values; but
-it must also assign powers of 10 to the fundamental physical constants which 
-relate different energy scales lke eV and kelvin.
-
-
-# Why energy?
-
-Feynman above identifies several different units of energy, and identifies that the real problem is that the ratios of energies are irrational. Feynman's solution is that "we should all agree on some unit," but I think that this is naive. The different units are mostly trying to compare energies to different things:
+Different units are mostly trying to compare energies to different things:
     
 * degrees Kelvin: "how much latent thermal energy would you need to cause effects like this all the time?"
 * calories and BTU: "if a mass of water absorbed this energy, what temperature would that mass of water increase by?"
@@ -104,286 +25,104 @@ Feynman above identifies several different units of energy, and identifies that 
 * tons of TNT: "how much TNT would I have to explode to get a comparable amount of energy in an explosion?"
 * grams: "how much matter would I have to cancel out with antimatter to get a comparable amount of energy in an explosion?"
 
-The more interesting ones are not really comparison-based. The ergs come from a system of measurement called 'cgs', or centimeter-gram-second, and exist in a nice ratio with the Joules of the SI units, namely 10,000,000 ergs = 1 J. But the reason for this other system to exist comes from the fact that cgs measures charge in a different way from SI, so that the laws of electromagnetism are simpler.
+The more interesting ones are not really comparison-based. The ergs come from a system of measurement called 'cgs', or centimeter-gram-second, and exist in a nice ratio with the Joules of the SI units, namely 10,000,000 ergs = 1 J. But the reason for this other system to exist comes from the fact that cgs measures *electric charge* in a different way from SI, so that the laws of electromagnetism are simpler.
 
 The other very interesting one is the kilowatt-hour. Kilowatts are again an SI unit, but hours are not. Power companies, which are willing to use SI units but do not like thinking in terms of seconds, wanted a longer interval based on household power consumption per hour: a 500 W power supply for my computer will not use more than 0.5 kilowatt-hours, if my computer stays on for an hour. In other words, the problem is the fact that we use bizarre units of time, where an hour is 3600 seconds, to organize these long-term events in our life like 'how long is my computer on for?'.
 
-The question that arises is, could a system of units solve all of these problems of measuring energy?
-
-# The way things are now
-
-The SI units are given by choosing a couple of basic elements, which in this case are kilograms, meters, seconds, coulombs, kelvin, candelas, and moles. It does not completely matter how we came to these numbers, but they were originally chosen as follows: 
-
-* We define the kilometer so that the world is about 40,000 km around.
-* We define the second as one 86,400th of a day.
-* We define a gram as the mass of one cubic centimeter of water.
-* We define that there is a 100 kelvin temperature difference between water's boiling and freezing points, at atmospheric pressure.
-* We define the Coulomb like so: two infinite straight wires placed one meter apart in a vacuum, both carrying constant currents of one coulomb per second, feel an attractive force of 0.0000002 kilogram meters per second squared. The ultimate goal of this is to get a joule per coulomb to be a unit of energy about the size of a volt.
-* We define a candela to be about the luminous intensity of a candle.
-* A mole is the number of carbon atoms in 12 grams of carbon-12.
-
-Those are some peculiar conventions, but you can kind of see why in the past people might have chosen these numbers. 
-
-SI prefixes changed a lot of things because it is so darn easy to switch between dollars and cents -- just move the decimal place. Nobody considers kilowatts as distinct from watts, or kilojoules as distinct from joules -- this is not Feynman's gripe in the above text. Since the base-10 Arabic counting system is entrenched in our culture, I take the position that we will not modify it.
-
-
-# Fixing the Metric system: towards rational units of time and space. 
-
-There are a couple of metric systems, but they all share some of the 
-fundamental problems of the SI units -- the international system which has 
-slowly begun to creep into everyone's lives.
-
-The first one is that the base-10 idea -- that all units should be connected by
-multiples of 10, or more usually multiples of 1,000 -- does not extend to our
-way of measuring time. In some respects we cannot fix this: there are certain
-unitless constants like (1 year) / (1 day), which we are just stuck with no 
-matter how we measure time. But at least at the timescale for days, we now have
-many situations where, say, power is measured in kilowatt-hours (which is 3.6 
-megajoules), while driving speeds are measured in kilometers per hour (which 
-is 0.278 m/s), while distant stars are measured in light years (which is 9.46 
-terameters).
-
-The fact that time is not metric, in other words, fundamentally complicates the
-rest of our units.
-
-The second one is the units of energy. Joules are used by students, but these
-kilowatt-hours are used by power companies. Meanwhile an electron volt, which
-is 1.602 * 10^-19 J, is used by anyone who deals with atoms or particles. And
-if those weren't enough, nutritional information is presented in kilocalories,
-which are in some places simply called Calories, while explosions are measured 
-with TNT equivalent. We have not even gotten to bizarre US units like BTUs and
-horsepower. Average energies are almost always measured with temperature units,
-but those units themselves are complicated -- kelvins, degrees Celsius -- where
-on a 27°C = 300K day, the average thermal energy is about 26 meV. 
-
-Mass is of course a peculiarity: the fundamental unit is grams but we almost 
-always prefer to use kilograms, except when we are using atomic mass units in
-our chemistry classes or electron volts in our particle physics courses. But 
-it is not much more of a peculiarity than Coulombs, which ultimately define 
-a wide range of units -- volts, ohms, amperes, farads, siemens among them. The
-odd J-to-eV conversion factor comes about because an electron only has a charge
-of 1.602 * 10^-19 coulombs. Meanwhile a coulomb is a hideously large amount of 
-electrical charge, thus currents are typically in the milliamp range, while 
-capacitances are generally in the microfarad range or smaller. Volts are just
-about the only unit we've even vaguely gotten right.
-
-# Rationalizing time
-
-The most fundamental thing, I think, is to introduce units of time which are
-divisible by 10. Like I said earlier, there are some times which you simply
-cannot get around -- a year is 365.25 days on the Roman calendar, unless you
-are a Muslim, in which case it is closer to 354 or so. I do not think that any
-system of units should be specifying calendars, thus the unit of distance of 
-"light years" is beyond our hope.
-
-Nonetheless, within the days, we can strive to be as metric as possible. One
-day is a pretty well-defined stretch of time, 86,400 seconds. The question is
-simply how we measure it.
-
-The first radical change I want to bring about is the stupidity of measuring
-the 0 hour from midnight. It is, today, routine for people to stay awake past
-midnight -- we do it whenever we stay awake waiting for the new year. But 
-except for this, and for the wordplay of saying "it's already tomorrow," we
-don't see any use from these time units. Actually, they artificially complicate
-any astronomical observations which are made during the night. But the most 
-important thing for me is that we simply don't *talk* about time this way. We
-don't *think* that a new day has started when the clock strikes midnight. The
-boundary holds between darkness and light which determines our actual day.
-
-Thus the first crazy change I would like to introduce is simply to say that the
-day should start at 6am. New Year's parties will be dampened, but it is the 
-obvious choice in a world where people may often go to bed at 12:30 AM only to
-wake up at 8:00 AM.
-
-The next crazy change that I would like to introduce is that the fundamental
-unit of time be taken as about a tenth of a second, a unit which we will call
-an *instant*:
-
-    1 instant = 0.0864 s.
-
-This is a very human unit, because a human reaction time is only a couple 
-instants long. Human perception for sound is something like 20 Hz - 20 kHz, 
-so that when a pressure wave hits our eardrums more than twice per instant, we
-hear it as sound -- but less often means that we don't hear it at all. Our 
-movies similarly flicker at 23.97 frames per second, meaning that as you flip
-through images at a speed faster than 1 per instant, we stop seeing them as
-individual images and start seeing them as continuous motion.  
-
-Our actual experience of the present is a bit longer: if you see how long 
-someone alights on a television channel before choosing whether to watch it
-(the human attention span) it is something more like a couple seconds; a
-"specious present" which measures out the time that it takes to gesture or to
-recover from a brief painful stimulus like getting pinched. So seconds also
-have their use. But minutes are far more important for day-to-day life, since
-they represent a concerted period of focused activity. 
+Since nobody uses the SI unit of "kiloseconds", we should replace seconds altogether.
 
-They take a natural place in our unit system:
-
-    1000 instants = 1 ki = 86.4 s = 1 minute + 26.4 s.
+# The Proposal
+Here are the basic unit definitions which I am proposing here. The names and definitions are **not** final.
 
-These are pronounced "key" and are probably the most relevant to day-to-day
-life. If you are going to come downstairs after you finish writing one more
-paragraph, "be there in a ki" is simple enough to say. 
+## Time
+One *instant* or *ee*, written `1 i`, is defined as the duration of 794,243,420 periods of the hyperfine-transition radiation of Cesium-133.
 
-It is worth saying that the day should begin at 6 o'clock, and the world 
-clocks should be measured from the East side of the International Date Line.
-Thus the hours 0-5 are the daytime hours and the hours 5-10 are nighttime 
-hours. Daylight savings time would involve adding 50 ki to your clocks or 
-else subtracting it, which might sound a bit bad but it amounts to just 
-rotating the minute hand by 180 degrees.
+This locks the number of SI seconds in an instant to a fixed ratio, `794243420/9192631770 = 0.086400003815229509622792168...`.
 
-The next absolutely fundamental unit would be mass. As the rational mass I 
-choose the proton mass, because it allows us to calculate in so-called "amu"
-directly without too much mess. So we define that one em is 1.67262158 kg, 
-and the proton mass is 10^-27 em. Perhaps one mole is then defined as 10^27
-particles. This might be done with gram-equivalents instead, with 10^-24 em
-as one proton mass; I haven't decided yet.
+One instant is approximately a tenth of a second and a millionth of a day on Earth. It corresponds approximately to a transition between things that human beings regard as continuous (more frequent than once per instant) and discrete (less frequent than once per instant): for instance, often modern movies run a little faster than 2 frames per instant to give an illusion of continuous motion, and sounds lower than about 2 cycles per instant go from the low edge of the audible spectrum to "infrasound" frequencies.
 
-Length would be an important unit, but I want to accomplish two things with
-it. We can choose a particular definition of electrodynamic charge so that
+As you can probably calculate for yourself, most days are 86,400 seconds long: in order to keep parity with the rotation of the Earth, we sometimes have to insert an 86401st second. This problem is increasing as time goes on due to a problem called "tidal friction". I intend the extra fraction of time to compensate for this by making one million instants about `3.8ms` longer than 86,400 s. The current estimate for a length of a day is only 1.7ms longer or so, but tidal braking should gradually lengthen the day, making it slightly longer than one million instants. If it takes 100 years to reach parity then it will take another hundred years to return to the current offset -- which is to say, not offset at all. Cultural norms in 300 years or so would then decide what to do with the problem of leap instants in the clocks.
 
-    F = q₁ q₂ / r².
+By using a vowel for the name of the unit, I intend that SI prefixes get merged into the unit, with a milli-instant being called a "mi" and a kilo-instant (86.4 seconds) being called a "ki". One ki is a very useful unit of time both for clocks and daily usage.
 
-But choosing this so that the electron charge is also the fundamental unit
-of charge, amounts to choosing the length scale accordingly.
+By defining a metric unit of time, I intend to remove the distinction between the analogues of "Joules" and "kilowatt hours," where the difference was caused by the fact that wall-time longer than a few minutes is measured in units which are not commensurate with the normal SI unit of time.
 
-(I also contemplated choosing a unit of distance so that the speed of light 
-has a nice representation in those units, 1 dee = 2.59020684 cm, c = 1 gigadee 
-per instant -- but I think the measurement of energies in eV is more important
-to correct than the difficulty of measuring mass in MeV/c² and so forth.) 
+## Distance
+One *dee*, written `1 d`, is defined as the distance travelled by light in vacuum during a time interval of 10<sup>-9</sup> of an instant.
 
-So the idea is to define that two electrons at a separation of 1 d feel a 
-repulsion of 1 p d² / i², where p is the proton mass. 
+This locks the speed of light to a fixed number, `c = 1 Gd/i`. It also locks the number of SI meters in one dee to a fixed ratio, `0.794243420 * 299792458/9192631770 = 0.0259020695149770325239515168...`). The approximation that `1 d = 2.590 cm` is not too hard to remember; furthermore it is only about 2% larger than an Imperial inch, meaning that Imperial measuring tapes can be used to measure distances with relatively good accuracy.
 
-So this would mean that we start looking at the metric constant:
-    
-    e² / (4 π ε₀) = 2.30707706 × 10⁻²⁸ m³ kg / s².
-    
-Divide by 1 proton mass, multiply by (0.0864 s)², to find:
-    
-    e² / (4 π ε₀) * i²/p = 1.02965537 liters
-    
-The cube root of this volume is:
-    
-    1 dee = 10.0978899 cm.
-    
-    e² / (4 π ε₀) = 1 d³ p / i²
+By defining the speed of light to be a power of ten, we remove the distinction between the units of mass and units of energy. In addition, the speed `1 d/i` is approximately equal to `1.079 km/hr`, allowing easy computation of approximate speeds for cars which use those non-metric units.
 
+## Charge
+One *lor*, written generally with a script small-L as `1 ℓ`, is the charge of 10<sup>15</sup> electrons.
 
-It is worth noticing that the dee is very close to one Imperial inch, to about
-2% error. Thus this is a meaningful unit to be measuring in. It may also help 
-to remember that 1 kilodee ≈ 26 m ≈ 85 feet. A city block is about 10 kilodee. 
+This number is not in a fixed relationship with the corresponding SI unit, the Coulomb. The best current numbers defining the relationship suggest that one lor is `0.0001602176565(35) C` where the parentheses indicate the standard uncertainty of the last digits. In terms of currents, `1 ℓ/i = 1.854370942(40) mA`.
 
-Speeds thus come down to dpi, dee per instant. 1 dpi = 0.671 mph = 1.08 km/hr. 
-But we get the added benefit that dpi = kd/ki = Md/day.
+These units of charge and current will alleviate the constant headache of physics teachers having to tell their students that "one Coulomb is a very large amount of charge" by reducing current flows to the scale of milliamps, which are seen much more often in real circuits.
 
-Gravity is then 9.81 N/kg = 2.83 d/i^2. 
+A proposed 2018 revision of the SI system suggests that the elementary charge will soon be fixed by the SI system, at which point the relationship above will become exact.
 
-I'm not sold on the idea of the word "dee", and I'm not set on defining the 
-"near-inch" as the base unit. Perhaps a "stretch" should instead be 26 m.
- Perhaps these units should be named after someone. I don't know yet.
+## Force
+One *newt*, written `1 n`, is defined as the Coulomb force experienced by two 1-lor charges in vacuum at a distance of `√(10<sup>9</sup> / (4 π)) d`, which is approximately 231 meters.
 
-The basic unit of volume would be the cubic dee, and we might choose, as the
-metric system did, that the mass unit be 1 d^3 of water. The other obvious 
-choice is to use 1.67262158 g = 1 m. The reason that this is nice is that it 
-establishes the proton mass as 10^-27 m exactly. We could then define a mole
-as 10^24 particles, since 12 m of Carbon-12 will have ~10^27 particles in. 
-Then the density of water is actually only 10.4 mm/d^3, so this conversion 
-factor is not so bad either way you choose it. A d^3 is basically 17.4 mL,
-or 0.85 tablespoons. A 2L bottles of cola that you see in the US would be 
-115 d^3. Probably they would prefer a bottle design which was just 100 d^3.
+It is a relatively small force. Due to the fact that the SI unit fixes the electric constant, the only uncertainty lying between these two units comes from the uncertainty of the relationship between 1 ℓ and 1 C. This will in the proposed revision of SI become a real uncertainty in its value for the electric constant. The SI system forces the vacuum permittivity to be:
 
-One number which is a little less pleasant: 1 atm / g = 4.143 m/d²
+> ε<sub>0</su> = 10<sup>7</sup> (farads/m) /(4 π * 299792458<sup>2</sup>))
 
-Another: ħ = 8.1194 * 10^-30 m d^2/i.
+From these we can ascertain that `1 n = 4.32118749(19) mN`.
 
-The native energy measure: 1m d^2/i^2 = 0.15 J, is a little on the low side.
+With this complicated definition we are setting the Coulomb force law to have the form:
 
-If we measured charge in e, or some metric multiple, then I am not sure we get
-back the cgs-style units, which say that:
+> F = (10<sup>9</sup> n d<sup>2</sup>/ℓ<sup>2</sup> q<sub>1</sub> q<sub>2</sub> / (4 π r<sup>2</sup>).
 
-    F = q₁ q₂ / r².
+Using cgs-style unit puns, we identify this prefactor with `c` so that formally:
 
-The CGS-esque unit of charge is thus 1 re, such that the force between two 
-spheres of charge 1 re is 1 m d/i^2. Using 10^27 for Avogadro's number means
-that 1 m d/i^2 = 5.80 N. Two charges at a distance of 1 d = 2.59 cm away from 
-each other should have this ~580g force between them, and if you calculate
-this out in SI units you find:
+> 1 ℓ = 1 √(n d i).
 
-    1 re = 6.58212417 * 10^-7 coulombs
-    
-    1 re/i = 7.6182 * 10^-6 amperes.
+This unit pun causes the Maxwell equations to take on a pleasing form, if we specify that primes are time derivatives divided by c (so `X' = 1/c ∂X/∂t`:
 
-    e = 2.434 * 10^-13 re. 
+    ∇·E = c ρ    ∇×E = -B'
+    ∇·B = 0      ∇×B =  E' + J
+    F = q [E + (v/c) × B]
 
-I like the idea of saying "0.24 pico-re" but I am not sure if I can do it in
-practice. ^_^;;
+This unit pun also means that there is a dimensionless unit for conductance/resistance, related in an exact numerical ratio to the SI units of siemens/ohms. The resistance unit, 1 = 1 (n d/ℓ)/(ℓ/i), has the exact magnitude of:
 
-Energy units are usually in eV or J. Thus this system should have eu and j. 
+> 1 = 4 π * 10<sup>-7</sup> * 299792458 Ω = 376.7303134617706554681984... Ω
 
-1 j = 0.150327731 J
-1 j/i = 1.740 W
-1 kWh = 23.947677 Mj. 
 
-But the volt analogue is:
+## Temperature
+One *medici*, written `1 M`, is a temperature interval such that the Boltzmann constant is given by:
 
-1 u = 1 j/re = 228,388 V.
+> k<sub>B</sub> = 10<sup>-19</sup> n d / °M
 
-That's huge, compared to the SI version. It comes fom the fact that the re is
-a rather small unit compared to the coulomb. a 1 uF capacitor is not hard to 
-find on the market now, and would charge up with 1.5re of charge in a 1V 
-potential. So 1 re is a more accessible macroscopic charge than the coulomb. 
+As with the definition of charge, the upcoming SI proposal will fix k<sub>B</sub> as well, so that the only uncertainty in converting between the two will be the uncertainty in the SI electric constant. At present there is still uncertainty in the SI value for k<sub>B</sub> but it was measured by the UK's NPL to be:
 
-The consequence is that we'd always be measuring in micro-u:
-    
-    1.5 V = 6.6 μu 
+> k<sub>B</sub> = 1.38065156(98) * 10<sup>-23</sup> J/K
 
-You would then get results like:
-    
-    13.6 eV = 144.95 * 10^-15 j = 59.55 μeu
+Combining the uncertainties naively we get that `1 M = 0.81068748(61) K`.
 
-This seems Bad because the whole point of people using eV is not just that 
-volts are relatively intuitive and electrons pick up this energy, but that we
-get very nice answers in the relevant units. 
+This temperature interval can be used as a temperature scale in two ways: the simplest is a temperature given in terms of medicis above absolute zero, written `M` or `Ma`. The second is the *degree Medici*, written `°M`, which is measured relative to the temperature `336.94 Ma`. On this scale, the freezing point of water at sea level is approximately `0°M` and the boiling point at sea level is about `123.35°M`, lowering by about `0.1 M/kd` as elevation increases. Probably people will just remember "water freezes at 0 and boils at 123."
 
-On the other hand, the proton rest energy is exactly 10^-9 j, because the 
-proton's mass is exactly 10^-27 m and the unit conversion is just 10^-9 c.
-The electron mass is 0.5446170 * 10^-12 j. So there might be some use for these
-units still in the sense that you are basically measuring with proton masses.
+## Derived units
+One *jay* is the work done by a force of one newt acting through a distance of one dee; `1 j = 0.1119276938(49) mJ`.
 
-In other words, suppose that I just define a special name for 10^-12 j, so 
-that it is 1 y. Then 13.6eV = 0.145 y, so it kind of works for atomic spectra.
-Then 1 y/re is 0.228 μV, but 1 y/e = 938,272 V.
+One *em* is the unit of mass such that a force of one newt accelerates it by one dee per square ee; `1 m = 1.245363547(54) gr`.
 
+One *vee* is the unit of electric potential of one jay per lor: `1 v = 0.698597746(15) V`.
 
-It looks like we only get to choose a couple of these parameters nicely? (I
-mean, that's obvious, but it's worth working out in detail.)
+One *sem* is the unit of electrical conductance of one lor per ee per vee. This is technically just a dimensionless constant 1 (see above), but we use it to be able to say that 1 s<sup>-1</sup> ≈ 376.73 Ω.
 
-The SI unit system chooses kg, m, s, C, K, candela, mol.
+# Some common parameters
 
-They choose kg to fix the density of water, m to fix the circumference of the 
-Earth, s to fix 1 day, C to fix the magnetic constant, K to fix the number of
-degrees between freezing and boiling, and mol to fix the atomic mass unit. I
-use the word "fix" here in the sense of "making it a nice value."
+The acceleration at Earth's surface due to gravity is approximately 2.83 d/i<sup>2</sup>.
 
-Right now I am choosing kg to fix proton mass, m to fix c, s to fix 1 day, 
-C to fix F = q₁ q₂ / r², K to fix boltzmann's constant, and 1 mol to fix 
-Avogadro's number, because 1 amu is already fixed by the kg choice.
+The density of water is approximately 14 m / d<sup>3</sup>.
 
-I would like to get a distance measurement for cars which is based on roughly 
-a 600m unit, because that is about what I package, as a cyclist, as one 
-"stretch" and cars travel about 10 times faster than me. In about 3 min = 2 ki,
-I travel about 1 stretch while the car travels about 10, so car speeds are 
-~5 s/ki, while I'm more at 0.5 s/ki. Maybe it's better to have a ~300m unit, 
-implying that our classroom unit should be closer to 0.3 m = 1 ft. 
+Planck's constant is *h* = e<sup>2</sup> / (2 *α*), which works out to *h* = 6.8517999537(22) * 10<sup>-29</sup> n i d, so its digits come straight from half the inverse-fine-structure constant.
 
-This is not quite furnished by fixing c, because you get 2.59 cm as your base 
-unit, not 25.9 cm. So you're looking at 25.9 m where you might like 259 m.
-We could fix this by fixing c = 10^8 d/i instead. This provides a sort of happy
-medium, I think? 1 d = 25.9 cm = 0.850 ft. 
+This also means that the conductance quantum is exactly four times the fine-structure constant, in sems.
 
-
- 
 # Appendix A: The Full Feynman Quote
 
 Parts of this statement are somewhat widely quoted, but the context is missing;
@@ -415,44 +154,3 @@ it comes from Feynman's third Messenger Lecture at Cornell University, titled
 >   to show on the screen, so that the audience will understand that I'm 
 >   human' -- well, the proof that physicists are human is the idiocy of 
 >   all the different units which they use in measuring energy.
-
-# Appendix B: The Mean Solar Day and the Definition of the Second #
-
-The rational epoch was chosen in particular because it lies near the POSIX 
-epoch and also lies before all of the modern UTC leap seconds, thus leap second 
-handling can be done with code that only looks forward in time. 
-
-As discussed in the text, the base unit of time is the instant, which is an
-atomic unit of time which exists in a fixed conversion factor to the second
-of approximately: 
-    
-    1 i = 0.086 400 002 727 402 s
-
-The leading terms are determined by the desire to make 1 Mi ~= 86 400 s, 
-which is one SI day. But instead I have chosen the rational day to be 
-approximately 2.73 ms longer than this. Why? 
-
-The fact is that the mean solar day right now is actually a little longer than
-the SI day: from 1965-1985 it was about 2.5 ms longer, although in recent years
-it has dropped to only be about 1 ms longer. (There is a tremendous amount of 
-noise, with decades routinely varying by ~1 ms/decade.) But there appears to 
-be a long-term average lengthening effect of maybe 1.7 ms/century due to many
-causes, one of which is tidal braking from the Moon. This means that the length
-of the mean solar day may be approximately 1 Mi in 2100 or afterwards. In the 
-intervening years, I calculate that the accumulated deviation might collect to
-be about a minute in magnitude, and then it would decrease for the following 
-hundred years, so that "leap seconds" would not need to be a serious problem
-until perhaps the year 2300 or so, barring unforseen events. 
-
-If we did institute them now, at least they would be the right sort of leap
-seconds -- the current SI-based system, called UTC, inserts an extra second
-at the end of hours which should not have 61 seconds, and the most obvious
-way to do this with a counter (like POSIX specifies) is to keep the counter on 
-one value for two seconds. This breaks the bijectiveness of the mapping in a 
-way that "jumping ahead" by one count doesn't.
-
-However, the system as I've presented it already provides a secondary scheme
-for inserting leap seconds in the form of time zone differences, without 
-compromising the central atomicness of the clock. A named time zone can track
-alternate 
-
