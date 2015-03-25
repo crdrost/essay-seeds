@@ -64,9 +64,9 @@ These units of charge and current will alleviate the constant headache of physic
 A proposed 2018 revision of the SI system suggests that the elementary charge will soon be fixed by the SI system, at which point the relationship above will become exact.
 
 ## Force
-One *newt*, written `1 n`, is defined as the Coulomb force experienced by two 1-lor charges in vacuum at a distance of `√(10<sup>9</sup> / (4 π)) d`, which is approximately 231 meters.
+One *newt*, written `1 n`, is defined as the Coulomb force experienced by two 1-lor charges in vacuum at a distance of √(10<sup>9</sup> / (4 π)) d, which is approximately 231 meters. It is a relatively small force.
 
-It is a relatively small force. Due to the fact that the SI unit fixes the electric constant, the only uncertainty lying between these two units comes from the uncertainty of the relationship between 1 ℓ and 1 C. This will in the proposed revision of SI become a real uncertainty in its value for the electric constant. The SI system forces the vacuum permittivity to be:
+Due to the fact that the SI unit fixes the electric constant, the only uncertainty lying between these two units comes from the uncertainty of the relationship between 1 ℓ and 1 C. This will in the proposed revision of SI become a real uncertainty in its value for the electric constant. The SI system forces the vacuum permittivity to be:
 
 > ε<sub>0</sub> = 10<sup>7</sup> (farads/m) /(4 π * 299792458<sup>2</sup>))
 
@@ -82,14 +82,22 @@ Using cgs-style unit puns, we identify this prefactor with `c` so that formally:
 
 This unit pun causes the Maxwell equations to take on a pleasing form, if we specify that primes are time derivatives divided by c (so `X' = 1/c ∂X/∂t`:
 
-    ∇·E = c ρ    ∇×E = -B'
-    ∇·B = 0      ∇×B =  E' + J
-    F = q [E + (v/c) × B]
+    Maxwell Equations
+        ∇ · E = c ρ    ∇ × E = -B'
+        ∇ · B = 0      ∇ × B =  E' + J
+
+    Lorentz Force: F = q [E + (v/c) × B]
+
+    Potentials: E = -∇φ − A',  B = ∇ × A
+    Gauge freedom: can take A → A − ∇ψ as long as we also take φ → φ + ψ'
+    Lorentz gauge: φ' − ∇·A = 0, causing ⧠ (φ, A) = (c ρ, J).
+
+    Energy density: u = (E² + B²)/(2 c)
+    Poynting vector: S = E × B
 
 This unit pun also means that there is a dimensionless unit for conductance/resistance, related in an exact numerical ratio to the SI units of siemens/ohms. The resistance unit, 1 = 1 (n d/ℓ)/(ℓ/i), has the exact magnitude of:
 
 > 1 = 4 π * 10<sup>-7</sup> * 299792458 Ω = 376.7303134617706554681984... Ω
-
 
 ## Temperature
 One *medici*, written `1 M`, is a temperature interval such that the Boltzmann constant is given by:
