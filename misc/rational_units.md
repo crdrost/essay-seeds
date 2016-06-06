@@ -127,9 +127,7 @@ The acceleration at Earth's surface due to gravity is approximately 2.83 d/i<sup
 
 The density of water is approximately 14 m / d<sup>3</sup>.
 
-Planck's constant is *h* = e<sup>2</sup> / (2 *α*), which works out to *h* = 6.8517999537(22) * 10<sup>-29</sup> n i d, so its digits come straight from half the inverse-fine-structure constant.
-
-This also means that the conductance quantum is exactly four times the fine-structure constant, in sems.
+Planck's constant is *h* = e<sup>2</sup> / (2 *α*), which works out to *h* = 6.8517999537(22) * 10<sup>-29</sup> n i d, so its digits come straight from half the inverse-fine-structure constant. Similarly, the conductance quantum can be written as G<sub>0</sub> = 4 ε<sub>0</sub> c α. This means that the conductance quantum is exactly four times the fine-structure constant, in sems.
 
 # Appendix A: The Full Feynman Quote
 
